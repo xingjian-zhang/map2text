@@ -5,6 +5,7 @@ import os
 from typing import Dict, List
 
 import numpy as np
+import hashlib
 
 from ..utils import api
 
@@ -95,3 +96,8 @@ def process_chat_requests(
         raise ValueError(f"Model {model_name} not supported.")
 
     return chats
+
+
+def hash_array(array: np.ndarray) -> str:
+    """Hash the array using MD5 and return the hash as a string."""
+    return hashlib.md5(array.tobytes()).hexdigest()

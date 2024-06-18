@@ -1,22 +1,10 @@
 import logging
 import os
-import tempfile
-
-import pytest
 
 from llm4explore.model.common import (process_chat_requests,
                                       process_embedding_requests)
 
-
-@pytest.fixture
-def change_dir(tmp_path):
-    # Remember the current working directory
-    old_dir = os.getcwd()
-    # Change to the temporary directory
-    os.chdir(tmp_path)
-    yield
-    # Change back to the original directory
-    os.chdir(old_dir)
+from utils import change_dir
 
 
 def test_process_embedding_requests(change_dir):
