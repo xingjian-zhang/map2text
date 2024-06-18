@@ -53,17 +53,20 @@ class PLMMapper(IdeaMapper):
         self.plm_kwargs = plm_kwargs or {}
         self.dr_kwargs = dr_kwargs or {}
 
-    def encode_all(self, data: List[str]) -> np.ndarray:
+    def encode_all(self, data: List[str], return_high_dim=True) -> np.ndarray:
         """Encode a list of key ideas using a PLM and reduce dimensions.
 
         Args:
             data: A list of key ideas to encode.
+            return_high_dim: Whether to also return the high-dimensional embeddings.
 
         Returns:
             A numpy array of encoded representations with reduced dimensions.
         """
         embeddings = self.encode_by_plm(data)
         reduced_embeddings = self.reduce_dims(embeddings)
+        if return_high_dim:
+            return reduced_embeddings, embeddings
         return reduced_embeddings
 
     def encode_by_plm(self, data: List[str]) -> np.ndarray:
