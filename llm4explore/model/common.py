@@ -116,7 +116,6 @@ def check_tmp_dir(func):
     return wrapper
 
 
-@check_tmp_dir
 class KNNSampler():
     """Sampler for KNN search."""
 
@@ -150,6 +149,7 @@ class KNNSampler():
 
         self._init_knn()
 
+    @check_tmp_dir
     def _init_knn(self):
         if os.path.exists(self.cache_path):
             print("Loading KNN index from cache.")

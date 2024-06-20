@@ -92,7 +92,7 @@ class IdeaGenerator(ABC):
         self,
         n_dims: int,
         data_old: List[str],
-        encodings_old: np.ndarray,
+        low_dim_embeddings_old: np.ndarray,
     ):
         """Initializes the generator with dimensions and reference data.
 
@@ -101,13 +101,12 @@ class IdeaGenerator(ABC):
             data_old: A list of older key ideas as a reference for idea generation.
             encodings_old: Low-dimensional representations of the older key ideas.
         """
-        self.model = None
         self.n_dims = n_dims
         self.data_old = data_old
-        self.encodings_old = encodings_old
+        self.low_dim_embeddings_old = low_dim_embeddings_old
 
     @abstractmethod
-    def decode(self, encoding: np.ndarray) -> str:
+    def decode(self, low_dim_embedding: np.ndarray) -> str:
         """Abstract method to decode a single low-dimensional representation into a key idea.
 
         Args:
@@ -118,7 +117,7 @@ class IdeaGenerator(ABC):
         """
         pass
 
-    def decode_all(self, encodings: np.ndarray) -> List[str]:
+    def decode_all(self, low_dim_embeddings: np.ndarray) -> List[str]:
         """Decodes a list of low-dimensional representations into key ideas.
 
         Args:
@@ -130,8 +129,10 @@ class IdeaGenerator(ABC):
         Raises:
             ValueError: If the encoded dimensions do not match the expected dimensions.
         """
-        if encodings.shape[1] != self.n_dims:
+        if low_dim_embeddings.shape[1] != self.n_dims:
             raise ValueError(
-                f"Expected {self.n_dims} dimensions, got {encodings.shape[1]}."
+                f"Expected {self.n_dims} dimensions, got {low_dim_embeddings.shape[1]}."
             )
-        return [self.decode(encoding) for encoding in tqdm.tqdm(encodings)]
+        return [
+            self.decode(encoding) for encoding in tqdm.tqdm(low_dim_embeddings)
+        ]

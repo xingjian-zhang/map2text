@@ -16,7 +16,6 @@ import numpy as np
 
 from llm4explore.model.base import IdeaMapper
 from llm4explore.model.common import hash_array, process_embedding_requests
-from llm4explore.utils import api
 
 
 class PLMMapper(IdeaMapper):
@@ -53,7 +52,7 @@ class PLMMapper(IdeaMapper):
         self.plm_kwargs = plm_kwargs or {}
         self.dr_kwargs = dr_kwargs or {}
 
-    def encode_all(self, data: List[str], return_high_dim=True) -> np.ndarray:
+    def encode_all(self, data: List[str], return_high_dim=False) -> np.ndarray:
         """Encode a list of key ideas using a PLM and reduce dimensions.
 
         Args:

@@ -131,6 +131,11 @@ async def process_api_requests_from_file(
     logging.basicConfig(level=logging_level)
     logging.debug(f"Logging initialized at level {logging_level}")
 
+    # Remove the save file if it already exists
+    if os.path.exists(save_filepath):
+        os.remove(save_filepath)
+        logging.info(f"Removed existing save file {save_filepath}")
+
     # infer API endpoint and construct request header
     api_endpoint = api_endpoint_from_url(request_url)
     request_header = {"Authorization": f"Bearer {api_key}"}
