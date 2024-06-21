@@ -1,0 +1,23 @@
+type: mapper
+data:
+  path: data/massw.tsv
+  target_col: key_idea
+  # time_col: year
+  # time_split: 2023
+method:
+  type: plm_dr
+  init_args:
+    n_dims: 2
+    save_path: out/ada2_key_ideas.npz
+    plm_encoder: text-embedding-ada-002
+    dr_algorithm: largevis
+    plm_kwargs:
+      request_url: https://embedding-api.openai.azure.com/openai/deployments/text-embedding-api/embeddings?api-version=2023-12-01-preview
+      api_key: ${AZURE_OPENAI_KEY}
+      max_requests_per_minute: 800
+      max_tokens_per_minute: 180000
+      token_encoding_name: cl100k_base
+      max_attempts: 99
+      logging_level: 10 # logging.DEBUG
+    dr_kwargs:
+      threads: 8

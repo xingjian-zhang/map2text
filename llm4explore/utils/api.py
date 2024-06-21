@@ -125,12 +125,11 @@ async def process_api_requests_from_file(
     """Processes API requests in parallel, throttling to stay under rate limits."""
     # constants
     seconds_to_pause_after_rate_limit_error = 15
-    seconds_to_sleep_each_loop = (
-        0.001  # 1 ms limits max throughput to 1,000 requests per second
-    )
+    seconds_to_sleep_each_loop = 0.05
 
-    # initialize logging
-    logging.basicConfig(level=logging_level)
+    # initialize logging if not already initialized
+    if not logging.getLogger().hasHandlers():
+        logging.basicConfig(level=logging_level)
     logging.debug(f"Logging initialized at level {logging_level}")
 
     # Remove the save file if it already exists
@@ -324,7 +323,7 @@ class APIRequest:
                 )
                 status_tracker.num_api_errors += 1
                 error = response
-                if "Rate limit" in response["error"].get("message", ""):
+                if "rate limit" in response["error"].get("message", "").lower():
                     status_tracker.time_of_last_rate_limit_error = time.time()
                     status_tracker.num_rate_limit_errors += 1
                     status_tracker.num_api_errors -= (

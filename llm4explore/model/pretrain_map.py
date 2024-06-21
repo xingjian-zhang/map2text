@@ -47,6 +47,7 @@ class PLMMapper(IdeaMapper):
             dr_kwargs: Additional keyword arguments for the dimension reduction
             algorithm.
         """
+        assert save_path.endswith(".npz"), "Save path must end with .npz"
         super().__init__(n_dims, save_path)
         self.plm_encoder = plm_encoder
         self.dr_algorithm = dr_algorithm
@@ -64,7 +65,11 @@ class PLMMapper(IdeaMapper):
             A numpy array of encoded representations with reduced dimensions.
         """
         embeddings = self.encode_by_plm(data)
+        np.savez(self.save_path, high_dim_embeddings=embeddings)
         reduced_embeddings = self.reduce_dims(embeddings)
+        np.savez(self.save_path,
+                 low_dim_embeddings=reduced_embeddings,
+                 high_dim_embeddings=embeddings)
         if return_high_dim:
             return reduced_embeddings, embeddings
         return reduced_embeddings
