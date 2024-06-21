@@ -2,12 +2,10 @@ import logging
 import os
 from typing import List
 
-os.environ["PYTORCH_ENABLE_MPS_FALLBACK"] = "1"
-
 import numpy as np
 import pytest
 
-from llm4explore.model.common import process_embedding_requests
+from llm4explore.utils.api import process_embedding_requests
 from llm4explore.model.non_trainable_gen import (EmbeddingBasedGenerator,
                                                  PlagiarismGenerator,
                                                  PromptingBasedGenerator)

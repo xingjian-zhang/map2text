@@ -19,7 +19,7 @@ import vec2text
 
 from llm4explore.model.base import IdeaGenerator
 from llm4explore.model.common import KNNSampler
-from llm4explore.model.common import process_chat_requests
+from llm4explore.utils.api import process_chat_requests
 
 
 class PlagiarismGenerator(IdeaGenerator):

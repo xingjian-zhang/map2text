@@ -15,7 +15,8 @@ from subprocess import run
 import numpy as np
 
 from llm4explore.model.base import IdeaMapper
-from llm4explore.model.common import hash_array, process_embedding_requests
+from llm4explore.model.common import hash_array
+from llm4explore.utils.api import process_embedding_requests
 
 
 class PLMMapper(IdeaMapper):

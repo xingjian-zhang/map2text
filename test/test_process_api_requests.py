@@ -1,8 +1,8 @@
 import logging
 import os
 
-from llm4explore.model.common import (process_chat_requests,
-                                      process_embedding_requests)
+from llm4explore.utils.api import (process_chat_requests,
+                                   process_embedding_requests)
 
 from utils import change_dir
 
