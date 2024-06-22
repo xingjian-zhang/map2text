@@ -71,7 +71,7 @@ class TestNonTrainableGen:
             sampler_kwargs=sampler_kwargs,
         )
         results = generator.decode_all(np.array([[2.5, 3]]))
-        assert results[0] == "Goodbye World"
+        assert results[0][0] == "Goodbye World"
 
     def test_prompting_based_generator(self, data_old, low_dim_embeddings_old,
                                        sampler_kwargs):

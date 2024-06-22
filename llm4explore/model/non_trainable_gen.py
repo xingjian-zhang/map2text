@@ -11,7 +11,7 @@ Supported generator models:
 
 import json
 import os
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Tuple
 
 import numpy as np
 import torch
@@ -20,6 +20,17 @@ import vec2text
 from llm4explore.model.base import IdeaGenerator
 from llm4explore.model.common import KNNSampler
 from llm4explore.utils.api import process_chat_requests
+
+
+def references_to_dict(
+    data_old: List[str],
+    indices: List[int],
+    dists: List[float],
+) -> List[Dict[str, str]]:
+    return [{
+        "reference": data_old[i],
+        "distance": round(d, 4),
+    } for i, d in zip(indices, dists)]
 
 
 class PlagiarismGenerator(IdeaGenerator):
@@ -40,9 +51,10 @@ class PlagiarismGenerator(IdeaGenerator):
         sampler_kwargs = sampler_kwargs or {}
         self.sampler = KNNSampler(low_dim_embeddings_old, **sampler_kwargs)
 
-    def decode(self, low_dim_embedding: np.ndarray) -> str:
+    def decode(self, low_dim_embedding: np.ndarray) -> Tuple[str, Any]:
         indices, dists = self.sampler.sample(low_dim_embedding)
-        return self.data_old[indices[0]]
+        return self.data_old[indices[0]], references_to_dict(
+            self.data_old, indices, dists)
 
 
 class EmbeddingBasedGenerator(IdeaGenerator):
@@ -78,7 +90,7 @@ class EmbeddingBasedGenerator(IdeaGenerator):
         self.vec2text_corrector = vec2text.load_corrector(
             "text-embedding-ada-002")
 
-    def decode(self, low_dim_embedding: np.ndarray) -> str:
+    def decode(self, low_dim_embedding: np.ndarray) -> Tuple[str, Any]:
         # Sample nearest neighbors and interpolate high-dimensional embeddings.
         indices, dists = self.sampler.sample(low_dim_embedding)
         high_dim_embeddings = self.high_dim_embeddings_old[indices]
@@ -96,7 +108,7 @@ class EmbeddingBasedGenerator(IdeaGenerator):
                          device=self.vec2text_corrector.model.device),
             self.vec2text_corrector,
             **self.vec2text_kwargs,
-        )
+        ), references_to_dict(self.data_old, indices, dists)
 
 
 class PromptingBasedGenerator(IdeaGenerator):
@@ -134,19 +146,23 @@ class PromptingBasedGenerator(IdeaGenerator):
             "content": "\n".join(references)
         }]
 
-    def decode(self, low_dim_embedding: np.ndarray) -> str:
+    def decode(self, low_dim_embedding: np.ndarray) -> Tuple[str, Any]:
         raise NotImplementedError(
             "Prompting-based generator does not support decoding single embeddings."
         )
 
-    def decode_all(self, low_dim_embeddings: np.ndarray) -> List[str]:
+    def decode_all(self,
+                   low_dim_embeddings: np.ndarray) -> List[Tuple[str, Any]]:
         messages = []
+        references = []
         for low_dim_embedding in low_dim_embeddings:
             indices, dists = self.sampler.sample(low_dim_embedding)
-            references = [self.data_old[i] for i in indices]
-            messages.append(self.get_prompt(references))
-        return process_chat_requests(
+            ref = [self.data_old[i] for i in indices]
+            messages.append(self.get_prompt(ref))
+            references.append(ref)
+        preds = process_chat_requests(
             self.model_name,
             messages,
             **self.api_kwargs,
         )
+        return list(zip(preds, references))

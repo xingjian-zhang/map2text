@@ -1,12 +1,10 @@
 """Common functions for models."""
-import asyncio
-import json
+import hashlib
 import os
 from typing import Tuple
 
-from annoy import AnnoyIndex
 import numpy as np
-import hashlib
+from annoy import AnnoyIndex
 
 
 def hash_array(array: np.ndarray) -> str:

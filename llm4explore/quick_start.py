@@ -1,17 +1,153 @@
 """Entry point for quick start of the experiment."""
 
 import argparse
+import datetime
+import json
+import logging
 import os
 import re
-import logging
-import datetime
+from typing import Any, List
 
-import yaml
+import numpy as np
 import pandas as pd
+import yaml
 
-from llm4explore.model.pretrain_map import PLMMapper
+from llm4explore.model import non_trainable_gen, pretrain_map
+from llm4explore.model.base import IdeaGenerator, IdeaMapper
 
 PATH_MATCHER = re.compile(r'\$\{([^}^{]+)\}')
+
+
+class MappingExperiment:
+
+    def __init__(
+        self,
+        mapper: IdeaMapper,
+        targets: List[str],
+    ):
+        self.mapper = mapper
+        self.targets = targets
+
+    @classmethod
+    def from_config(cls, config: Any):
+        # Load data.
+        data = pd.read_csv(config["data"]["path"], sep="\t")
+        targets = data[config["data"]["target_col"]].dropna().tolist()
+        logging.info(f"Number of data points: {len(data)}")
+        logging.info(f"Number of valid data points: {len(targets)}")
+
+        # Initialize the mapper.
+        if config["method"]["type"] == "plm_dr":
+            mapper = pretrain_map.PLMMapper(**config["method"]["init_args"])
+        else:
+            raise ValueError(
+                f"Unknown method type: {config['method']['type']}.")
+        return MappingExperiment(mapper, targets)
+
+    def run(self):
+        self.mapper.encode_all(self.targets)
+
+
+class GenerationExperiment:
+
+    def __init__(
+        self,
+        generator: IdeaGenerator,
+        low_dim_embeddings_new: np.ndarray,
+        targets_new: List[str],
+        output_path: str,
+        num_tests: int = None,
+    ):
+        self.generator = generator
+        self.low_dim_embeddings_new = low_dim_embeddings_new
+        self.targets_new = targets_new
+        self.output_path = output_path
+        self.num_tests = num_tests or len(targets_new)
+
+    @classmethod
+    def from_config(cls, config: Any):
+        # Load text data.
+        data = pd.read_csv(
+            config["data"]["path"],
+            sep="\t",
+            usecols=[
+                config["data"]["target_col"], config["data"]["time_col"],
+                config["data"]["time_col"]
+            ],
+        )
+        data = data.dropna(subset=[config["data"]["target_col"]])
+        targets = data[config["data"]["target_col"]]
+        logging.info(f"Number of data points: {len(data)}")
+        logging.info(f"Number of valid data points: {len(targets)}")
+        times = data[config["data"]["time_col"]]
+        time_split = config["data"]["time_split"]
+
+        # Load precomputed embeddings.
+        npz = np.load(config["embeddings"]["path"])
+        high_dim_embeddings = npz["high_dim_embeddings"]
+        low_dim_embeddings = npz["low_dim_embeddings"]
+        n_dims = low_dim_embeddings.shape[1]
+        assert len(targets) == high_dim_embeddings.shape[0], \
+            "Number of targets does not match the number of embeddings."
+
+        # Split the data.
+        targets_old = targets[times < time_split].tolist()
+        targets_new = targets[times >= time_split].tolist()
+        logging.info(f"Number of old data points: {len(targets_old)}")
+        logging.info(f"Number of new data points: {len(targets_new)}")
+        low_dim_embeddings_new = low_dim_embeddings[times >= time_split]
+        low_dim_embeddings_old = low_dim_embeddings[times < time_split]
+
+        # Initialize the generator.
+        generator_type = config["method"]["type"]
+        if generator_type == "plagiarism":
+            generator = non_trainable_gen.PlagiarismGenerator(
+                n_dims=n_dims,
+                data_old=targets_old,
+                low_dim_embeddings_old=low_dim_embeddings_old,
+                **config["method"]["init_args"],
+            )
+        elif generator_type == "embedding":
+            high_dim_embeddings_old = high_dim_embeddings[times < time_split]
+            generator = non_trainable_gen.EmbeddingBasedGenerator(
+                n_dims=n_dims,
+                data_old=targets_old,
+                low_dim_embeddings_old=low_dim_embeddings_old,
+                high_dim_embeddings_old=high_dim_embeddings_old,
+                **config["method"]["init_args"],
+            )
+        elif generator_type == "prompting":
+            generator = non_trainable_gen.PromptingBasedGenerator(
+                n_dims=n_dims,
+                data_old=targets_old,
+                low_dim_embeddings_old=low_dim_embeddings_old,
+                **config["method"]["init_args"],
+            )
+        else:
+            raise ValueError(f"Unknown generator type: {generator_type}.")
+        return GenerationExperiment(
+            generator,
+            low_dim_embeddings_new,
+            targets_new,
+            config["output"],
+            config["data"]["num_tests"],
+        )
+
+    def run(self):
+        queries = self.low_dim_embeddings_new[:self.num_tests]
+        results = self.generator.decode_all(queries)
+        preds, logs = zip(*results)
+        targets = self.targets_new[:self.num_tests]
+        outputs = []
+        for i in range(len(preds)):
+            outputs.append({
+                "target": targets[i],
+                "prediction": preds[i],
+                "queries": queries[i].tolist(),
+                "log": logs[i],
+            })
+        with open(self.output_path, "w") as f:
+            json.dump(outputs, f, indent=4)
 
 
 def path_constructor(loader, node):
@@ -75,31 +211,13 @@ def main():
         f"Configuration: {config}")  # NOTE: logging may expose api keys.
 
     # Run experiment.
-    if config["type"] == "mapper":
-        run_mapper_experiment(config)
-    elif config["type"] == "generator":
-        run_generator_experiment(config)
+    experiment_type = config["type"]
+    if experiment_type == "mapper":
+        MappingExperiment.from_config(config).run()
+    elif experiment_type == "generator":
+        GenerationExperiment.from_config(config).run()
     else:
-        raise ValueError(f"Unknown experiment type: {config['type']}.")
-
-
-def run_mapper_experiment(config):
-    # Load data.
-    data = pd.read_csv(config["data"]["path"], sep="\t")
-    targets = data[config["data"]["target_col"]].dropna().tolist()
-    logging.info(f"Number of data points: {len(data)}")
-    logging.info(f"Number of valid data points: {len(targets)}")
-
-    # Run the mapper.
-    if config["method"]["type"] == "plm_dr":
-        mapper = PLMMapper(**config["method"]["init_args"])
-    else:
-        raise ValueError(f"Unknown method type: {config['method']['type']}.")
-    mapper.encode_all(targets)
-
-
-def run_generator_experiment(config):
-    raise NotImplementedError("Generator experiment is not implemented.")
+        raise ValueError(f"Unknown experiment type: {experiment_type}.")
 
 
 if __name__ == "__main__":
