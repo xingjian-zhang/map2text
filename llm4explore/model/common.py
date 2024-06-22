@@ -1,4 +1,5 @@
 """Common functions for models."""
+
 import hashlib
 import os
 from typing import Tuple
@@ -22,15 +23,17 @@ def check_tmp_dir(func):
     return wrapper
 
 
-class KNNSampler():
+class KNNSampler:
     """Sampler for KNN search."""
 
-    def __init__(self,
-                 knn_embeddings: np.ndarray,
-                 metric: str = "euclidean",
-                 n_trees: int = 10,
-                 k: int = 5,
-                 check_leakage: bool = True):
+    def __init__(
+        self,
+        knn_embeddings: np.ndarray,
+        metric: str = "euclidean",
+        n_trees: int = 10,
+        k: int = 5,
+        check_leakage: bool = True,
+    ):
         """Initialize the sampler.
 
         Args:
@@ -82,8 +85,9 @@ class KNNSampler():
             self.k,
             include_distances=True,
         )
-        if self.check_leakage and any(dists[i] < 1e-6
-                                      for i in range(len(dists))):
-            raise ValueError("Query is too close to a sample."
-                             "The samples may contain query itself.")
+        if self.check_leakage and any(dists[i] < 1e-6 for i in range(len(dists))):
+            raise ValueError(
+                "Query is too close to a sample."
+                "The samples may contain query itself."
+            )
         return indices, dists

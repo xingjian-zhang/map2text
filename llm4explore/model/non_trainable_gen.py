@@ -27,10 +27,13 @@ def references_to_dict(
     indices: List[int],
     dists: List[float],
 ) -> List[Dict[str, str]]:
-    return [{
-        "reference": data_old[i],
-        "distance": round(d, 4),
-    } for i, d in zip(indices, dists)]
+    return [
+        {
+            "reference": data_old[i],
+            "distance": round(d, 4),
+        }
+        for i, d in zip(indices, dists)
+    ]
 
 
 class PlagiarismGenerator(IdeaGenerator):
@@ -54,7 +57,8 @@ class PlagiarismGenerator(IdeaGenerator):
     def decode(self, low_dim_embedding: np.ndarray) -> Tuple[str, Any]:
         indices, dists = self.sampler.sample(low_dim_embedding)
         return self.data_old[indices[0]], references_to_dict(
-            self.data_old, indices, dists)
+            self.data_old, indices, dists
+        )
 
 
 class EmbeddingBasedGenerator(IdeaGenerator):
@@ -79,7 +83,8 @@ class EmbeddingBasedGenerator(IdeaGenerator):
     ):
         assert high_dim_embeddings_old.shape[1] == 1536, (
             "High-dimensional embeddings must have 1536 dimensions. "
-            "Please use text-embedding-ada-002 to generate the embeddings.")
+            "Please use text-embedding-ada-002 to generate the embeddings."
+        )
         super().__init__(n_dims, data_old, low_dim_embeddings_old)
         sampler_kwargs = sampler_kwargs or {}
         vec2text_kwargs = vec2text_kwargs or {}
@@ -87,8 +92,7 @@ class EmbeddingBasedGenerator(IdeaGenerator):
         self.high_dim_embeddings_old = high_dim_embeddings_old
         self.sampler = KNNSampler(low_dim_embeddings_old, **sampler_kwargs)
         self.vec2text_kwargs = vec2text_kwargs
-        self.vec2text_corrector = vec2text.load_corrector(
-            "text-embedding-ada-002")
+        self.vec2text_corrector = vec2text.load_corrector("text-embedding-ada-002")
 
     def decode(self, low_dim_embedding: np.ndarray) -> Tuple[str, Any]:
         # Sample nearest neighbors and interpolate high-dimensional embeddings.
@@ -96,16 +100,16 @@ class EmbeddingBasedGenerator(IdeaGenerator):
         high_dim_embeddings = self.high_dim_embeddings_old[indices]
         dists = np.array(dists)
         weights = 1 / (dists + 1e-6) if self.weighted else np.ones_like(dists)
-        high_dim_embedding = np.average(high_dim_embeddings,
-                                        axis=0,
-                                        weights=weights)
+        high_dim_embedding = np.average(high_dim_embeddings, axis=0, weights=weights)
         # Generate text from the interpolated high-dimensional embedding using vec2text.
         if high_dim_embedding.ndim == 1:
             high_dim_embedding = high_dim_embedding[None, :]
         return vec2text.invert_embeddings(
-            torch.tensor(high_dim_embedding,
-                         dtype=self.vec2text_corrector.model.dtype,
-                         device=self.vec2text_corrector.model.device),
+            torch.tensor(
+                high_dim_embedding,
+                dtype=self.vec2text_corrector.model.dtype,
+                device=self.vec2text_corrector.model.device,
+            ),
             self.vec2text_corrector,
             **self.vec2text_kwargs,
         ), references_to_dict(self.data_old, indices, dists)
@@ -135,24 +139,23 @@ class PromptingBasedGenerator(IdeaGenerator):
         api_kwargs = api_kwargs or {}
         self.sampler = KNNSampler(low_dim_embeddings_old, **sampler_kwargs)
         self.api_kwargs = api_kwargs
-        prompt_path = os.path.join(os.path.dirname(__file__), "prompts",
-                                   prompt_type + ".json")
+        prompt_path = os.path.join(
+            os.path.dirname(__file__), "prompts", prompt_type + ".json"
+        )
         with open(prompt_path, "r") as f:
             self.prompt_messages = json.load(f)
 
     def get_prompt(self, references: List[str]) -> List[Dict[str, str]]:
-        return self.prompt_messages + [{
-            "role": "user",
-            "content": "\n".join(references)
-        }]
+        return self.prompt_messages + [
+            {"role": "user", "content": "\n".join(references)}
+        ]
 
     def decode(self, low_dim_embedding: np.ndarray) -> Tuple[str, Any]:
         raise NotImplementedError(
             "Prompting-based generator does not support decoding single embeddings."
         )
 
-    def decode_all(self,
-                   low_dim_embeddings: np.ndarray) -> List[Tuple[str, Any]]:
+    def decode_all(self, low_dim_embeddings: np.ndarray) -> List[Tuple[str, Any]]:
         messages = []
         references = []
         for low_dim_embedding in low_dim_embeddings:

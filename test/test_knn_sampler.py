@@ -5,18 +5,20 @@ import numpy as np
 
 def test_retrieve_correct_knns():
     # Generate 10 hand-crafted vectors
-    knn_embeddings = np.array([
-        [1, 2, 3, 4, 5],
-        [2, 3, 4, 5, 6],
-        [3, 4, 5, 6, 7],
-        [4, 5, 6, 7, 8],
-        [5, 6, 7, 8, 9],
-        [6, 7, 8, 9, 10],
-        [7, 8, 9, 10, 11],
-        [8, 9, 10, 11, 12],
-        [9, 10, 11, 12, 13],
-        [10, 11, 12, 13, 14],
-    ])
+    knn_embeddings = np.array(
+        [
+            [1, 2, 3, 4, 5],
+            [2, 3, 4, 5, 6],
+            [3, 4, 5, 6, 7],
+            [4, 5, 6, 7, 8],
+            [5, 6, 7, 8, 9],
+            [6, 7, 8, 9, 10],
+            [7, 8, 9, 10, 11],
+            [8, 9, 10, 11, 12],
+            [9, 10, 11, 12, 13],
+            [10, 11, 12, 13, 14],
+        ]
+    )
     # Create KNNSampler instance
     sampler = KNNSampler(knn_embeddings=knn_embeddings, k=2)
 
@@ -37,18 +39,20 @@ def test_retrieve_correct_knns():
 
 def test_check_leakage_knns():
     # Generate 10 hand-crafted vectors
-    knn_embeddings = np.array([
-        [1, 2, 3, 4, 5],
-        [2, 3, 4, 5, 6],
-        [3, 4, 5, 6, 7],
-        [4, 5, 6, 7, 8],
-        [5, 6, 7, 8, 9],
-        [6, 7, 8, 9, 10],
-        [7, 8, 9, 10, 11],
-        [8, 9, 10, 11, 12],
-        [9, 10, 11, 12, 13],
-        [10, 11, 12, 13, 14],
-    ])
+    knn_embeddings = np.array(
+        [
+            [1, 2, 3, 4, 5],
+            [2, 3, 4, 5, 6],
+            [3, 4, 5, 6, 7],
+            [4, 5, 6, 7, 8],
+            [5, 6, 7, 8, 9],
+            [6, 7, 8, 9, 10],
+            [7, 8, 9, 10, 11],
+            [8, 9, 10, 11, 12],
+            [9, 10, 11, 12, 13],
+            [10, 11, 12, 13, 14],
+        ]
+    )
     # Create KNNSampler instance
     sampler = KNNSampler(knn_embeddings=knn_embeddings, k=2, check_leakage=True)
 

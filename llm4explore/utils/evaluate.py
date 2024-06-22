@@ -1,6 +1,6 @@
 import logging
 import os
-from typing import Any, Dict, List, Union
+from typing import Any, Dict, List
 
 import evaluate
 import numpy as np
@@ -21,8 +21,7 @@ class CosineSimilarity:
 
     def __init__(self):
         """Initialize the SentenceTransformer model."""
-        self.encoder = SentenceTransformer(
-            'intfloat/multilingual-e5-large-instruct')
+        self.encoder = SentenceTransformer("intfloat/multilingual-e5-large-instruct")
 
     def get_detailed_instruct(self, query: str) -> str:
         """Generate a detailed instruct for the query."""
@@ -45,8 +44,7 @@ class CosineSimilarity:
         references: List[str],
     ):
         """Compute the cosine similarity between predictions and references."""
-        predictions_embeddings = self.get_embeddings(predictions,
-                                                     is_query=True)
+        predictions_embeddings = self.get_embeddings(predictions, is_query=True)
         references_embeddings = self.get_embeddings(references, is_query=False)
         # Compute pairwise cosine similarity
         cosine_similarities = []
@@ -59,14 +57,11 @@ class CosineSimilarity:
 class LLMEval:
     """Compute the LLM evaluation metric."""
 
-    def __init__(self,
-                 model_name: str = "gpt-4",
-                 api_kwargs: Dict[str, Any] = None):
+    def __init__(self, model_name: str = "gpt-4", api_kwargs: Dict[str, Any] = None):
         self.model_name = model_name
         if api_kwargs is None:
             api_kwargs = dict(
-                request_url=
-                "https://embedding-api.openai.azure.com/openai/deployments/"
+                request_url="https://embedding-api.openai.azure.com/openai/deployments/"
                 "gpt-4/chat/completions?api-version=2023-12-01-preview",
                 api_key=os.getenv("AZURE_OPENAI_KEY"),
                 max_requests_per_minute=100,
@@ -81,14 +76,8 @@ class LLMEval:
         """Generate the prompt for the language model."""
         user_prompt = f"Input 1: {text_1}\nInput 2: {text_2}"
         message = [
-            {
-                "role": "system",
-                "content": LLM_EVAL_PROMPT
-            },
-            {
-                "role": "user",
-                "content": user_prompt
-            },
+            {"role": "system", "content": LLM_EVAL_PROMPT},
+            {"role": "user", "content": user_prompt},
         ]
         return message
 
@@ -97,9 +86,9 @@ class LLMEval:
             self.generate_prompt(pred, ref)
             for pred, ref in zip(predictions, references)
         ]
-        results = process_chat_requests(model_name=self.model_name,
-                                        messages=messages,
-                                        **self.api_kwargs)
+        results = process_chat_requests(
+            model_name=self.model_name, messages=messages, **self.api_kwargs
+        )
         results_numeric = []
         for r in results:
             try:
@@ -117,32 +106,20 @@ class LLMEval:
 
 class Evaluation:
     SUPPORTED_METRICS = {
-        "bleu": {
-            "source": "huggingface"
-        },
-        "rouge": {
-            "source": "huggingface"
-        },
-        "bertscore": {
-            "source": "huggingface"
-        },
-        "meteor": {
-            "source": "huggingface"
-        },
+        "bleu": {"source": "huggingface"},
+        "rouge": {"source": "huggingface"},
+        "bertscore": {"source": "huggingface"},
+        "meteor": {"source": "huggingface"},
         "bleurt": {
             "source": "huggingface",
             "kwargs": {
                 "module_type": "metric",
                 "checkpoint": "BLEURT-20-D12",
-                "config_name": "BLEURT-20-D12"
-            }
+                "config_name": "BLEURT-20-D12",
+            },
         },
-        "cosine": {
-            "source": "custom"
-        },
-        "llmeval": {
-            "source": "custom"
-        },
+        "cosine": {"source": "custom"},
+        "llmeval": {"source": "custom"},
     }
 
     def __init__(self, metric_names: List[str]):
@@ -155,16 +132,14 @@ class Evaluation:
             metric_info = self.SUPPORTED_METRICS[metric_name]
             if metric_info["source"] == "huggingface":
                 metric_kwargs = metric_info.get("kwargs", {})
-                self.metrics[metric_name] = evaluate.load(
-                    metric_name, **metric_kwargs)
+                self.metrics[metric_name] = evaluate.load(metric_name, **metric_kwargs)
             elif metric_info["source"] == "custom":
                 if metric_name == "cosine":
                     self.metrics[metric_name] = CosineSimilarity()
                 elif metric_name == "llmeval":
                     self.metrics[metric_name] = LLMEval()
 
-    def flatten(self, results: Dict[str, Dict[str,
-                                              float]]) -> Dict[str, float]:
+    def flatten(self, results: Dict[str, Dict[str, float]]) -> Dict[str, float]:
         flat_results = {}
         for metric_results in results.values():
             flat_results.update(metric_results)
@@ -174,10 +149,11 @@ class Evaluation:
         results = {}
         for metric_name, metric in self.metrics.items():
             if metric_name == "bertscore":
-                results[metric_name] = metric.compute(predictions=predictions,
-                                                      references=references,
-                                                      lang="en")
+                results[metric_name] = metric.compute(
+                    predictions=predictions, references=references, lang="en"
+                )
             else:
-                results[metric_name] = metric.compute(predictions=predictions,
-                                                      references=references)
+                results[metric_name] = metric.compute(
+                    predictions=predictions, references=references
+                )
         return self.flatten(results)

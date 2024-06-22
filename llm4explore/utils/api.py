@@ -146,10 +146,12 @@ async def process_api_requests_from_file(
 
     # initialize trackers
     queue_of_requests_to_retry = asyncio.Queue()
-    task_id_generator = (task_id_generator_function()
-                         )  # generates integer IDs of 0, 1, 2, ...
-    status_tracker = (StatusTracker()
-                      )  # single instance to track a collection of variables
+    task_id_generator = (
+        task_id_generator_function()
+    )  # generates integer IDs of 0, 1, 2, ...
+    status_tracker = (
+        StatusTracker()
+    )  # single instance to track a collection of variables
     next_request = None  # variable to hold the next request to call
 
     # initialize available capacity counts
@@ -159,15 +161,14 @@ async def process_api_requests_from_file(
 
     # initialize flags
     file_not_finished = True  # after file is empty, we'll skip reading it
-    logging.debug(f"Initialization complete.")
+    logging.debug("Initialization complete.")
 
     # initialize file reading
     with open(requests_filepath) as file:
         # `requests` will provide requests one at a time
         requests = file.__iter__()
-        logging.debug(f"File opened. Entering main loop")
-        async with aiohttp.ClientSession(
-        ) as session:  # Initialize ClientSession here
+        logging.debug("File opened. Entering main loop")
+        async with aiohttp.ClientSession() as session:  # Initialize ClientSession here
             while True:
                 # get next request (if one is not already waiting for capacity)
                 if next_request is None:
@@ -183,10 +184,9 @@ async def process_api_requests_from_file(
                             next_request = APIRequest(
                                 task_id=next(task_id_generator),
                                 request_json=request_json,
-                                token_consumption=
-                                num_tokens_consumed_from_request(
-                                    request_json, api_endpoint,
-                                    token_encoding_name),
+                                token_consumption=num_tokens_consumed_from_request(
+                                    request_json, api_endpoint, token_encoding_name
+                                ),
                                 attempts_left=max_attempts,
                                 metadata=request_json.pop("metadata", None),
                             )
@@ -204,13 +204,13 @@ async def process_api_requests_from_file(
                 current_time = time.time()
                 seconds_since_update = current_time - last_update_time
                 available_request_capacity = min(
-                    available_request_capacity +
-                    max_requests_per_minute * seconds_since_update / 60.0,
+                    available_request_capacity
+                    + max_requests_per_minute * seconds_since_update / 60.0,
                     max_requests_per_minute,
                 )
                 available_token_capacity = min(
-                    available_token_capacity +
-                    max_tokens_per_minute * seconds_since_update / 60.0,
+                    available_token_capacity
+                    + max_tokens_per_minute * seconds_since_update / 60.0,
                     max_tokens_per_minute,
                 )
                 last_update_time = current_time
@@ -218,8 +218,10 @@ async def process_api_requests_from_file(
                 # if enough capacity available, call API
                 if next_request:
                     next_request_tokens = next_request.token_consumption
-                    if (available_request_capacity >= 1 and
-                            available_token_capacity >= next_request_tokens):
+                    if (
+                        available_request_capacity >= 1
+                        and available_token_capacity >= next_request_tokens
+                    ):
                         # update counters
                         available_request_capacity -= 1
                         available_token_capacity -= next_request_tokens
@@ -234,7 +236,8 @@ async def process_api_requests_from_file(
                                 retry_queue=queue_of_requests_to_retry,
                                 save_filepath=save_filepath,
                                 status_tracker=status_tracker,
-                            ))
+                            )
+                        )
                         next_request = None  # reset next_request to empty
 
                 # if all tasks are finished, break
@@ -246,12 +249,16 @@ async def process_api_requests_from_file(
 
                 # if a rate limit error was hit recently, pause to cool down
                 seconds_since_rate_limit_error = (
-                    time.time() - status_tracker.time_of_last_rate_limit_error)
-                if (seconds_since_rate_limit_error
-                        < seconds_to_pause_after_rate_limit_error):
+                    time.time() - status_tracker.time_of_last_rate_limit_error
+                )
+                if (
+                    seconds_since_rate_limit_error
+                    < seconds_to_pause_after_rate_limit_error
+                ):
                     remaining_seconds_to_pause = (
-                        seconds_to_pause_after_rate_limit_error -
-                        seconds_since_rate_limit_error)
+                        seconds_to_pause_after_rate_limit_error
+                        - seconds_since_rate_limit_error
+                    )
                     await asyncio.sleep(remaining_seconds_to_pause)
                     # ^e.g., if pause is 15 seconds and final limit was hit 5 seconds ago
                     logging.warn(
@@ -313,9 +320,9 @@ class APIRequest:
         logging.info(f"Starting request #{self.task_id}")
         error = None
         try:
-            async with session.post(url=request_url,
-                                    headers=request_header,
-                                    json=self.request_json) as response:
+            async with session.post(
+                url=request_url, headers=request_header, json=self.request_json
+            ) as response:
                 response = await response.json()
             if "error" in response:
                 logging.warning(
@@ -330,11 +337,8 @@ class APIRequest:
                         1  # rate limit errors are counted separately
                     )
 
-        except (
-                Exception
-        ) as e:  # catching naked exceptions is bad practice, but in this case we'll log & save them
-            logging.warning(
-                f"Request {self.task_id} failed with Exception {e}")
+        except Exception as e:  # catching naked exceptions is bad practice, but in this case we'll log & save them
+            logging.warning(f"Request {self.task_id} failed with Exception {e}")
             status_tracker.num_other_errors += 1
             error = e
         if error:
@@ -345,17 +349,20 @@ class APIRequest:
                 logging.error(
                     f"Request {self.request_json} failed after all attempts. Saving errors: {self.result}"
                 )
-                data = ([
-                    self.request_json, [str(e)
-                                        for e in self.result], self.metadata
-                ] if self.metadata else
-                        [self.request_json, [str(e) for e in self.result]])
+                data = (
+                    [self.request_json, [str(e) for e in self.result], self.metadata]
+                    if self.metadata
+                    else [self.request_json, [str(e) for e in self.result]]
+                )
                 append_to_jsonl(data, save_filepath)
                 status_tracker.num_tasks_in_progress -= 1
                 status_tracker.num_tasks_failed += 1
         else:
-            data = ([self.request_json, response, self.metadata]
-                    if self.metadata else [self.request_json, response])
+            data = (
+                [self.request_json, response, self.metadata]
+                if self.metadata
+                else [self.request_json, response]
+            )
             append_to_jsonl(data, save_filepath)
             status_tracker.num_tasks_in_progress -= 1
             status_tracker.num_tasks_succeeded += 1
@@ -371,8 +378,8 @@ def api_endpoint_from_url(request_url):
     if match is None:
         # for Azure OpenAI deployment urls
         match = re.search(
-                r"^https://[^/]+/openai/deployments/[^/]+/(.+?)(\?|$)",
-                request_url)
+            r"^https://[^/]+/openai/deployments/[^/]+/(.+?)(\?|$)", request_url
+        )
     return match[1]
 
 
@@ -438,7 +445,8 @@ def num_tokens_consumed_from_request(
     # more logic needed to support other API calls (e.g., edits, inserts, DALL-E)
     else:
         raise NotImplementedError(
-            f'API endpoint "{api_endpoint}" not implemented in this script')
+            f'API endpoint "{api_endpoint}" not implemented in this script'
+        )
 
 
 def task_id_generator_function():
@@ -462,13 +470,15 @@ def process_embedding_requests(
         with open(requests_filepath, "w") as f:
             for i, text in enumerate(data):
                 f.write(
-                    json.dumps({
-                        "model": "text-embedding-ada-002",
-                        "input": text,
-                        "metadata": {
-                            "id": i
-                        },
-                    }) + "\n")
+                    json.dumps(
+                        {
+                            "model": "text-embedding-ada-002",
+                            "input": text,
+                            "metadata": {"id": i},
+                        }
+                    )
+                    + "\n"
+                )
         # Send requests to the API
         loop = asyncio.get_event_loop()
         loop.run_until_complete(
@@ -476,7 +486,8 @@ def process_embedding_requests(
                 requests_filepath=requests_filepath,
                 save_filepath=save_filepath,
                 **kwargs,
-            ))
+            )
+        )
         # Read the embeddings and note the order
         id2embedding = {}
         with open(save_filepath, "r") as f:
@@ -485,8 +496,7 @@ def process_embedding_requests(
                 embedding = response[1]["data"][0]["embedding"]
                 idx = response[-1]["id"]
                 id2embedding[idx] = embedding
-        assert len(data) == len(
-            id2embedding), f"{len(data)} != {len(id2embedding)}"
+        assert len(data) == len(id2embedding), f"{len(data)} != {len(id2embedding)}"
         embeddings = np.array([id2embedding[i] for i in range(len(data))])
     else:
         raise ValueError(f"Model {model_name} not supported.")
@@ -507,13 +517,15 @@ def process_chat_requests(
         with open(requests_filepath, "w") as f:
             for i, message in enumerate(messages):
                 f.write(
-                    json.dumps({
-                        "model": model_name,
-                        "messages": message,
-                        "metadata": {
-                            "id": i
-                        },
-                    }) + "\n")
+                    json.dumps(
+                        {
+                            "model": model_name,
+                            "messages": message,
+                            "metadata": {"id": i},
+                        }
+                    )
+                    + "\n"
+                )
         # Send requests to the API
         loop = asyncio.get_event_loop()
         loop.run_until_complete(
@@ -521,7 +533,8 @@ def process_chat_requests(
                 requests_filepath=requests_filepath,
                 save_filepath=save_filepath,
                 **kwargs,
-            ))
+            )
+        )
         # Read the chat responses and note the order
         id2chat = {}
         with open(save_filepath, "r") as f:
@@ -530,8 +543,7 @@ def process_chat_requests(
                 chat = response[1]["choices"][0]["message"]["content"]
                 idx = response[-1]["id"]
                 id2chat[idx] = chat
-        assert len(messages) == len(
-            id2chat), f"{len(messages)} != {len(id2chat)}"
+        assert len(messages) == len(id2chat), f"{len(messages)} != {len(id2chat)}"
         chats = [id2chat[i] for i in range(len(messages))]
     else:
         raise ValueError(f"Model {model_name} not supported.")
@@ -549,22 +561,18 @@ if __name__ == "__main__":
     parser.add_argument(
         "--request_url",
         default="https://embedding-api.openai.azure.com/openai/deployments/"
-        "text-embedding-api/embeddings?api-version=2023-12-01-preview")
+        "text-embedding-api/embeddings?api-version=2023-12-01-preview",
+    )
     parser.add_argument("--api_key", default=os.getenv("AZURE_OPENAI_KEY"))
-    parser.add_argument("--max_requests_per_minute",
-                        type=int,
-                        default=3_000 * 0.5)
-    parser.add_argument("--max_tokens_per_minute",
-                        type=int,
-                        default=240_000 * 0.5)
+    parser.add_argument("--max_requests_per_minute", type=int, default=3_000 * 0.5)
+    parser.add_argument("--max_tokens_per_minute", type=int, default=240_000 * 0.5)
     parser.add_argument("--token_encoding_name", default="cl100k_base")
     parser.add_argument("--max_attempts", type=int, default=5)
     parser.add_argument("--logging_level", default=logging.INFO)
     args = parser.parse_args()
 
     if args.save_filepath is None:
-        args.save_filepath = args.requests_filepath.replace(
-            ".jsonl", "_results.jsonl")
+        args.save_filepath = args.requests_filepath.replace(".jsonl", "_results.jsonl")
 
     # run script
     asyncio.run(
@@ -578,7 +586,8 @@ if __name__ == "__main__":
             token_encoding_name=args.token_encoding_name,
             max_attempts=int(args.max_attempts),
             logging_level=int(args.logging_level),
-        ))
+        )
+    )
 """
 APPENDIX
 

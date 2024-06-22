@@ -8,6 +8,7 @@ Supported pre-trained models:
 Supported dimension reduction algorithms:
 - `largevis`
 """
+
 import os
 from typing import Any, Dict, List
 from subprocess import run
@@ -67,9 +68,11 @@ class PLMMapper(IdeaMapper):
         embeddings = self.encode_by_plm(data)
         np.savez(self.save_path, high_dim_embeddings=embeddings)
         reduced_embeddings = self.reduce_dims(embeddings)
-        np.savez(self.save_path,
-                 low_dim_embeddings=reduced_embeddings,
-                 high_dim_embeddings=embeddings)
+        np.savez(
+            self.save_path,
+            low_dim_embeddings=reduced_embeddings,
+            high_dim_embeddings=embeddings,
+        )
         if return_high_dim:
             return reduced_embeddings, embeddings
         return reduced_embeddings
@@ -111,8 +114,7 @@ class PLMMapper(IdeaMapper):
             )
         return reduced_embeddings
 
-    def run_largevis(self, embeddings: np.ndarray,
-                     hash_str: str) -> np.ndarray:
+    def run_largevis(self, embeddings: np.ndarray, hash_str: str) -> np.ndarray:
         """Run the LargeVis algorithm on embeddings.
 
         Args:

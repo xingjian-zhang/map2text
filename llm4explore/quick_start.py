@@ -15,11 +15,10 @@ import yaml
 from llm4explore.model import non_trainable_gen, pretrain_map
 from llm4explore.model.base import IdeaGenerator, IdeaMapper
 
-PATH_MATCHER = re.compile(r'\$\{([^}^{]+)\}')
+PATH_MATCHER = re.compile(r"\$\{([^}^{]+)\}")
 
 
 class MappingExperiment:
-
     def __init__(
         self,
         mapper: IdeaMapper,
@@ -40,8 +39,7 @@ class MappingExperiment:
         if config["method"]["type"] == "plm_dr":
             mapper = pretrain_map.PLMMapper(**config["method"]["init_args"])
         else:
-            raise ValueError(
-                f"Unknown method type: {config['method']['type']}.")
+            raise ValueError(f"Unknown method type: {config['method']['type']}.")
         return MappingExperiment(mapper, targets)
 
     def run(self):
@@ -49,7 +47,6 @@ class MappingExperiment:
 
 
 class GenerationExperiment:
-
     def __init__(
         self,
         generator: IdeaGenerator,
@@ -71,8 +68,9 @@ class GenerationExperiment:
             config["data"]["path"],
             sep="\t",
             usecols=[
-                config["data"]["target_col"], config["data"]["time_col"],
-                config["data"]["time_col"]
+                config["data"]["target_col"],
+                config["data"]["time_col"],
+                config["data"]["time_col"],
             ],
         )
         data = data.dropna(subset=[config["data"]["target_col"]])
@@ -87,8 +85,9 @@ class GenerationExperiment:
         high_dim_embeddings = npz["high_dim_embeddings"]
         low_dim_embeddings = npz["low_dim_embeddings"]
         n_dims = low_dim_embeddings.shape[1]
-        assert len(targets) == high_dim_embeddings.shape[0], \
-            "Number of targets does not match the number of embeddings."
+        assert (
+            len(targets) == high_dim_embeddings.shape[0]
+        ), "Number of targets does not match the number of embeddings."
 
         # Split the data.
         targets_old = targets[times < time_split].tolist()
@@ -134,18 +133,20 @@ class GenerationExperiment:
         )
 
     def run(self):
-        queries = self.low_dim_embeddings_new[:self.num_tests]
+        queries = self.low_dim_embeddings_new[: self.num_tests]
         results = self.generator.decode_all(queries)
         preds, logs = zip(*results)
-        targets = self.targets_new[:self.num_tests]
+        targets = self.targets_new[: self.num_tests]
         outputs = []
         for i in range(len(preds)):
-            outputs.append({
-                "target": targets[i],
-                "prediction": preds[i],
-                "queries": queries[i].tolist(),
-                "log": logs[i],
-            })
+            outputs.append(
+                {
+                    "target": targets[i],
+                    "prediction": preds[i],
+                    "queries": queries[i].tolist(),
+                    "log": logs[i],
+                }
+            )
         with open(self.output_path, "w") as f:
             json.dump(outputs, f, indent=4)
 
@@ -155,7 +156,7 @@ def path_constructor(loader, node):
     value = node.value
     match = PATH_MATCHER.match(value)
     env_var = match.group()[2:-1]
-    return os.environ.get(env_var) + value[match.end():]
+    return os.environ.get(env_var) + value[match.end() :]
 
 
 def main():
@@ -170,8 +171,7 @@ def main():
         "--override",
         type=str,
         default=None,
-        help=
-        "Override the configuration. e.g. method.init_args.n_dims=3,data.path=data.csv",
+        help="Override the configuration. e.g. method.init_args.n_dims=3,data.path=data.csv",
     )
     parser.add_argument(
         "--output",
@@ -204,11 +204,10 @@ def main():
     time_str = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
     log_file = f"{log_dir}/{time_str}.log"
     os.makedirs(log_dir, exist_ok=True)
-    logging.basicConfig(level=logging.INFO,
-                        filename=log_file,
-                        format="%(asctime)s - %(message)s")
-    logging.info(
-        f"Configuration: {config}")  # NOTE: logging may expose api keys.
+    logging.basicConfig(
+        level=logging.INFO, filename=log_file, format="%(asctime)s - %(message)s"
+    )
+    logging.info(f"Configuration: {config}")  # NOTE: logging may expose api keys.
 
     # Run experiment.
     experiment_type = config["type"]

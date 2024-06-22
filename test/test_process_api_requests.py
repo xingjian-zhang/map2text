@@ -1,8 +1,7 @@
 import logging
 import os
 
-from llm4explore.utils.api import (process_chat_requests,
-                                   process_embedding_requests)
+from llm4explore.utils.api import process_chat_requests, process_embedding_requests
 
 from utils import change_dir
 
@@ -26,20 +25,14 @@ def test_process_embedding_requests(change_dir):
 
 def test_process_chat_requests(change_dir):
     test_data = [
-        [{
-            "role": "system",
-            "content": "You are a helpful assistant."
-        }, {
-            "role": "user",
-            "content": "What is the weather like today?"
-        }],
-        [{
-            "role": "system",
-            "content": "You are a smart assistant."
-        }, {
-            "role": "user",
-            "content": "What is the meaning of life?"
-        }],
+        [
+            {"role": "system", "content": "You are a helpful assistant."},
+            {"role": "user", "content": "What is the weather like today?"},
+        ],
+        [
+            {"role": "system", "content": "You are a smart assistant."},
+            {"role": "user", "content": "What is the meaning of life?"},
+        ],
     ]
     responses = process_chat_requests(
         "gpt-35-turbo",

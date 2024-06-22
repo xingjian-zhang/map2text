@@ -11,8 +11,7 @@ def test_plm_mapper():
         plm_encoder="text-embedding-ada-002",
         dr_algorithm="largevis",
         plm_kwargs=dict(
-            request_url=
-            "https://embedding-api.openai.azure.com/openai/deployments/"
+            request_url="https://embedding-api.openai.azure.com/openai/deployments/"
             "text-embedding-api/embeddings?api-version=2023-12-01-preview",
             api_key=os.getenv("AZURE_OPENAI_KEY"),
             max_requests_per_minute=100,
@@ -21,6 +20,7 @@ def test_plm_mapper():
             max_attempts=5,
             logging_level=logging.INFO,
         ),
-        dr_kwargs=dict(threads=8))
+        dr_kwargs=dict(threads=8),
+    )
     embeddings = plm_mapper.encode_all(["test1", "test2", "test3"])
     assert embeddings.shape == (3, 2)

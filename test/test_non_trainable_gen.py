@@ -6,13 +6,14 @@ import numpy as np
 import pytest
 
 from llm4explore.utils.api import process_embedding_requests
-from llm4explore.model.non_trainable_gen import (EmbeddingBasedGenerator,
-                                                 PlagiarismGenerator,
-                                                 PromptingBasedGenerator)
+from llm4explore.model.non_trainable_gen import (
+    EmbeddingBasedGenerator,
+    PlagiarismGenerator,
+    PromptingBasedGenerator,
+)
 
 
 class TestNonTrainableGen:
-
     @pytest.fixture
     def data_old(self) -> List[str]:
         return ["Hello World", "Goodbye World", "What is the meaning of life?"]
@@ -26,8 +27,7 @@ class TestNonTrainableGen:
         embeddings = process_embedding_requests(
             "text-embedding-ada-002",
             ["Hello World", "Goodbye World", "What is the meaning of life?"],
-            request_url=
-            "https://embedding-api.openai.azure.com/openai/deployments/"
+            request_url="https://embedding-api.openai.azure.com/openai/deployments/"
             "text-embedding-api/embeddings?api-version=2023-12-01-preview",
             api_key=os.getenv("AZURE_OPENAI_KEY"),
             max_requests_per_minute=100,
@@ -46,9 +46,14 @@ class TestNonTrainableGen:
         }
 
     @pytest.mark.parametrize("weighted", [True, False])
-    def test_embedding_based_generator(self, data_old, low_dim_embeddings_old,
-                                       high_dim_embeddings_old, weighted,
-                                       sampler_kwargs):
+    def test_embedding_based_generator(
+        self,
+        data_old,
+        low_dim_embeddings_old,
+        high_dim_embeddings_old,
+        weighted,
+        sampler_kwargs,
+    ):
         generator = EmbeddingBasedGenerator(
             n_dims=2,
             data_old=data_old,
@@ -62,8 +67,9 @@ class TestNonTrainableGen:
         assert len(results) == 1
         print(results)
 
-    def test_plagiarism_generator(self, data_old, low_dim_embeddings_old,
-                                  sampler_kwargs):
+    def test_plagiarism_generator(
+        self, data_old, low_dim_embeddings_old, sampler_kwargs
+    ):
         generator = PlagiarismGenerator(
             n_dims=2,
             data_old=data_old,
@@ -73,8 +79,9 @@ class TestNonTrainableGen:
         results = generator.decode_all(np.array([[2.5, 3]]))
         assert results[0][0] == "Goodbye World"
 
-    def test_prompting_based_generator(self, data_old, low_dim_embeddings_old,
-                                       sampler_kwargs):
+    def test_prompting_based_generator(
+        self, data_old, low_dim_embeddings_old, sampler_kwargs
+    ):
         generator = PromptingBasedGenerator(
             model_name="gpt-35-turbo",
             prompt_type="zero-shot-prompting",
@@ -83,8 +90,7 @@ class TestNonTrainableGen:
             low_dim_embeddings_old=low_dim_embeddings_old,
             sampler_kwargs=sampler_kwargs,
             api_kwargs=dict(
-                request_url=
-                "https://embedding-api.openai.azure.com/openai/deployments/"
+                request_url="https://embedding-api.openai.azure.com/openai/deployments/"
                 "gpt-35-turbo/chat/completions?api-version=2023-12-01-preview",
                 api_key=os.getenv("AZURE_OPENAI_KEY"),
                 max_requests_per_minute=100,
@@ -92,7 +98,8 @@ class TestNonTrainableGen:
                 token_encoding_name="cl100k_base",
                 max_attempts=5,
                 logging_level=logging.INFO,
-            ))
+            ),
+        )
         results = generator.decode_all(np.array([[2, 3]]))
         assert len(results) == 1
         print(results)

@@ -5,14 +5,11 @@ which are central to creating a low-dimensional representation of scientific key
 and generating new ideas from such representations, respectively.
 """
 
-import json
-import logging
 import os
 from abc import ABC, abstractmethod
 from typing import Any, List, Tuple
 
 import numpy as np
-import pandas as pd
 import tqdm
 
 
@@ -121,8 +118,7 @@ class IdeaGenerator(ABC):
         """
         pass
 
-    def decode_all(self,
-                   low_dim_embeddings: np.ndarray) -> List[Tuple[str, Any]]:
+    def decode_all(self, low_dim_embeddings: np.ndarray) -> List[Tuple[str, Any]]:
         """Decodes a list of low-dimensional representations into key ideas.
 
         Args:
@@ -138,6 +134,4 @@ class IdeaGenerator(ABC):
             raise ValueError(
                 f"Expected {self.n_dims} dimensions, got {low_dim_embeddings.shape[1]}."
             )
-        return [
-            self.decode(encoding) for encoding in tqdm.tqdm(low_dim_embeddings)
-        ]
+        return [self.decode(encoding) for encoding in tqdm.tqdm(low_dim_embeddings)]
