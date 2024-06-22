@@ -27,6 +27,7 @@ def references_to_dict(
     indices: List[int],
     dists: List[float],
 ) -> List[Dict[str, str]]:
+    """Format references as a list of dictionaries for logging."""
     return [
         {
             "reference": data_old[i],

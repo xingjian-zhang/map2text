@@ -1,0 +1,26 @@
+type: generation
+output:
+  out/gpt35_zs_200.json
+data:
+  path: data/massw_llm4explore.tsv
+  target_col: key_idea
+  time_col: year
+  time_split: 2023
+  num_tests: 200
+embeddings:
+  path: out/ada2_key_ideas.npz
+method:
+  type: prompting
+  init_args:
+    model_name: gpt-35-turbo
+    prompt_type: zero-shot-prompting
+    sampler_kwargs:
+      k: 5
+    api_kwargs:
+      request_url: https://embedding-api.openai.azure.com/openai/deployments/gpt-35-turbo/chat/completions?api-version=2023-12-01-preview
+      api_key: ${AZURE_OPENAI_KEY}
+      max_requests_per_minute: 100
+      max_tokens_per_minute: 10000
+      token_encoding_name: cl100k_base
+      max_attempts: 99
+      logging_level: 10 # logging.DEBUG
