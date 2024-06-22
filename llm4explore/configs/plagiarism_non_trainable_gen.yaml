@@ -1,12 +1,12 @@
-type: generator
+type: generation
 output:
-  out/plagiarism_10.json
+  out/plagiarism_200.json
 data:
   path: data/massw_llm4explore.tsv
   target_col: key_idea
   time_col: year
   time_split: 2023
-  num_tests: 10
+  num_tests: 200
 embeddings:
   path: out/ada2_key_ideas.npz
 method:

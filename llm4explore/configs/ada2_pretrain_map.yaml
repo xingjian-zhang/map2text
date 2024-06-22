@@ -1,4 +1,4 @@
-type: mapper
+type: mapping
 data:
   path: data/massw_llm4explore.tsv
   target_col: key_idea

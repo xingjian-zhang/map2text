@@ -212,9 +212,9 @@ def main():
 
     # Run experiment.
     experiment_type = config["type"]
-    if experiment_type == "mapper":
+    if experiment_type == "mapping":
         MappingExperiment.from_config(config).run()
-    elif experiment_type == "generator":
+    elif experiment_type == "generation":
         GenerationExperiment.from_config(config).run()
     else:
         raise ValueError(f"Unknown experiment type: {experiment_type}.")
