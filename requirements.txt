@@ -1,0 +1,14 @@
+aiohttp
+aiohttp
+annoy
+matplotlib
+numpy
+pandas
+pytest
+PyYAML
+sentence_transformers
+setuptools
+tiktoken
+torch
+tqdm
+vec2text
