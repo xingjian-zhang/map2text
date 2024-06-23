@@ -3,6 +3,10 @@
 ## Installation
 
 ```bash
+git clone git@github.com:xingjian-zhang/llm4exploreV2.git --recursive
+```
+
+```bash
 pip install -e .
 ```
 
