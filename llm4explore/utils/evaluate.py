@@ -139,11 +139,15 @@ class Evaluation:
                 elif metric_name == "llmeval":
                     self.metrics[metric_name] = LLMEval()
 
-    def flatten(self, results: Dict[str, Dict[str, float]]) -> Dict[str, float]:
+    def flatten_and_round(
+        self, results: Dict[str, Dict[str, float]]
+    ) -> Dict[str, float]:
+        # Flatten the results
         flat_results = {}
         for metric_results in results.values():
             flat_results.update(metric_results)
-        return flat_results
+        # Round the float precision to 4 decimal places
+        return round_floats(flat_results)
 
     def compute(self, predictions: List[str], references: List[str]):
         results = {}
@@ -156,4 +160,15 @@ class Evaluation:
                 results[metric_name] = metric.compute(
                     predictions=predictions, references=references
                 )
-        return self.flatten(results)
+        return self.flatten_and_round(results)
+
+
+def round_floats(obj, precision=4):
+    """Round the floating point numbers in the object."""
+    if isinstance(obj, float):
+        return round(float(obj), precision)
+    elif isinstance(obj, dict):
+        return {key: round_floats(value, precision) for key, value in obj.items()}
+    elif isinstance(obj, list):
+        return [round_floats(item, precision) for item in obj]
+    return obj
