@@ -113,7 +113,7 @@ class EmbeddingBasedGenerator(IdeaGenerator):
             ),
             self.vec2text_corrector,
             **self.vec2text_kwargs,
-        ), references_to_dict(self.data_old, indices, dists)
+        )[0], references_to_dict(self.data_old, indices, dists)
 
 
 class PromptingBasedGenerator(IdeaGenerator):
