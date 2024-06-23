@@ -52,3 +52,9 @@ python llm4explore/quick_eval.py out/gpt35_200.json \
     --metrics bleu,rouge \  # See available metrics in llm4explore/utils/evaluate.py
     --process_json  # Whether the experiment output is in the JSON format, instructed by prompt.
 ```
+
+## Style check
+
+```bash
+ruff check
+```
