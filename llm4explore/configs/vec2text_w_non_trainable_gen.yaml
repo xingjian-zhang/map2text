@@ -1,6 +1,6 @@
 type: generation
 output:
-  out/vec2text_uw_200.json
+  out/vec2text_w_200.json
 data:
   path: data/massw_llm4explore.tsv
   target_col: key_idea
