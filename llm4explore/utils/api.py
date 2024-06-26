@@ -460,9 +460,11 @@ def task_id_generator_function():
 def process_embedding_requests(
     model_name: str,
     data: List[str],
-    parameters: Dict[str, Any],
+    parameters: Dict[str, Any] = None,
     **kwargs,
 ) -> np.ndarray:
+    if parameters is None:
+        parameters = {}
     if model_name == "text-embedding-ada-002":
         # Write data into a temporary jsonl files
         os.makedirs("tmp", exist_ok=True)
@@ -509,9 +511,11 @@ def process_embedding_requests(
 def process_chat_requests(
     model_name: str,
     messages: List[List[Dict[str, str]]],
-    parameters: Dict[str, Any],
+    parameters: Dict[str, Any] = None,
     **kwargs,
 ) -> List[str]:
+    if parameters is None:
+        parameters = {}
     if model_name in {"gpt-35-turbo", "gpt-4"}:
         # Write data into a temporary jsonl files
         os.makedirs("tmp", exist_ok=True)
