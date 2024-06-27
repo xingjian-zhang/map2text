@@ -20,7 +20,7 @@ def test_retrieve_correct_knns():
         ]
     )
     # Create KNNSampler instance
-    sampler = KNNSampler(knn_embeddings=knn_embeddings, k=2)
+    sampler = KNNSampler(knn_embeddings=knn_embeddings, k_min=2, k_max=10, dist_threshold=99)
 
     # Define a query vector
     query = np.array([3.5, 4.5, 5.5, 6.5, 7.5])
@@ -54,7 +54,7 @@ def test_check_leakage_knns():
         ]
     )
     # Create KNNSampler instance
-    sampler = KNNSampler(knn_embeddings=knn_embeddings, k=2, check_leakage=True)
+    sampler = KNNSampler(knn_embeddings=knn_embeddings, k_min=2, k_max=10, dist_threshold=99, check_leakage=True)
 
     # Define a query vector (present in the knn_embeddings)
     query = np.array([3, 4, 5, 6, 7])
@@ -62,3 +62,30 @@ def test_check_leakage_knns():
     with pytest.raises(ValueError):
         # Get the k nearest neighbors
         index, dist = sampler.sample(query)
+
+def test_dist_threshold():
+    # Generate 10 hand-crafted vectors
+    knn_embeddings = np.array(
+        [
+            [1, 2, 3, 4, 5],
+            [2, 3, 4, 5, 6],
+            [3, 4, 5, 6, 7],
+            [4, 5, 6, 7, 8],
+            [5, 6, 7, 8, 9],
+            [6, 7, 8, 9, 10],
+            [7, 8, 9, 10, 11],
+            [8, 9, 10, 11, 12],
+            [9, 10, 11, 12, 13],
+            [10, 11, 12, 13, 14],
+        ]
+    )
+    # Create KNNSampler instance
+    sampler = KNNSampler(knn_embeddings=knn_embeddings, k_min=2, k_max=10, dist_threshold=0.1)
+
+    # Define a query vector (present in the knn_embeddings)
+    query = np.array([3, 4, 5, 6, 7.01])
+
+    indices, dists = sampler.sample(query)
+    assert len(indices) == 2
+    assert 2 in indices
+    assert 3 in indices

@@ -168,7 +168,9 @@ async def process_api_requests_from_file(
         # `requests` will provide requests one at a time
         requests = file.__iter__()
         logging.debug("File opened. Entering main loop")
-        async with aiohttp.ClientSession(trust_env=True) as session:  # Initialize ClientSession here
+        async with aiohttp.ClientSession(
+            trust_env=True
+        ) as session:  # Initialize ClientSession here
             while True:
                 # get next request (if one is not already waiting for capacity)
                 if next_request is None:
@@ -478,7 +480,7 @@ def process_embedding_requests(
                             "model": "text-embedding-ada-002",
                             "input": text,
                             "metadata": {"id": i},
-                            **parameters
+                            **parameters,
                         }
                     )
                     + "\n"
@@ -529,7 +531,7 @@ def process_chat_requests(
                             "model": model_name,
                             "messages": message,
                             "metadata": {"id": i},
-                            **parameters
+                            **parameters,
                         }
                     )
                     + "\n"

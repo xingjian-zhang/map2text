@@ -13,4 +13,6 @@ method:
   type: plagiarism
   init_args:
     sampler_kwargs:
-      k: 5
+      k_min: 2
+      k_max: 20
+      dist_threshold: 0.1

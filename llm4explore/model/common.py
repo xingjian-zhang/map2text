@@ -31,7 +31,9 @@ class KNNSampler:
         knn_embeddings: np.ndarray,
         metric: str = "euclidean",
         n_trees: int = 10,
-        k: int = 5,
+        k_min: int = 2,
+        k_max: int = 20,
+        dist_threshold: float = 0.1,
         check_leakage: bool = True,
     ):
         """Initialize the sampler.
@@ -48,12 +50,14 @@ class KNNSampler:
         dim = knn_embeddings.shape[1]
         hash_str = hash_array(knn_embeddings)
 
-        self.cache_path = f"tmp/knn_cache_{hash_str}_{metric}_{n_trees}_{k}.ann"
+        self.cache_path = f"tmp/knn_cache_{hash_str}_{metric}_{n_trees}.ann"
         self.index = AnnoyIndex(dim, metric)
         self.knn_embeddings = knn_embeddings
         self.metric = metric
         self.n_trees = n_trees
-        self.k = k
+        self.k_min = k_min
+        self.k_max = k_max
+        self.dist_threshold = dist_threshold
         self.check_leakage = check_leakage
 
         self._init_knn()
@@ -82,7 +86,7 @@ class KNNSampler:
         """
         indices, dists = self.index.get_nns_by_vector(
             query,
-            self.k,
+            self.k_max,
             include_distances=True,
         )
         if self.check_leakage and any(dists[i] < 1e-6 for i in range(len(dists))):
@@ -90,4 +94,16 @@ class KNNSampler:
                 "Query is too close to a sample."
                 "The samples may contain query itself."
             )
+        # Sort by distance, keep the ones with distance < dist_threshold
+        # If there are not enough samples, use the k_min closest ones
+        sorted_indices = np.argsort(dists)
+        indices = np.array([indices[i] for i in sorted_indices])
+        dists = np.array([dists[i] for i in sorted_indices])
+        mask = dists < self.dist_threshold
+        if np.sum(mask) < self.k_min:
+            mask = np.zeros_like(mask)
+            mask[: self.k_min] = 1
+        indices = indices[mask]
+        dists = dists[mask]
+
         return indices, dists

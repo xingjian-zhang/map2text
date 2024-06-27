@@ -15,7 +15,9 @@ method:
     model_name: gpt-35-turbo
     prompt_type: zero-shot-prompting
     sampler_kwargs:
-      k: 5
+      k_min: 2
+      k_max: 20
+      dist_threshold: 0.1
     api_kwargs:
       request_url: https://embedding-api.openai.azure.com/openai/deployments/gpt-4/chat/completions?api-version=2023-12-01-preview
       api_key: ${AZURE_OPENAI_KEY}
