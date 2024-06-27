@@ -147,8 +147,9 @@ class PromptingBasedGenerator(IdeaGenerator):
             self.prompt_messages = json.load(f)
 
     def get_prompt(self, references: List[str]) -> List[Dict[str, str]]:
+        joined_references = "\n".join(references)
         return self.prompt_messages + [
-            {"role": "user", "content": "\n".join(references)}
+            {"role": "user", "content": f"Predict new key idea based on these key ideas: {joined_references}"}
         ]
 
     def decode(self, low_dim_embedding: np.ndarray) -> Tuple[str, Any]:
@@ -167,6 +168,7 @@ class PromptingBasedGenerator(IdeaGenerator):
         preds = process_chat_requests(
             self.model_name,
             messages,
+            parameters={"temperature": 0, "top_p": 0.95,"response_format":{"type": "json_object"}},
             **self.api_kwargs,
         )
         return list(zip(preds, references))

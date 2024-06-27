@@ -89,13 +89,32 @@ class GenerationExperiment:
             len(targets) == high_dim_embeddings.shape[0]
         ), "Number of targets does not match the number of embeddings."
 
-        # Split the data.
         targets_old = targets[times < time_split].tolist()
         targets_new = targets[times >= time_split].tolist()
         logging.info(f"Number of old data points: {len(targets_old)}")
         logging.info(f"Number of new data points: {len(targets_new)}")
         low_dim_embeddings_new = low_dim_embeddings[times >= time_split]
         low_dim_embeddings_old = low_dim_embeddings[times < time_split]
+
+        # key_idea = "The study focuses on the document-level targeted sentiment analysis task, which aims to extract opinion targets consisting of multi-level entities from a review document and predict their sentiments.  To address this, it introduces a Sequence-to-Structure (Seq2Struct) approach that can explicitly model the hierarchical structure among multiple opinion targets in a document and capture the long-distance dependencies among affiliated entities across sentences."
+        # index = targets_new.index(key_idea)
+        # print(targets_new[index])
+        # high_dim_embeddings_old = high_dim_embeddings[times < time_split]
+        # generator = non_trainable_gen.EmbeddingBasedGenerator(
+        #     n_dims=n_dims,
+        #     data_old=targets_old,
+        #     low_dim_embeddings_old=low_dim_embeddings_old,
+        #     high_dim_embeddings_old=high_dim_embeddings_old,
+        #     **config["method"]["init_args"],
+        # )
+        # queries = low_dim_embeddings_new[index:index+1]
+        # results = generator.decode_all(queries)
+        # preds, logs = zip(*results)
+        # for i in range(len(logs)):
+        #     print(logs[i])
+        # breakpoint()
+
+        # Split the data.
 
         # Initialize the generator.
         generator_type = config["method"]["type"]
