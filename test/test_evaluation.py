@@ -18,4 +18,7 @@ class TestEvaluation:
     def test_evaluate(self, metric_name, predictions, references):
         evaluation = Evaluation(metric_names=[metric_name])
         results = evaluation.compute(predictions, references)
-        assert results
+        if metric_name == "bleu":
+            assert len(results) > 0
+        else:
+            assert all([isinstance(value, (float, str)) for value in results.values()])
