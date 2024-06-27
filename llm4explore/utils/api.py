@@ -94,7 +94,7 @@ The script is structured as follows:
 """
 
 # imports
-from typing import Dict, List
+from typing import Any, Dict, List
 import aiohttp  # for making API calls concurrently
 import argparse  # for running script from command line
 import asyncio  # for running API calls concurrently
@@ -168,7 +168,7 @@ async def process_api_requests_from_file(
         # `requests` will provide requests one at a time
         requests = file.__iter__()
         logging.debug("File opened. Entering main loop")
-        async with aiohttp.ClientSession() as session:  # Initialize ClientSession here
+        async with aiohttp.ClientSession(trust_env=True) as session:  # Initialize ClientSession here
             while True:
                 # get next request (if one is not already waiting for capacity)
                 if next_request is None:
@@ -460,8 +460,11 @@ def task_id_generator_function():
 def process_embedding_requests(
     model_name: str,
     data: List[str],
+    parameters: Dict[str, Any] = None,
     **kwargs,
 ) -> np.ndarray:
+    if parameters is None:
+        parameters = {}
     if model_name == "text-embedding-ada-002":
         # Write data into a temporary jsonl files
         os.makedirs("tmp", exist_ok=True)
@@ -475,6 +478,7 @@ def process_embedding_requests(
                             "model": "text-embedding-ada-002",
                             "input": text,
                             "metadata": {"id": i},
+                            **parameters
                         }
                     )
                     + "\n"
@@ -507,8 +511,11 @@ def process_embedding_requests(
 def process_chat_requests(
     model_name: str,
     messages: List[List[Dict[str, str]]],
+    parameters: Dict[str, Any] = None,
     **kwargs,
 ) -> List[str]:
+    if parameters is None:
+        parameters = {}
     if model_name in {"gpt-35-turbo", "gpt-4"}:
         # Write data into a temporary jsonl files
         os.makedirs("tmp", exist_ok=True)
@@ -522,6 +529,7 @@ def process_chat_requests(
                             "model": model_name,
                             "messages": message,
                             "metadata": {"id": i},
+                            **parameters
                         }
                     )
                     + "\n"

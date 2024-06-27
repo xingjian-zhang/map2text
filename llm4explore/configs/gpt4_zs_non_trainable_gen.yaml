@@ -1,6 +1,6 @@
 type: generation
 output:
-  out/gpt4_zs_200.json
+  out/gpt4_fs_cot_200.json
 data:
   path: data/massw_llm4explore.tsv
   target_col: key_idea
@@ -8,12 +8,12 @@ data:
   time_split: 2023
   num_tests: 200
 embeddings:
-  path: out/ada2_key_ideas.npz
+  path: data/ada2_key_ideas.npz
 method:
   type: prompting
   init_args:
-    model_name: gpt-35-turbo
-    prompt_type: zero-shot-prompting
+    model_name: gpt-4
+    prompt_type: few-shot-cot-prompting
     sampler_kwargs:
       k: 5
     api_kwargs:

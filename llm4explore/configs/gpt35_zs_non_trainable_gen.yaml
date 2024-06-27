@@ -1,14 +1,14 @@
 type: generation
 output:
-  out/gpt35_zs_200.json
+  out/gpt35_zs_10.json
 data:
   path: data/massw_llm4explore.tsv
   target_col: key_idea
   time_col: year
   time_split: 2023
-  num_tests: 200
+  num_tests: 10
 embeddings:
-  path: out/ada2_key_ideas.npz
+  path: data/ada2_key_ideas.npz
 method:
   type: prompting
   init_args:
@@ -22,5 +22,5 @@ method:
       max_requests_per_minute: 100
       max_tokens_per_minute: 10000
       token_encoding_name: cl100k_base
-      max_attempts: 99
+      max_attempts: 10
       logging_level: 10 # logging.DEBUG
