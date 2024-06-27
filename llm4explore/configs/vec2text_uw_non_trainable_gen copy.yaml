@@ -11,7 +11,7 @@ embeddings:
   path: out/ada2_key_ideas.npz
 method:
   type: embedding
-  weighted: True
+  weighted: False
   init_args:
     sampler_kwargs:
       k_min: 2
