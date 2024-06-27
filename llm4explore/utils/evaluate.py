@@ -106,10 +106,10 @@ class LLMEval:
 
 class Evaluation:
     SUPPORTED_METRICS = {
-        "bleu": {"source": "huggingface"},
-        "rouge": {"source": "huggingface"},
-        "bertscore": {"source": "huggingface"},
-        "meteor": {"source": "huggingface"},
+        "bleu": {"source": "huggingface", "average": True},
+        "rouge": {"source": "huggingface", "average": True},
+        "bertscore": {"source": "huggingface", "average": False},
+        "meteor": {"source": "huggingface", "average": True},
         "bleurt": {
             "source": "huggingface",
             "kwargs": {
@@ -117,9 +117,10 @@ class Evaluation:
                 "checkpoint": "BLEURT-20-D12",
                 "config_name": "BLEURT-20-D12",
             },
+            "average": False,
         },
-        "cosine": {"source": "custom"},
-        "llmeval": {"source": "custom"},
+        "cosine": {"source": "custom", "average": True},
+        "llmeval": {"source": "custom", "average": True},
     }
 
     def __init__(self, metric_names: List[str]):
@@ -139,16 +140,6 @@ class Evaluation:
                 elif metric_name == "llmeval":
                     self.metrics[metric_name] = LLMEval()
 
-    def flatten_and_round(
-        self, results: Dict[str, Dict[str, float]]
-    ) -> Dict[str, float]:
-        # Flatten the results
-        flat_results = {}
-        for metric_results in results.values():
-            flat_results.update(metric_results)
-        # Round the float precision to 4 decimal places
-        return round_floats(flat_results)
-
     def compute(self, predictions: List[str], references: List[str]):
         results = {}
         for metric_name, metric in self.metrics.items():
@@ -160,7 +151,24 @@ class Evaluation:
                 results[metric_name] = metric.compute(
                     predictions=predictions, references=references
                 )
-        return self.flatten_and_round(results)
+            if not self.SUPPORTED_METRICS[metric_name]["average"]:
+                for k in results[metric_name]:
+                    if isinstance(results[metric_name][k], list):
+                        # Some values are not numeric (e.g. bert version)
+                        results[metric_name][k] = np.mean(
+                            np.array(results[metric_name][k], dtype=float)
+                        )
+        return flatten_and_round(results)
+
+
+def flatten_and_round(results: Dict[str, Dict[str, float]]) -> Dict[str, float]:
+    # Flatten the results
+    flat_results = {}
+    for metric_name, metric_results in results.items():
+        for sub_metric_name, value in metric_results.items():
+            flat_results[f"{metric_name}_{sub_metric_name}"] = value
+    # Round the float precision to 4 decimal places
+    return round_floats(flat_results)
 
 
 def round_floats(obj, precision=4):
