@@ -10,6 +10,7 @@ data:
   use_sampler: False
   sampler_kwargs: null
   input_kwargs: null
+  num_test: 200
 training_args:
   output_dir: ./
   evaluation_strategy: steps
@@ -20,4 +21,7 @@ training_args:
   save_steps: 10000
   eval_steps: 1000
   warmup_steps: 2000
+  save_total_limit: 1
+  report_to: wandb
+  run_name: t5-query-only-1
 metrics: [bleu, rouge, meteor, cosine, bleurt, bertscore]

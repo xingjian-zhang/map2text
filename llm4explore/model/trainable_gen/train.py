@@ -87,7 +87,9 @@ def main():
         args=training_args,
         data_collator=transformers.DataCollatorForSeq2Seq(tokenizer),
         train_dataset=ds["train"].with_format("torch"),
-        eval_dataset=ds["test"].with_format("torch"),
+        eval_dataset=ds["test"]
+        .select(range(config["data"]["num_test"]))
+        .with_format("torch"),
         compute_metrics=compute_metrics,
     )
 
