@@ -18,7 +18,7 @@ import torch
 import vec2text
 
 from llm4explore.model.base import IdeaGenerator
-from llm4explore.model.common import KNNSampler
+from llm4explore.model.common import ANNSampler
 from llm4explore.utils.api import process_chat_requests
 
 
@@ -53,7 +53,7 @@ class PlagiarismGenerator(IdeaGenerator):
     ):
         super().__init__(n_dims, data_old, low_dim_embeddings_old)
         sampler_kwargs = sampler_kwargs or {}
-        self.sampler = KNNSampler(low_dim_embeddings_old, **sampler_kwargs)
+        self.sampler = ANNSampler(low_dim_embeddings_old, **sampler_kwargs)
 
     def decode(self, low_dim_embedding: np.ndarray) -> Tuple[str, Any]:
         indices, dists = self.sampler.sample(low_dim_embedding)
@@ -91,7 +91,7 @@ class EmbeddingBasedGenerator(IdeaGenerator):
         vec2text_kwargs = vec2text_kwargs or {}
         self.weighted = weighted
         self.high_dim_embeddings_old = high_dim_embeddings_old
-        self.sampler = KNNSampler(low_dim_embeddings_old, **sampler_kwargs)
+        self.sampler = ANNSampler(low_dim_embeddings_old, **sampler_kwargs)
         self.vec2text_kwargs = vec2text_kwargs
         self.vec2text_corrector = vec2text.load_corrector("text-embedding-ada-002")
 
@@ -138,7 +138,7 @@ class PromptingBasedGenerator(IdeaGenerator):
         self.prompt_type = prompt_type
         sampler_kwargs = sampler_kwargs or {}
         api_kwargs = api_kwargs or {}
-        self.sampler = KNNSampler(low_dim_embeddings_old, **sampler_kwargs)
+        self.sampler = ANNSampler(low_dim_embeddings_old, **sampler_kwargs)
         self.api_kwargs = api_kwargs
         prompt_path = os.path.join(
             os.path.dirname(__file__), "prompts", prompt_type + ".json"
