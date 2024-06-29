@@ -1,9 +1,15 @@
 import pytest
-from llm4explore.model.common import KNNSampler
+from llm4explore.model.common import ANNSampler, KNNSampler
 import numpy as np
 
-
-def test_retrieve_correct_knns():
+@pytest.mark.parametrize(
+    "sampler_cls",
+    [
+        ANNSampler,
+        KNNSampler
+    ],
+)
+def test_retrieve_correct_knns(sampler_cls):
     # Generate 10 hand-crafted vectors
     knn_embeddings = np.array(
         [
@@ -20,7 +26,7 @@ def test_retrieve_correct_knns():
         ]
     )
     # Create KNNSampler instance
-    sampler = KNNSampler(knn_embeddings=knn_embeddings, k_min=2, k_max=10, dist_threshold=99)
+    sampler = sampler_cls(knn_embeddings=knn_embeddings, k_min=2, k_max=2, dist_threshold=0.1)
 
     # Define a query vector
     query = np.array([3.5, 4.5, 5.5, 6.5, 7.5])
@@ -37,7 +43,14 @@ def test_retrieve_correct_knns():
     assert np.allclose(dist, np.sqrt(0.5**2 * 5))
 
 
-def test_check_leakage_knns():
+@pytest.mark.parametrize(
+    "sampler_cls",
+    [
+        ANNSampler,
+        KNNSampler
+    ],
+)
+def test_check_leakage_knns(sampler_cls):
     # Generate 10 hand-crafted vectors
     knn_embeddings = np.array(
         [
@@ -54,7 +67,7 @@ def test_check_leakage_knns():
         ]
     )
     # Create KNNSampler instance
-    sampler = KNNSampler(knn_embeddings=knn_embeddings, k_min=2, k_max=10, dist_threshold=99, check_leakage=True)
+    sampler = sampler_cls(knn_embeddings=knn_embeddings, k_min=2, k_max=10, dist_threshold=99, check_leakage=True)
 
     # Define a query vector (present in the knn_embeddings)
     query = np.array([3, 4, 5, 6, 7])
@@ -63,7 +76,14 @@ def test_check_leakage_knns():
         # Get the k nearest neighbors
         index, dist = sampler.sample(query)
 
-def test_dist_threshold():
+@pytest.mark.parametrize(
+    "sampler_cls",
+    [
+        ANNSampler,
+        KNNSampler
+    ],
+)
+def test_dist_threshold(sampler_cls):
     # Generate 10 hand-crafted vectors
     knn_embeddings = np.array(
         [
@@ -80,7 +100,7 @@ def test_dist_threshold():
         ]
     )
     # Create KNNSampler instance
-    sampler = KNNSampler(knn_embeddings=knn_embeddings, k_min=2, k_max=10, dist_threshold=0.1)
+    sampler = sampler_cls(knn_embeddings=knn_embeddings, k_min=2, k_max=10, dist_threshold=0.1)
 
     # Define a query vector (present in the knn_embeddings)
     query = np.array([3, 4, 5, 6, 7.01])

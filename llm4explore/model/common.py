@@ -3,6 +3,7 @@
 import hashlib
 import os
 from typing import Tuple
+from warnings import warn
 
 import numpy as np
 from annoy import AnnoyIndex
@@ -23,7 +24,7 @@ def check_tmp_dir(func):
     return wrapper
 
 
-class KNNSampler:
+class ANNSampler:
     """Sampler for KNN search."""
 
     def __init__(
@@ -99,6 +100,97 @@ class KNNSampler:
         sorted_indices = np.argsort(dists)
         indices = np.array([indices[i] for i in sorted_indices])
         dists = np.array([dists[i] for i in sorted_indices])
+        mask = dists < self.dist_threshold
+        if np.sum(mask) < self.k_min:
+            mask = np.zeros_like(mask)
+            mask[: self.k_min] = 1
+        indices = indices[mask]
+        dists = dists[mask]
+
+        return indices, dists
+
+
+class KNNSampler:
+    def __init__(
+        self,
+        knn_embeddings: np.ndarray,
+        times: np.ndarray = None,
+        metric: str = "euclidean",
+        n_trees: int = 10,
+        k_min: int = 2,
+        k_max: int = 20,
+        dist_threshold: float = 0.1,
+        check_leakage: bool = True,
+    ):
+        """Initialize the sampler.
+
+        Args:
+            knn_embeddings (np.ndarray): Embeddings to sample from. Usually the
+                low-dimensional embeddings.
+            metric (str): Distance metric.
+            n_trees (int): Number of trees.
+            k (int): Number of neighbors to search for.
+            check_leakage (bool): Whether to check for leakage.
+        """
+        assert isinstance(knn_embeddings, np.ndarray)
+        dim = knn_embeddings.shape[1]
+        if dim > 5:
+            warn(
+                "The dimension of the embeddings is greater than 5."
+                "This may lead to a high computational cost."
+            )
+
+        self.knn_embeddings = knn_embeddings
+        self.times = times
+        self.metric = metric
+        self.n_trees = n_trees
+        self.k_min = k_min
+        self.k_max = k_max
+        self.dist_threshold = dist_threshold
+        self.check_leakage = check_leakage
+
+    def sample(
+        self, query: np.ndarray, time_split: int = None
+    ) -> Tuple[np.ndarray, np.ndarray]:
+        """Get k nearest neighbors of the query before the time split.
+
+        Args:
+            query (np.ndarray): The query vector.
+            time_split (int): The time split.
+
+        Returns:
+            The indices and distances of the k nearest neighbors.
+        """
+        # query: (dim,)
+        # self.knn_embeddings: (n, dim)
+
+        # Compute the distance between the query and all embeddings
+        if time_split is None:
+            embeddings = self.knn_embeddings
+        else:
+            embeddings = self.knn_embeddings[self.times < time_split]
+        if self.metric == "euclidean":
+            dists = np.linalg.norm(embeddings - query[None, :], axis=1)
+        elif self.metric == "manhattan":
+            dists = np.sum(np.abs(embeddings - query[None, :]), axis=1)
+        else:
+            raise ValueError("Invalid metric.")
+
+        if self.check_leakage and any(dists < 1e-6):
+            raise ValueError(
+                "Query is too close to a sample."
+                "The samples may contain query itself."
+            )
+
+
+        if self.k_max >= len(dists):
+            indices = np.arange(len(dists))
+        else:
+            indices = np.argpartition(dists, self.k_max)[: self.k_max]
+        dists = dists[indices]
+        sorted_indices = np.argsort(dists)
+        indices = indices[sorted_indices]
+        dists = dists[sorted_indices]
         mask = dists < self.dist_threshold
         if np.sum(mask) < self.k_min:
             mask = np.zeros_like(mask)
