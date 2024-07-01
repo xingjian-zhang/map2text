@@ -4,8 +4,7 @@ import os
 
 from utils import change_dir
 
-from llm4explore.utils.api import (process_chat_requests,
-                                   process_embedding_requests)
+from llm4explore.utils.api import process_chat_requests, process_embedding_requests
 
 
 def test_process_embedding_requests(change_dir):
@@ -80,7 +79,10 @@ def test_zero_temperature_chat_requests_are_same(change_dir):
 def test_json_format(change_dir):
     test_data = [
         [
-            {"role": "system", "content": "You output should be in JSON format. The format is \{'answer': ...\}"},
+            {
+                "role": "system",
+                "content": "You output should be in JSON format. The format is \{'answer': ...\}",
+            },
             {"role": "user", "content": "What is the meaning of life?"},
         ],
     ]
@@ -88,7 +90,11 @@ def test_json_format(change_dir):
     responses = process_chat_requests(
         "gpt-4",
         test_data,
-        parameters={"temperature": 1, "top_p": 0.95, "response_format": { "type": "json_object" }},
+        parameters={
+            "temperature": 1,
+            "top_p": 0.95,
+            "response_format": {"type": "json_object"},
+        },
         request_url="https://embedding-api.openai.azure.com/openai/deployments/"
         "gpt-4/chat/completions?api-version=2023-12-01-preview",
         api_key=os.getenv("AZURE_OPENAI_KEY"),

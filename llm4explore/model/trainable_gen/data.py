@@ -11,7 +11,7 @@ def make_input(
     reference_embeddings: np.ndarray = None,
     reference_texts: List[str] = None,
     instruction: str = "Convert the coordinate to text",
-    split: str = "|",
+    split: str = " | ",
 ) -> str:
     np.set_printoptions(precision=4)
     # Example:
@@ -47,6 +47,9 @@ def get_dataset(
     else:
         sampler = None
 
+    if input_kwargs is None:
+        input_kwargs = {}
+
     def get_data_split(mask):
         inputs = []
         targets = []
@@ -75,10 +78,8 @@ def get_dataset(
     val_dataset = get_data_split(val_mask)
     test_dataset = get_data_split(test_mask)
 
-    return tokenize_dataset(
-        datasets.DatasetDict(
-            {"train": train_dataset, "validation": val_dataset, "test": test_dataset}
-        )
+    return datasets.DatasetDict(
+        {"train": train_dataset, "validation": val_dataset, "test": test_dataset}
     )
 
 
@@ -86,11 +87,11 @@ def tokenize_dataset(
     ds: datasets.DatasetDict, tokenizer: AutoTokenizer
 ) -> datasets.DatasetDict:
     ds = ds.map(
-        lambda x: tokenizer(x["text"], truncation=True, padding=True, max_length=256)
+        lambda x: tokenizer(x["text"], truncation=True, padding=True, max_length=512)
     ).map(
         lambda x: {
             "label": tokenizer(
-                x["target"], truncation=True, padding=True, max_length=256
+                x["target"], truncation=True, padding=True, max_length=512
             )["input_ids"]
         }
     )

@@ -57,7 +57,7 @@ def main():
     low_dim_embeddings = npz["low_dim_embeddings"]
 
     ds = data.get_dataset(
-        texts=targets,
+        texts=targets.to_list(),
         times=times,
         low_dim_embeddings=low_dim_embeddings,
         time_train=config["data"]["time_train"],
@@ -67,6 +67,7 @@ def main():
         sampler_kwargs=config["data"]["sampler_kwargs"],
         input_kwargs=config["data"]["input_kwargs"],
     )
+    ds = data.tokenize_dataset(ds, tokenizer)
 
     evaluation = Evaluation(metric_names=config["metrics"])
 
@@ -94,3 +95,7 @@ def main():
     )
 
     trainer.train()
+
+
+if __name__ == "__main__":
+    main()
