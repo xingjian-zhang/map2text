@@ -12,8 +12,8 @@ embeddings:
 method:
   type: finetune
   init_args:
-    sampler_kwargs:
-      k_min: 2
-      k_max: 5
-      dist_threshold: 0.1
+    checkpoint_dir: out/train/query_only/t5-query-only-3e-4/checkpoint-140000
+    use_sampler: False
+    sampler_kwargs: null
     input_kwargs: null
+    batch_size: 8
