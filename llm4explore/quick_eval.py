@@ -29,7 +29,7 @@ def main():
     parser.add_argument(
         "--output_file",
         type=str,
-        help="Path to the result output file.",
+        help="Path to the evaluation metric output file.",
         default=None,
     )
     parser.add_argument(

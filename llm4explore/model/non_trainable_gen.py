@@ -159,8 +159,8 @@ class PromptingBasedGenerator(IdeaGenerator):
     def decode_all(self, low_dim_embeddings: np.ndarray) -> List[Tuple[str, Any]]:
         messages = []
         references = []
-        for low_dim_embedding in low_dim_embeddings:
-            indices, dists = self.sampler.sample(low_dim_embedding)
+        for query in low_dim_embeddings:
+            indices, dists = self.sampler.sample(query)
             ref = [self.data_old[i] for i in indices]
             messages.append(self.get_prompt(ref))
             references.append(ref)
