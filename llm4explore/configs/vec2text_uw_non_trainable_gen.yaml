@@ -1,6 +1,6 @@
 type: generation
 output:
-  out/vec2text_w_200.json
+  out/vec2text_uw_200.json
 data:
   path: data/massw_llm4explore.tsv
   target_col: key_idea
@@ -12,7 +12,7 @@ embeddings:
 method:
   type: embedding
   init_args:
-    weighted: True
+    weighted: False
     sampler_kwargs:
       k_min: 2
       k_max: 20

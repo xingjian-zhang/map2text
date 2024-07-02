@@ -12,7 +12,7 @@ import numpy as np
 import pandas as pd
 import yaml
 
-from llm4explore.model import non_trainable_gen, pretrain_map
+from llm4explore.model import non_trainable_gen, pretrain_map, trainable_gen
 from llm4explore.model.base import IdeaGenerator, IdeaMapper
 
 PATH_MATCHER = re.compile(r"\$\{([^}^{]+)\}")
@@ -117,6 +117,13 @@ class GenerationExperiment:
             )
         elif generator_type == "prompting":
             generator = non_trainable_gen.PromptingBasedGenerator(
+                n_dims=n_dims,
+                data_old=targets_old,
+                low_dim_embeddings_old=low_dim_embeddings_old,
+                **config["method"]["init_args"],
+            )
+        elif generator_type == "finetune":
+            generator =trainable_gen.FineTunedPLMGenerator(
                 n_dims=n_dims,
                 data_old=targets_old,
                 low_dim_embeddings_old=low_dim_embeddings_old,
