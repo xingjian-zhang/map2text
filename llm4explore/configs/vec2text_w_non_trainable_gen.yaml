@@ -8,7 +8,7 @@ data:
   time_split: 2023
   num_tests: 200
 embeddings:
-  path: data/ada2_key_ideas.npz
+  path: out/ada2_key_ideas.npz
 method:
   type: embedding
   weighted: True
