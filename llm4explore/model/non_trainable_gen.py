@@ -11,6 +11,7 @@ Supported generator models:
 
 import json
 import os
+import pickle
 from typing import Any, Dict, List, Tuple
 
 import numpy as np
@@ -130,6 +131,7 @@ class PromptingBasedGenerator(IdeaGenerator):
         n_dims: int,
         data_old: List[str],
         low_dim_embeddings_old: np.ndarray,
+        rag_precompute_file: str = None,
         sampler_kwargs: Dict[str, Any] = None,
         api_kwargs: Dict[str, Any] = None,
     ):
@@ -143,6 +145,10 @@ class PromptingBasedGenerator(IdeaGenerator):
         prompt_path = os.path.join(
             os.path.dirname(__file__), "prompts", prompt_type + ".json"
         )
+        if "rag" in prompt_type:
+            self.rag_precompute_file = rag_precompute_file
+        else:
+            self.rag_precompute_file = None
         with open(prompt_path, "r") as f:
             self.prompt_messages = json.load(f)
 
@@ -157,12 +163,26 @@ class PromptingBasedGenerator(IdeaGenerator):
             "Prompting-based generator does not support decoding single embeddings."
         )
 
+    def get_rag_prompt(self, index, results):
+        with open(self.rag_precompute_file, 'rb') as file:
+            data = pickle.load(file)
+        neigbors = data[index]
+        for i, neigbor in enumerate(neigbors):
+            references = [self.data_old[j] for j in neigbor]
+            joined_references = "\n".join(references)
+            self.prompt_messages  = self.prompt_messages + [
+                {"role": "user", "content": f"Predict new key idea based on these key ideas: {joined_references}"},
+                {"role": "assistant", "content": f'{{"predictions": [{{"key_idea": "{results[i]}"}}]}}'}
+            ]
+
     def decode_all(self, low_dim_embeddings: np.ndarray) -> List[Tuple[str, Any]]:
         messages = []
         references = []
-        for low_dim_embedding in low_dim_embeddings:
+        for i, low_dim_embedding in enumerate(low_dim_embeddings):
             indices, dists = self.sampler.sample(low_dim_embedding)
-            ref = [self.data_old[i] for i in indices]
+            ref = [self.data_old[j] for j in indices]
+            if self.rag_precompute_file is not None:
+                self.get_rag_prompt(i, ref)
             messages.append(self.get_prompt(ref))
             references.append(ref)
         preds = process_chat_requests(
