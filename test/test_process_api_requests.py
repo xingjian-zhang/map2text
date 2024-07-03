@@ -74,9 +74,6 @@ def test_zero_temperature_chat_requests_are_same(change_dir):
         max_attempts=5,
         logging_level=logging.INFO,
     )
-<<<<<<< HEAD
-    assert responses[0] == responses[1]
-=======
     assert responses[0] == responses[1]
 
 
@@ -107,4 +104,3 @@ def test_json_format(change_dir):
             json.loads(response)
         except json.JSONDecodeError:
             assert False
->>>>>>> 318256f9169a1797ff91915d5d4c94c71b1c0653
