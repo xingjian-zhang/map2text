@@ -518,7 +518,7 @@ def process_chat_requests(
 ) -> List[str]:
     if parameters is None:
         parameters = {}
-    if model_name in {"gpt-35-turbo", "gpt-4"}:
+    if model_name in {"gpt-3.5-turbo", "gpt-4", "gpt-4-turbo", "gpt-4o"}:
         # Write data into a temporary jsonl files
         os.makedirs("tmp", exist_ok=True)
         requests_filepath = "tmp/chat-requests.jsonl"
@@ -573,7 +573,7 @@ if __name__ == "__main__":
         default="https://embedding-api.openai.azure.com/openai/deployments/"
         "text-embedding-api/embeddings?api-version=2023-12-01-preview",
     )
-    parser.add_argument("--api_key", default=os.getenv("AZURE_OPENAI_KEY"))
+    parser.add_argument("--api_key", default=os.getenv("OPENAI_API_KEY"))
     parser.add_argument("--max_requests_per_minute", type=int, default=3_000 * 0.5)
     parser.add_argument("--max_tokens_per_minute", type=int, default=240_000 * 0.5)
     parser.add_argument("--token_encoding_name", default="cl100k_base")

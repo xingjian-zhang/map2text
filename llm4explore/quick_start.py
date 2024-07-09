@@ -123,7 +123,7 @@ class GenerationExperiment:
                 **config["method"]["init_args"],
             )
         elif generator_type == "finetune":
-            generator =trainable_gen.FineTunedPLMGenerator(
+            generator = trainable_gen.FineTunedPLMGenerator(
                 n_dims=n_dims,
                 data_old=targets_old,
                 low_dim_embeddings_old=low_dim_embeddings_old,
