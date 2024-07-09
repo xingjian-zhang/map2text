@@ -34,7 +34,7 @@ class FineTunedPLMGenerator(IdeaGenerator):
         self.checkpoint_dir = checkpoint_dir
 
         # load model and tokenizer
-        self.model = AutoModelForSeq2SeqLM.from_pretrained(checkpoint_dir)
+        self.model = AutoModelForSeq2SeqLM.from_pretrained(checkpoint_dir, device_map="auto")
         self.tokenizer = AutoTokenizer.from_pretrained(checkpoint_dir)
         self.pipe = pipeline(
             task="text2text-generation",
@@ -51,7 +51,7 @@ class FineTunedPLMGenerator(IdeaGenerator):
             "Fine-tuned PLM generator does not support single decoding."
         )
 
-    def decode_all(self, low_dim_embeddings: np.ndarray) -> List[Tuple[str | Any]]:
+    def decode_all(self, low_dim_embeddings: np.ndarray) -> List[Tuple[str, Any]]:
         input_texts = []
         for query in low_dim_embeddings:
             if self.sampler is not None:
@@ -59,15 +59,16 @@ class FineTunedPLMGenerator(IdeaGenerator):
                 reference_texts = [self.data_old[i] for i in indices]
             else:
                 reference_texts = None
+            reference_embeddings = self.low_dim_embeddings_old[indices]
             input_texts.append(
                 make_input(
                     query,
+                    reference_embeddings=reference_embeddings,
                     reference_texts=reference_texts,
                     **self.input_kwargs,
                 )
             )
         preds = []
         for out in self.pipe(input_texts, batch_size=self.batch_size):
-            for item in out:
-                preds.append(item["generated_text"])
+            preds.append(out["generated_text"])
         return list(zip(preds, input_texts))

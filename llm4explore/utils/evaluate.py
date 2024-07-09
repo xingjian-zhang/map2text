@@ -160,10 +160,12 @@ class Evaluation:
             "average": False,
         },
         "cosine": {"source": "custom", "average": True},
-        "llmeval": {"source": "custom", "average": True},
+        # "llmeval": {"source": "custom", "average": True},
     }
 
     def __init__(self, metric_names: List[str]):
+        if metric_names is None:
+            metric_names = self.SUPPORTED_METRICS.keys()
         self.metric_names = metric_names
         self.metrics = {}
 
