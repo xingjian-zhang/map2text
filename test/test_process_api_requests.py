@@ -70,6 +70,8 @@ def test_zero_temperature_chat_requests_are_same(change_dir):
         max_attempts=5,
         logging_level=logging.INFO,
     )
+    # NOTE: There are still some differences in the responses due to many
+    # reasons: https://stackoverflow.com/a/76939860
     assert responses[0] == responses[1]
 
 

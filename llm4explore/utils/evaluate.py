@@ -1,3 +1,4 @@
+import json
 import logging
 import os
 from typing import Any, Dict, List
@@ -20,7 +21,7 @@ LLM_EVAL_PROMPT = [
     },
     {
         "role": "assistant",
-        "content": '{\n "score": 1,\n "justification": Both inputs are related to people with dementia. However, the first input talks about a web platform to help psychologists collect information, while the second input focuses on the effectiveness of non-pharmacological interventions in dementia care, particularly using biographical or personalized materials. They share a similar context but differ in specific focus and application."" \n}',
+        "content": '{\n  "justification": Both inputs are related to people with dementia. However, the first input talks about a web platform to help psychologists collect information, while the second input focuses on the effectiveness of non-pharmacological interventions in dementia care, particularly using biographical or personalized materials. They share a similar context but differ in specific focus and application.", \n  "score": 1\n}',
     },
     {
         "role": "user",
@@ -28,7 +29,7 @@ LLM_EVAL_PROMPT = [
     },
     {
         "role": "assistant",
-        "content": '{\n "score": 2,\n "justification":Both input discuss only one common key-point: people with dementia. Input 1 discusses a web platform to assist psychologists in collecting information about people with dementia.  Input 2 focuses on non-pharmacological interventions for dementia, particularly biographical or personalized materials.  While both relate to dementia, they address different aspects—one is about a technological tool for data collection, and the other about therapeutic methods.  Their key ideas share some thematic overlap but are fundamentally different in focus and application."" \n}',
+        "content": '{\n "justification":Both input discuss only one common key-point: people with dementia. Input 1 discusses a web platform to assist psychologists in collecting information about people with dementia.  Input 2 focuses on non-pharmacological interventions for dementia, particularly biographical or personalized materials.  While both relate to dementia, they address different aspects—one is about a technological tool for data collection, and the other about therapeutic methods.  Their key ideas share some thematic overlap but are fundamentally different in focus and application.", \n  "score": 2\n}',
     },
     {
         "role": "user",
@@ -36,7 +37,7 @@ LLM_EVAL_PROMPT = [
     },
     {
         "role": "assistant",
-        "content": '{\n "score": 5,\n "justification": Both inputs describe two main-points: creating a web platform and improving the collection of data for specific professional use.   Input 1 specifies two more key-points: the platform supports psychologists working with people with dementia, while Input 2 emphasizes improvements in data collection and therapy awareness.   The core idea of a web platform facilitating data collection is similar, but the specific focus areas slightly differ."" \n}',
+        "content": '{\n  "justification": Both inputs describe two main-points: creating a web platform and improving the collection of data for specific professional use.   Input 1 specifies two more key-points: the platform supports psychologists working with people with dementia, while Input 2 emphasizes improvements in data collection and therapy awareness. The core idea of a web platform facilitating data collection is similar, but the specific focus areas slightly differ.", \n  "score": 5\n}',
     },
     {
         "role": "user",
@@ -44,7 +45,7 @@ LLM_EVAL_PROMPT = [
     },
     {
         "role": "assistant",
-        "content": '{\n "score": 8,\n "justification"::Both inputs describe a web platform aimed at supporting the care of people with dementia by streamlining the collection of relevant information.   While input 2 miss one key-point: the platform is supporting psychologists generally, leading to score of 8. "" \n}',
+        "content": '{\n  "justification"::Both inputs describe a web platform aimed at supporting the care of people with dementia by streamlining the collection of relevant information.   While input 2 miss one key-point: the platform is supporting psychologists generally, leading to score of 8. ", \n  "score": 8\n}',
     },
     {
         "role": "user",
@@ -52,7 +53,7 @@ LLM_EVAL_PROMPT = [
     },
     {
         "role": "assistant",
-        "content": '{\n "score": 10,\n "justification":Both inputs describe a web platform designed to assist psychologists by streamlining the collection of information about people with dementia.   Input 2 provides a little additional detail by mentioning biographical information, but the core idea remains nearly identical. "" \n}',
+        "content": '{\n  "justification":Both inputs describe a web platform designed to assist psychologists by streamlining the collection of information about people with dementia.   Input 2 provides a little additional detail by mentioning biographical information, but the core idea remains nearly identical. ", \n  "score": 9\n}',
     },
 ]
 
@@ -98,14 +99,14 @@ class CosineSimilarity:
 class LLMEval:
     """Compute the LLM evaluation metric."""
 
-    def __init__(self, model_name: str = "gpt-4", api_kwargs: Dict[str, Any] = None):
+    def __init__(self, model_name: str = "gpt-4o", api_kwargs: Dict[str, Any] = None):
         self.model_name = model_name
         if api_kwargs is None:
             api_kwargs = dict(
                 request_url="https://api.openai.com/v1/chat/completions",
                 api_key=os.getenv("OPENAI_API_KEY"),
-                max_requests_per_minute=100,
-                max_tokens_per_minute=5000,
+                max_requests_per_minute=2000,
+                max_tokens_per_minute=200000,
                 token_encoding_name="cl100k_base",
                 max_attempts=5,
                 logging_level=logging.INFO,
@@ -115,10 +116,7 @@ class LLMEval:
     def generate_prompt(self, text_1: str, text_2: str):
         """Generate the prompt for the language model."""
         user_prompt = f"Input 1: {text_1}\nInput 2: {text_2}"
-        message = [
-            {"role": "system", "content": LLM_EVAL_PROMPT},
-            {"role": "user", "content": user_prompt},
-        ]
+        message = LLM_EVAL_PROMPT + [{"role": "user", "content": user_prompt}]
         return message
 
     def compute(self, predictions: List[str], references: List[str]):
@@ -127,13 +125,22 @@ class LLMEval:
             for pred, ref in zip(predictions, references)
         ]
         results = process_chat_requests(
-            model_name=self.model_name, messages=messages, **self.api_kwargs
+            model_name=self.model_name,
+            messages=messages,
+            parameters={
+                "temperature": 1,
+                "top_p": 0.95,
+                "response_format": {"type": "json_object"},
+            },
+            **self.api_kwargs,
         )
         results_numeric = []
         for r in results:
             try:
-                results_numeric.append(float(r))
-            except ValueError:
+                results_numeric.append(float(json.loads(r)["score"]))
+            except Exception as e:
+                logging.warning(f"Invalid result: {r}")
+                logging.warning(e)
                 results_numeric.append(None)
         # Count the number of valid results
         valid_results = [r for r in results_numeric if r is not None]
@@ -160,7 +167,7 @@ class Evaluation:
             "average": False,
         },
         "cosine": {"source": "custom", "average": True},
-        # "llmeval": {"source": "custom", "average": True},
+        "llmeval": {"source": "custom", "average": True},
     }
 
     def __init__(self, metric_names: List[str]):
@@ -185,6 +192,7 @@ class Evaluation:
     def compute(self, predictions: List[str], references: List[str]):
         results = {}
         for metric_name, metric in self.metrics.items():
+            print(f"Start {metric_name}.")
             if metric_name == "bertscore":
                 results[metric_name] = metric.compute(
                     predictions=predictions, references=references, lang="en"
@@ -200,6 +208,7 @@ class Evaluation:
                         results[metric_name][k] = np.mean(
                             np.array(results[metric_name][k], dtype=float)
                         )
+            print(f"Finish {metric_name}.")
         return flatten_and_round(results)
 
 
