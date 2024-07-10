@@ -13,6 +13,16 @@ import wandb
 from llm4explore.model.trainable_gen import data, callback
 from llm4explore.utils.evaluate import Evaluation
 
+def make_wandb_tags(config):
+    training_args = config["training_args"]
+    kwargs = {
+        "lr": training_args["learning_rate"],
+        "batch_size": training_args["per_device_train_batch_size"],
+        "epochs": training_args["num_train_epochs"],
+        "model": config["model"],
+        "lora-r": config["lora_args"]["r"]
+    }
+    return [f"{k}-{v}" for k, v in kwargs.items()]
 
 def main():
     # Load the configuration,
@@ -88,7 +98,8 @@ def main():
         return evaluation.compute(decoded_preds, decoded_labels)
 
     wandb.init(
-        **config["wandb_args"]
+        **config["wandb_args"],
+        tags=make_wandb_tags(config),
     )
     trainer = transformers.Seq2SeqTrainer(
         model=model,
