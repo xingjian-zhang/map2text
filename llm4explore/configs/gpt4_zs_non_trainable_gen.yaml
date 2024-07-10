@@ -12,15 +12,15 @@ embeddings:
 method:
   type: prompting
   init_args:
-    model_name: gpt-35-turbo
+    model_name: gpt-3.5-turbo
     prompt_type: zero-shot-prompting
     sampler_kwargs:
       k_min: 2
       k_max: 20
       dist_threshold: 0.1
     api_kwargs:
-      request_url: https://embedding-api.openai.azure.com/openai/deployments/gpt-4/chat/completions?api-version=2023-12-01-preview
-      api_key: ${AZURE_OPENAI_KEY}
+      request_url: https://api.openai.com/v1/chat/completions
+      api_key: ${OPENAI_API_KEY}
       max_requests_per_minute: 50
       max_tokens_per_minute: 5000
       token_encoding_name: cl100k_base

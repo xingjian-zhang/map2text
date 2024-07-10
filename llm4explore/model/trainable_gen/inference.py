@@ -45,6 +45,7 @@ class FineTunedPLMGenerator(IdeaGenerator):
             framework="pt",
             do_sample=False,
             max_length=64,
+            repetition_penalty=1.0,
         )
 
     def decode(self, low_dim_embedding: np.ndarray) -> Tuple[str, Any]:

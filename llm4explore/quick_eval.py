@@ -12,7 +12,7 @@ def safe_load_answer_from_json(raw_str: str):
     """Safely load the answer from the JSON string."""
     try:
         predict = json.loads(raw_str)
-        answer = predict["predictions"][0]['key_idea']
+        answer = predict["predictions"][0]["key_idea"]
     except json.JSONDecodeError:
         return None
     if isinstance(answer, str) and len(answer) > 0:
