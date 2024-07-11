@@ -154,7 +154,6 @@ class PromptingBasedGenerator(IdeaGenerator):
 
     def get_prompt(self, references: List[str], rag_prompt = None) -> List[Dict[str, str]]:
         joined_references = "\n".join(references)
-<<<<<<< HEAD
         if rag_prompt is None:
             return self.prompt_messages + [
                 {
@@ -169,14 +168,6 @@ class PromptingBasedGenerator(IdeaGenerator):
                     "content": f"Predict new key idea based on these key ideas: {joined_references}",
                 }
             ]
-=======
-        return self.prompt_messages + [
-            {
-                "role": "user",
-                "content": f"Predict new key idea based on these key ideas: {joined_references}",
-            }
-        ]
->>>>>>> b9dc06635daac8826823a758f6d730604a7f9fa0
 
     def decode(self, low_dim_embedding: np.ndarray) -> Tuple[str, Any]:
         raise NotImplementedError(
@@ -207,7 +198,6 @@ class PromptingBasedGenerator(IdeaGenerator):
     def decode_all(self, low_dim_embeddings: np.ndarray) -> List[Tuple[str, Any]]:
         messages = []
         references = []
-<<<<<<< HEAD
         for i, low_dim_embedding in enumerate(low_dim_embeddings):
             indices, dists = self.sampler.sample(low_dim_embedding)
             ref = [self.data_old[j] for j in indices]
@@ -216,12 +206,6 @@ class PromptingBasedGenerator(IdeaGenerator):
                 messages.append(self.get_prompt(ref, rag_prompt))
             else:
                 messages.append(self.get_prompt(ref))
-=======
-        for query in low_dim_embeddings:
-            indices, dists = self.sampler.sample(query)
-            ref = [self.data_old[i] for i in indices]
-            messages.append(self.get_prompt(ref))
->>>>>>> b9dc06635daac8826823a758f6d730604a7f9fa0
             references.append(ref)
         preds = process_chat_requests(
             self.model_name,
