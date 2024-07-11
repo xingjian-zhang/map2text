@@ -4,16 +4,18 @@ data:
   path: data/massw_llm4explore.tsv
   target_col: key_idea
   time_col: year
-  time_train: [1970, 2023]
+  time_train: [1975, 2023]
   time_val: [2022, 2023]
   time_test: [2023, 2024]
   use_sampler: False
   sampler_kwargs: null
   input_kwargs: null
   num_test: 200
+embeddings:
+  path: out/ada2_key_ideas.npz
 training_args:
   output_dir: ./
-  evaluation_strategy: steps
+  eval_strategy: steps
   per_device_train_batch_size: 32
   per_device_eval_batch_size: 32
   predict_with_generate: True

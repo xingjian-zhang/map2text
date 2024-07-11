@@ -168,7 +168,8 @@ class KNNSampler:
         if time_split is None:
             embeddings = self.knn_embeddings
         else:
-            embeddings = self.knn_embeddings[self.times < time_split]
+            time_mask = self.times < time_split
+            embeddings = self.knn_embeddings[time_mask]
         if self.metric == "euclidean":
             dists = np.linalg.norm(embeddings - query[None, :], axis=1)
         elif self.metric == "manhattan":
@@ -181,7 +182,6 @@ class KNNSampler:
                 "Query is too close to a sample."
                 "The samples may contain query itself."
             )
-
 
         if self.k_max >= len(dists):
             indices = np.arange(len(dists))
@@ -197,5 +197,8 @@ class KNNSampler:
             mask[: self.k_min] = 1
         indices = indices[mask]
         dists = dists[mask]
+
+        if time_split is not None:
+            indices = np.arange(len(self.knn_embeddings))[time_mask][indices]
 
         return indices, dists

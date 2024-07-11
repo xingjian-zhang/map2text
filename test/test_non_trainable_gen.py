@@ -27,9 +27,8 @@ class TestNonTrainableGen:
         embeddings = process_embedding_requests(
             "text-embedding-ada-002",
             ["Hello World", "Goodbye World", "What is the meaning of life?"],
-            request_url="https://embedding-api.openai.azure.com/openai/deployments/"
-            "text-embedding-api/embeddings?api-version=2023-12-01-preview",
-            api_key=os.getenv("AZURE_OPENAI_KEY"),
+            request_url=https://api.openai.com/v1/embeddings,
+            api_key=os.getenv("OPENAI_API_KEY"),
             max_requests_per_minute=100,
             max_tokens_per_minute=1000,
             token_encoding_name="cl100k_base",
@@ -83,16 +82,15 @@ class TestNonTrainableGen:
         self, data_old, low_dim_embeddings_old, sampler_kwargs
     ):
         generator = PromptingBasedGenerator(
-            model_name="gpt-35-turbo",
+            model_name="gpt-3.5-turbo",
             prompt_type="zero-shot-prompting",
             n_dims=2,
             data_old=data_old,
             low_dim_embeddings_old=low_dim_embeddings_old,
             sampler_kwargs=sampler_kwargs,
             api_kwargs=dict(
-                request_url="https://embedding-api.openai.azure.com/openai/deployments/"
-                "gpt-35-turbo/chat/completions?api-version=2023-12-01-preview",
-                api_key=os.getenv("AZURE_OPENAI_KEY"),
+                request_url="https://api.openai.com/v1/chat/completions",
+                api_key=os.getenv("OPENAI_API_KEY"),
                 max_requests_per_minute=100,
                 max_tokens_per_minute=1000,
                 token_encoding_name="cl100k_base",

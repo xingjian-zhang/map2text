@@ -2,6 +2,8 @@ tmp/
 .vscode/
 data/
 out/
+wandb/
+jobs/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

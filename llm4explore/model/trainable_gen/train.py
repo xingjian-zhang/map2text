@@ -7,10 +7,22 @@ import numpy as np
 import pandas as pd
 import transformers
 import yaml
+from peft import LoraConfig, get_peft_model, TaskType
+import wandb
 
-from llm4explore.model.trainable_gen import data
+from llm4explore.model.trainable_gen import data, callback
 from llm4explore.utils.evaluate import Evaluation
 
+def make_wandb_tags(config):
+    training_args = config["training_args"]
+    kwargs = {
+        "lr": training_args["learning_rate"],
+        "batch_size": training_args["per_device_train_batch_size"],
+        "epochs": training_args["num_train_epochs"],
+        "model": config["model"],
+        "lora-r": config["lora_args"]["r"]
+    }
+    return [f"{k}-{v}" for k, v in kwargs.items()]
 
 def main():
     # Load the configuration,
@@ -35,6 +47,9 @@ def main():
     training_args = transformers.Seq2SeqTrainingArguments(**config["training_args"])
     model = transformers.AutoModelForSeq2SeqLM.from_pretrained(config["model"])
     tokenizer = transformers.AutoTokenizer.from_pretrained(config["tokenizer"])
+    lora_config = LoraConfig(**config["lora_args"])
+    model = get_peft_model(model, lora_config)
+    model.print_trainable_parameters()
 
     # Load the dataset.
     raw_data = pd.read_csv(
@@ -57,7 +72,7 @@ def main():
     low_dim_embeddings = npz["low_dim_embeddings"]
 
     ds = data.get_dataset(
-        texts=targets,
+        texts=targets.to_list(),
         times=times,
         low_dim_embeddings=low_dim_embeddings,
         time_train=config["data"]["time_train"],
@@ -67,6 +82,7 @@ def main():
         sampler_kwargs=config["data"]["sampler_kwargs"],
         input_kwargs=config["data"]["input_kwargs"],
     )
+    ds = data.tokenize_dataset(ds, tokenizer)
 
     evaluation = Evaluation(metric_names=config["metrics"])
 
@@ -81,6 +97,10 @@ def main():
         decoded_labels = tokenizer.batch_decode(labels, skip_special_tokens=True)
         return evaluation.compute(decoded_preds, decoded_labels)
 
+    wandb.init(
+        **config["wandb_args"],
+        tags=make_wandb_tags(config),
+    )
     trainer = transformers.Seq2SeqTrainer(
         model=model,
         tokenizer=tokenizer,
@@ -92,5 +112,18 @@ def main():
         .with_format("torch"),
         compute_metrics=compute_metrics,
     )
+    trainer.add_callback(callback.WandbPredictionCallback(
+        trainer=trainer,
+        tokenizer=tokenizer,
+        val_dataset=ds["test"]
+        .select(range(config["data"]["num_test"]))
+        .with_format("torch"),
+        num_samples=10,
+        freq=config["training_args"]["eval_steps"],
+    ))
 
     trainer.train()
+
+
+if __name__ == "__main__":
+    main()

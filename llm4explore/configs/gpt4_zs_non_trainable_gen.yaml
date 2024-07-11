@@ -12,7 +12,7 @@ embeddings:
 method:
   type: prompting
   init_args:
-    model_name: gpt-4o
+    model_name: gpt-3.5-turbo
     prompt_type: zero-shot-prompting
     sampler_kwargs:
       k_min: 2
