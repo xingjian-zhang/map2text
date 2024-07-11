@@ -518,11 +518,7 @@ def process_chat_requests(
 ) -> List[str]:
     if parameters is None:
         parameters = {}
-<<<<<<< HEAD
-    if model_name in {"gpt-35-turbo", "gpt-4", "gpt-4o"}:
-=======
     if model_name in {"gpt-3.5-turbo", "gpt-4", "gpt-4-turbo", "gpt-4o"}:
->>>>>>> b9dc06635daac8826823a758f6d730604a7f9fa0
         # Write data into a temporary jsonl files
         os.makedirs("tmp", exist_ok=True)
         requests_filepath = "tmp/chat-requests.jsonl"
