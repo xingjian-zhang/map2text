@@ -59,9 +59,10 @@ class FineTunedPLMGenerator(IdeaGenerator):
             if self.sampler is not None:
                 indices, dists = self.sampler.sample(query)
                 reference_texts = [self.data_old[i] for i in indices]
+                reference_embeddings = self.low_dim_embeddings_old[indices]
             else:
                 reference_texts = None
-            reference_embeddings = self.low_dim_embeddings_old[indices]
+                reference_embeddings = None
             input_texts.append(
                 make_input(
                     query,
