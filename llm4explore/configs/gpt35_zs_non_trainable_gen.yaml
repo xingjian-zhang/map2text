@@ -19,8 +19,8 @@ method:
       k_max: 20
       dist_threshold: 0.1
     api_kwargs:
-      request_url: https://embedding-api.openai.azure.com/openai/deployments/gpt-35-turbo/chat/completions?api-version=2023-12-01-preview
-      api_key: ${AZURE_OPENAI_KEY}
+      request_url: https://api.openai.com/v1/chat/completions
+      api_key: ${OPENAI_API_KEY}
       max_requests_per_minute: 100
       max_tokens_per_minute: 10000
       token_encoding_name: cl100k_base

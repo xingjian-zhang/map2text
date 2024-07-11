@@ -142,21 +142,32 @@ class PromptingBasedGenerator(IdeaGenerator):
         api_kwargs = api_kwargs or {}
         self.sampler = ANNSampler(low_dim_embeddings_old, **sampler_kwargs)
         self.api_kwargs = api_kwargs
-        prompt_path = os.path.join(
+        self.prompt_path = os.path.join(
             os.path.dirname(__file__), "prompts", prompt_type + ".json"
         )
         if "rag" in prompt_type:
             self.rag_precompute_file = rag_precompute_file
         else:
             self.rag_precompute_file = None
-        with open(prompt_path, "r") as f:
+        with open(self.prompt_path, "r") as f:
             self.prompt_messages = json.load(f)
 
-    def get_prompt(self, references: List[str]) -> List[Dict[str, str]]:
+    def get_prompt(self, references: List[str], rag_prompt = None) -> List[Dict[str, str]]:
         joined_references = "\n".join(references)
-        return self.prompt_messages + [
-            {"role": "user", "content": f"Predict new key idea based on these key ideas: {joined_references}"}
-        ]
+        if rag_prompt is None:
+            return self.prompt_messages + [
+                {
+                    "role": "user",
+                    "content": f"Predict new key idea based on these key ideas: {joined_references}",
+                }
+            ]
+        else:
+            return rag_prompt+ [
+                {
+                    "role": "user",
+                    "content": f"Predict new key idea based on these key ideas: {joined_references}",
+                }
+            ]
 
     def decode(self, low_dim_embedding: np.ndarray) -> Tuple[str, Any]:
         raise NotImplementedError(
@@ -167,13 +178,22 @@ class PromptingBasedGenerator(IdeaGenerator):
         with open(self.rag_precompute_file, 'rb') as file:
             data = pickle.load(file)
         neigbors = data[index]
+        with open(self.prompt_path, "r") as f:
+            rag_prompt = json.load(f)
         for i, neigbor in enumerate(neigbors):
             references = [self.data_old[j] for j in neigbor]
             joined_references = "\n".join(references)
-            self.prompt_messages  = self.prompt_messages + [
-                {"role": "user", "content": f"Predict new key idea based on these key ideas: {joined_references}"},
-                {"role": "assistant", "content": f'{{"predictions": [{{"key_idea": "{results[i]}"}}]}}'}
+            rag_prompt += [
+                {
+                    "role": "user",
+                    "content": f"Predict new key idea based on these key ideas: {joined_references}"
+                },
+                {
+                    "role": "assistant",
+                    "content": f'{{"predictions": [{{"key_idea": "{results[i]}"}}]}}'
+                }
             ]
+        return rag_prompt
 
     def decode_all(self, low_dim_embeddings: np.ndarray) -> List[Tuple[str, Any]]:
         messages = []
@@ -182,8 +202,10 @@ class PromptingBasedGenerator(IdeaGenerator):
             indices, dists = self.sampler.sample(low_dim_embedding)
             ref = [self.data_old[j] for j in indices]
             if self.rag_precompute_file is not None:
-                self.get_rag_prompt(i, ref)
-            messages.append(self.get_prompt(ref))
+                rag_prompt = self.get_rag_prompt(i, ref)
+                messages.append(self.get_prompt(ref, rag_prompt))
+            else:
+                messages.append(self.get_prompt(ref))
             references.append(ref)
         preds = process_chat_requests(
             self.model_name,

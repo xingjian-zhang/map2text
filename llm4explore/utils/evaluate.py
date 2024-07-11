@@ -1,3 +1,4 @@
+import json
 import logging
 import os
 from typing import Any, Dict, List
@@ -9,11 +10,52 @@ from sentence_transformers import SentenceTransformer
 from llm4explore.utils.api import process_chat_requests
 
 
-LLM_EVAL_PROMPT = """
-Evaluate the following two inputs based on their semantic similarity and not
-their syntactic similarity. Rate from 1 to 10, where 1 is not similar at all
-and 10 is very similar. Do not give any explanation. Only give a number.
-"""  # TODO: refine the prompt.
+LLM_EVAL_PROMPT = [
+    {
+        "role": "system",
+        "content": 'You are an expert in scientific research and can evaluate the semantic similarity between pairs of key-idea aspect summarizations from scientific papers.   Key idea refers to the main intellectual merit of this paper, often in comparison to the context.  This could normally be a novel idea or solution proposed in this paper that distincts it from what’s already done in literature.  You will be provided with two inputs, and your task is to assign a similarity score on a scale from 1 to 10, where 1 indicates completely dissimilar content and 10 indicates identical content. Before scoring, provide a brief justification for your score.  Structure your response in the following JSON format: \n{\n  "score": score,\n  "justification": "Brief explanation for the score"\n}\n',
+    },
+    {
+        "role": "user",
+        "content": "Input 1:The authors create a web platform that supports the work of psychologists, streamlining the collection of relevant information about people with dementia.\nInput 2:Non-pharmacological interventions are the most common and the most effective for people with dementia. Using biographical or personalized materials has been proven to benefit these interventions.",
+    },
+    {
+        "role": "assistant",
+        "content": '{\n  "justification": Both inputs are related to people with dementia. However, the first input talks about a web platform to help psychologists collect information, while the second input focuses on the effectiveness of non-pharmacological interventions in dementia care, particularly using biographical or personalized materials. They share a similar context but differ in specific focus and application.", \n  "score": 1\n}',
+    },
+    {
+        "role": "user",
+        "content": "Input 1:The authors create a web platform that supports the work of psychologists, streamlining the collection of relevant information about people with dementia.\nInput 2:The paper focuses on non-pharmacological interventions for people with dementia, emphasizing the effectiveness of biographical or personalized materials.",
+    },
+    {
+        "role": "assistant",
+        "content": '{\n "justification":Both input discuss only one common key-point: people with dementia. Input 1 discusses a web platform to assist psychologists in collecting information about people with dementia.  Input 2 focuses on non-pharmacological interventions for dementia, particularly biographical or personalized materials.  While both relate to dementia, they address different aspects—one is about a technological tool for data collection, and the other about therapeutic methods.  Their key ideas share some thematic overlap but are fundamentally different in focus and application.", \n  "score": 2\n}',
+    },
+    {
+        "role": "user",
+        "content": "Input 1:The authors create a web platform that supports the work of psychologists, streamlining the collection of relevant information about people with dementia.\nInput 2:The web platform make improvements in the collection of meaningful data about a person, and on maintaining awareness of the therapy as a whole.",
+    },
+    {
+        "role": "assistant",
+        "content": '{\n  "justification": Both inputs describe two main-points: creating a web platform and improving the collection of data for specific professional use.   Input 1 specifies two more key-points: the platform supports psychologists working with people with dementia, while Input 2 emphasizes improvements in data collection and therapy awareness. The core idea of a web platform facilitating data collection is similar, but the specific focus areas slightly differ.", \n  "score": 5\n}',
+    },
+    {
+        "role": "user",
+        "content": "Input 1:The authors create a web platform that supports the work of psychologists, streamlining the collection of relevant information about people with dementia.\nInput 2:The authors propose a web platform to collect and manage biographical materials in a streamlined manner, enabling reminiscence and other biographical cognitive stimulation practices for people with dementia.",
+    },
+    {
+        "role": "assistant",
+        "content": '{\n  "justification"::Both inputs describe a web platform aimed at supporting the care of people with dementia by streamlining the collection of relevant information.   While input 2 miss one key-point: the platform is supporting psychologists generally, leading to score of 8. ", \n  "score": 8\n}',
+    },
+    {
+        "role": "user",
+        "content": "Input 1:The authors create a web platform that supports the work of psychologists, streamlining the collection of relevant information about people with dementia.\nInput 2:The authors created a web platform to support psychologists by streamlining the collection of relevant biographical information about people with dementia, facilitating reminiscence and other biographical cognitive stimulation practices.",
+    },
+    {
+        "role": "assistant",
+        "content": '{\n  "justification":Both inputs describe a web platform designed to assist psychologists by streamlining the collection of information about people with dementia.   Input 2 provides a little additional detail by mentioning biographical information, but the core idea remains nearly identical. ", \n  "score": 9\n}',
+    },
+]
 
 
 class CosineSimilarity:
@@ -57,15 +99,14 @@ class CosineSimilarity:
 class LLMEval:
     """Compute the LLM evaluation metric."""
 
-    def __init__(self, model_name: str = "gpt-4", api_kwargs: Dict[str, Any] = None):
+    def __init__(self, model_name: str = "gpt-4o", api_kwargs: Dict[str, Any] = None):
         self.model_name = model_name
         if api_kwargs is None:
             api_kwargs = dict(
-                request_url="https://embedding-api.openai.azure.com/openai/deployments/"
-                "gpt-4/chat/completions?api-version=2023-12-01-preview",
-                api_key=os.getenv("AZURE_OPENAI_KEY"),
-                max_requests_per_minute=100,
-                max_tokens_per_minute=5000,
+                request_url="https://api.openai.com/v1/chat/completions",
+                api_key=os.getenv("OPENAI_API_KEY"),
+                max_requests_per_minute=2000,
+                max_tokens_per_minute=200000,
                 token_encoding_name="cl100k_base",
                 max_attempts=5,
                 logging_level=logging.INFO,
@@ -75,10 +116,7 @@ class LLMEval:
     def generate_prompt(self, text_1: str, text_2: str):
         """Generate the prompt for the language model."""
         user_prompt = f"Input 1: {text_1}\nInput 2: {text_2}"
-        message = [
-            {"role": "system", "content": LLM_EVAL_PROMPT},
-            {"role": "user", "content": user_prompt},
-        ]
+        message = LLM_EVAL_PROMPT + [{"role": "user", "content": user_prompt}]
         return message
 
     def compute(self, predictions: List[str], references: List[str]):
@@ -87,13 +125,22 @@ class LLMEval:
             for pred, ref in zip(predictions, references)
         ]
         results = process_chat_requests(
-            model_name=self.model_name, messages=messages, **self.api_kwargs
+            model_name=self.model_name,
+            messages=messages,
+            parameters={
+                "temperature": 1,
+                "top_p": 0.95,
+                "response_format": {"type": "json_object"},
+            },
+            **self.api_kwargs,
         )
         results_numeric = []
         for r in results:
             try:
-                results_numeric.append(float(r))
-            except ValueError:
+                results_numeric.append(float(json.loads(r)["score"]))
+            except Exception as e:
+                logging.warning(f"Invalid result: {r}")
+                logging.warning(e)
                 results_numeric.append(None)
         # Count the number of valid results
         valid_results = [r for r in results_numeric if r is not None]
@@ -124,6 +171,8 @@ class Evaluation:
     }
 
     def __init__(self, metric_names: List[str]):
+        if metric_names is None:
+            metric_names = self.SUPPORTED_METRICS.keys()
         self.metric_names = metric_names
         self.metrics = {}
 
@@ -143,6 +192,7 @@ class Evaluation:
     def compute(self, predictions: List[str], references: List[str]):
         results = {}
         for metric_name, metric in self.metrics.items():
+            print(f"Start {metric_name}.")
             if metric_name == "bertscore":
                 results[metric_name] = metric.compute(
                     predictions=predictions, references=references, lang="en"
@@ -158,6 +208,7 @@ class Evaluation:
                         results[metric_name][k] = np.mean(
                             np.array(results[metric_name][k], dtype=float)
                         )
+            print(f"Finish {metric_name}.")
         return flatten_and_round(results)
 
 
