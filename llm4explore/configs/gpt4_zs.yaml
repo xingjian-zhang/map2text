@@ -1,0 +1,28 @@
+type: generation
+output:
+  out/gpt4_zs_0715.json
+data:
+  path: data/massw_llm4explore.tsv
+  target_col: key_idea
+  time_col: year
+  time_split: 2023
+  num_tests: 200
+embeddings:
+  path: out/ada2_key_ideas.npz
+method:
+  type: prompting
+  init_args:
+    model_name: gpt-4o
+    prompt_type: zero-shot-prompting
+    sampler_kwargs:
+      k_min: 2
+      k_max: 20
+      dist_threshold: 0.1
+    api_kwargs:
+      request_url: https://api.openai.com/v1/chat/completions
+      api_key: ${OPENAI_API_KEY}
+      max_requests_per_minute: 500
+      max_tokens_per_minute: 200000
+      token_encoding_name: cl100k_base
+      max_attempts: 99
+      logging_level: 10 # logging.DEBUG
