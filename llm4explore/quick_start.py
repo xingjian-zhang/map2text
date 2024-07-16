@@ -118,8 +118,9 @@ class GenerationExperiment:
         elif generator_type == "prompting":
             generator = non_trainable_gen.PromptingBasedGenerator(
                 n_dims=n_dims,
-                data_old=targets_old,
-                low_dim_embeddings_old=low_dim_embeddings_old,
+                texts=targets_old,
+                low_dim_embeddings=low_dim_embeddings_old,
+                times=times[times < time_split].values,
                 **config["method"]["init_args"],
             )
         elif generator_type == "finetune":

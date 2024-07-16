@@ -91,8 +91,8 @@ class IdeaGenerator(ABC):
     def __init__(
         self,
         n_dims: int,
-        data_old: List[str],
-        low_dim_embeddings_old: np.ndarray,
+        texts: List[str],
+        low_dim_embeddings: np.ndarray,
     ):
         """Initializes the generator with dimensions and reference data.
 
@@ -102,8 +102,8 @@ class IdeaGenerator(ABC):
             encodings_old: Low-dimensional representations of the older key ideas.
         """
         self.n_dims = n_dims
-        self.data_old = data_old
-        self.low_dim_embeddings_old = low_dim_embeddings_old
+        self.texts = texts
+        self.low_dim_embeddings = low_dim_embeddings
 
     @abstractmethod
     def decode(self, low_dim_embedding: np.ndarray) -> Tuple[str, Any]:

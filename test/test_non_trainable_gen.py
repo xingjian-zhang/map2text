@@ -85,8 +85,8 @@ class TestNonTrainableGen:
             model_name="gpt-3.5-turbo",
             prompt_type="zero-shot-prompting",
             n_dims=2,
-            data_old=data_old,
-            low_dim_embeddings_old=low_dim_embeddings_old,
+            texts=data_old,
+            low_dim_embeddings=low_dim_embeddings_old,
             sampler_kwargs=sampler_kwargs,
             api_kwargs=dict(
                 request_url="https://api.openai.com/v1/chat/completions",

@@ -1,8 +1,9 @@
 """Common functions for models."""
 
+from dataclasses import dataclass
 import hashlib
 import os
-from typing import Tuple
+from typing import List, Tuple
 from warnings import warn
 
 import numpy as np
@@ -202,3 +203,15 @@ class KNNSampler:
             indices = np.arange(len(self.knn_embeddings))[time_mask][indices]
 
         return indices, dists
+
+
+@dataclass
+class QRTask:
+    """Query-Reference task for idea generation."""
+
+    query_vec: np.ndarray  # (n_dims,)
+    query_text: str
+    query_time: int
+    references_vecs: List[np.ndarray]  # (n_refs, (n_dims,))
+    references_texts: List[str]
+    references_times: List[int]

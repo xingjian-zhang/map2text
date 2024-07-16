@@ -105,8 +105,8 @@ class LLMEval:
             api_kwargs = dict(
                 request_url="https://api.openai.com/v1/chat/completions",
                 api_key=os.getenv("OPENAI_API_KEY"),
-                max_requests_per_minute=2000,
-                max_tokens_per_minute=200000,
+                max_requests_per_minute=500,
+                max_tokens_per_minute=60000,
                 token_encoding_name="cl100k_base",
                 max_attempts=5,
                 logging_level=logging.INFO,
@@ -128,7 +128,7 @@ class LLMEval:
             model_name=self.model_name,
             messages=messages,
             parameters={
-                "temperature": 1,
+                "temperature": 0,
                 "top_p": 0.95,
                 "response_format": {"type": "json_object"},
             },

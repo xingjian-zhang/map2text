@@ -58,8 +58,8 @@ class FineTunedPLMGenerator(IdeaGenerator):
         for query in low_dim_embeddings:
             if self.sampler is not None:
                 indices, dists = self.sampler.sample(query)
-                reference_texts = [self.data_old[i] for i in indices]
-                reference_embeddings = self.low_dim_embeddings_old[indices]
+                reference_texts = [self.texts[i] for i in indices]
+                reference_embeddings = self.low_dim_embeddings[indices]
             else:
                 reference_texts = None
                 reference_embeddings = None

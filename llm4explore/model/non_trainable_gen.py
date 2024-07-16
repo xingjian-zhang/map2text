@@ -15,10 +15,11 @@ from typing import Any, Dict, List, Tuple
 
 import numpy as np
 import torch
+import tqdm
 import vec2text
 
 from llm4explore.model.base import IdeaGenerator
-from llm4explore.model.common import ANNSampler
+from llm4explore.model.common import ANNSampler, KNNSampler, QRTask
 from llm4explore.utils.api import process_chat_requests
 
 
@@ -57,9 +58,7 @@ class PlagiarismGenerator(IdeaGenerator):
 
     def decode(self, low_dim_embedding: np.ndarray) -> Tuple[str, Any]:
         indices, dists = self.sampler.sample(low_dim_embedding)
-        return self.data_old[indices[0]], references_to_dict(
-            self.data_old, indices, dists
-        )
+        return self.texts[indices[0]], references_to_dict(self.texts, indices, dists)
 
 
 class EmbeddingBasedGenerator(IdeaGenerator):
@@ -113,7 +112,7 @@ class EmbeddingBasedGenerator(IdeaGenerator):
             ),
             self.vec2text_corrector,
             **self.vec2text_kwargs,
-        )[0], references_to_dict(self.data_old, indices, dists)
+        )[0], references_to_dict(self.texts, indices, dists)
 
 
 class PromptingBasedGenerator(IdeaGenerator):
@@ -128,32 +127,95 @@ class PromptingBasedGenerator(IdeaGenerator):
         model_name: str,
         prompt_type: str,
         n_dims: int,
-        data_old: List[str],
-        low_dim_embeddings_old: np.ndarray,
+        texts: List[str],
+        low_dim_embeddings: np.ndarray,
+        times: np.ndarray,
+        rag_kwargs: Dict[str, Any] = None,
         sampler_kwargs: Dict[str, Any] = None,
         api_kwargs: Dict[str, Any] = None,
     ):
-        super().__init__(n_dims, data_old, low_dim_embeddings_old)
+        super().__init__(n_dims, texts, low_dim_embeddings)
+        self.times = times
         self.model_name = model_name
         self.prompt_type = prompt_type
         sampler_kwargs = sampler_kwargs or {}
+        rag_kwargs = rag_kwargs or {}
         api_kwargs = api_kwargs or {}
-        self.sampler = ANNSampler(low_dim_embeddings_old, **sampler_kwargs)
+        self.sampler = KNNSampler(low_dim_embeddings, times, **sampler_kwargs)
+        self.rag_kwargs = rag_kwargs
         self.api_kwargs = api_kwargs
+        self.test_time = np.max(times) + 1
         prompt_path = os.path.join(
             os.path.dirname(__file__), "prompts", prompt_type + ".json"
         )
         with open(prompt_path, "r") as f:
             self.prompt_messages = json.load(f)
 
-    def get_prompt(self, references: List[str]) -> List[Dict[str, str]]:
-        joined_references = "\n".join(references)
-        return self.prompt_messages + [
-            {
-                "role": "user",
-                "content": f"Predict new key idea based on these key ideas: {joined_references}",
+    def get_prompt(self, task: QRTask) -> List[Dict[str, str]]:
+        """Get the prompting messages for the given task."""
+        messages = []
+        # System message and (optional) few shot examples.
+        messages.extend(self.prompt_messages)
+        # If RAG is enabled, add retrieved examples.
+        if "rag" in self.prompt_type:
+            retrieved_tasks = self.retrieve_relevant_tasks(task)
+            for retrieved_task in retrieved_tasks:
+                messages.extend(
+                    self.task_to_messages(retrieved_task, include_answer=True)
+                )
+        # User message for the task.
+        messages.extend(self.task_to_messages(task, include_answer=False))
+        return messages
+
+    def task_to_messages(
+        self, task: QRTask, include_answer: bool = False
+    ) -> List[Dict[str, str]]:
+        """Convert a QRTask to a list of prompting messages. If include_answer
+        is True, a user message and an assistant message are returned.
+        Otherwise, only the user message is returned.
+        """
+        joined_ref_texts = "\n".join(task.references_texts)
+        user_message = {
+            "role": "user",
+            "content": f"Predict new key idea based on these key ideas: {joined_ref_texts}",
+        }
+        if include_answer:
+            assistant_message = {
+                "role": "assistant",
+                "content": f'{{"predictions": [{{"key_idea": "{task.query_text}"}}]}}',
             }
-        ]
+            return [user_message, assistant_message]
+        return [user_message]
+
+    def retrieve_relevant_tasks(self, query_task: QRTask) -> List[QRTask]:
+        """Retrieve relevant tasks from the training data."""
+        n_examples = self.rag_kwargs["n_examples"]
+        example_tasks = []
+        if self.rag_kwargs["criteria"] == "knn":
+            # Retrieve nearest neighbors as querys for task examples.
+            n_examples_from_knn = len(query_task.references_texts)
+            n_examples = min(n_examples, n_examples_from_knn)
+            for i in range(n_examples):
+                query_vec = query_task.references_vecs[i]
+                query_text = query_task.references_texts[i]
+                query_time = query_task.references_times[i]
+                indices, _ = self.sampler.sample(query_vec, time_split=query_time)
+                ref_vecs = [self.low_dim_embeddings[j] for j in indices]
+                ref_texts = [self.texts[j] for j in indices]
+                ref_times = [self.times[j] for j in indices]
+                example_tasks.append(
+                    QRTask(
+                        query_vec,
+                        query_text,
+                        query_time,
+                        ref_vecs,
+                        ref_texts,
+                        ref_times,
+                    )
+                )
+        else:
+            raise ValueError(f"Invalid criteria: {self.rag_kwargs['criteria']}.")
+        return example_tasks
 
     def decode(self, low_dim_embedding: np.ndarray) -> Tuple[str, Any]:
         raise NotImplementedError(
@@ -162,12 +224,13 @@ class PromptingBasedGenerator(IdeaGenerator):
 
     def decode_all(self, low_dim_embeddings: np.ndarray) -> List[Tuple[str, Any]]:
         messages = []
-        references = []
-        for query in low_dim_embeddings:
-            indices, dists = self.sampler.sample(query)
-            ref = [self.data_old[i] for i in indices]
-            messages.append(self.get_prompt(ref))
-            references.append(ref)
+        for query in tqdm.tqdm(low_dim_embeddings, desc="Generating messages"):
+            indices, dists = self.sampler.sample(query, time_split=self.test_time)
+            ref_vecs = [self.low_dim_embeddings[i] for i in indices]
+            ref_texts = [self.texts[i] for i in indices]
+            ref_times = [self.times[i] for i in indices]
+            task = QRTask(query, None, None, ref_vecs, ref_texts, ref_times)
+            messages.append(self.get_prompt(task))
         preds = process_chat_requests(
             self.model_name,
             messages,
@@ -178,4 +241,4 @@ class PromptingBasedGenerator(IdeaGenerator):
             },
             **self.api_kwargs,
         )
-        return list(zip(preds, references))
+        return list(zip(preds, messages))
