@@ -2,8 +2,11 @@ import numpy as np
 from transformers.integrations import WandbCallback
 import pandas as pd
 
+
 def decode_predictions(tokenizer, predictions):
-    remove_pad_token = lambda x: np.where(x != -100, x, tokenizer.pad_token_id)
+    def remove_pad_token(x):
+        return np.where(x != -100, x, tokenizer.pad_token_id)
+
     labels = tokenizer.batch_decode(remove_pad_token(predictions.label_ids))
     prediction_text = tokenizer.batch_decode(remove_pad_token(predictions.predictions))
     return {"labels": labels, "predictions": prediction_text}
@@ -26,8 +29,7 @@ class WandbPredictionCallback(WandbCallback):
         freq (int, optional): Frequency of logging, measured in training steps. Defaults to 1000.
     """
 
-    def __init__(self, trainer, tokenizer, val_dataset,
-                 num_samples=100, freq=1000):
+    def __init__(self, trainer, tokenizer, val_dataset, num_samples=100, freq=1000):
         """Initializes the WandbPredictionProgressCallback instance.
 
         Args:

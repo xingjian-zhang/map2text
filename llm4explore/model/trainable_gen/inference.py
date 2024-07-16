@@ -1,7 +1,7 @@
 from typing import Any, Dict, List, Tuple
 
 import numpy as np
-from transformers import AutoModelForSeq2SeqLM, AutoTokenizer, pipeline
+from transformers import AutoTokenizer, pipeline
 from peft import AutoPeftModelForSeq2SeqLM
 
 from llm4explore.model.base import IdeaGenerator
@@ -35,7 +35,9 @@ class FineTunedPLMGenerator(IdeaGenerator):
         self.checkpoint_dir = checkpoint_dir
 
         # load model and tokenizer
-        self.model = AutoPeftModelForSeq2SeqLM.from_pretrained(checkpoint_dir, device_map="auto")
+        self.model = AutoPeftModelForSeq2SeqLM.from_pretrained(
+            checkpoint_dir, device_map="auto"
+        )
         self.tokenizer = AutoTokenizer.from_pretrained(checkpoint_dir)
         self.pipe = pipeline(
             task="text2text-generation",

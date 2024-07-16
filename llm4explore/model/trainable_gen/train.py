@@ -7,11 +7,12 @@ import numpy as np
 import pandas as pd
 import transformers
 import yaml
-from peft import LoraConfig, get_peft_model, TaskType
+from peft import LoraConfig, get_peft_model
 import wandb
 
 from llm4explore.model.trainable_gen import data, callback
 from llm4explore.utils.evaluate import Evaluation
+
 
 def make_wandb_tags(config):
     training_args = config["training_args"]
@@ -20,9 +21,10 @@ def make_wandb_tags(config):
         "batch_size": training_args["per_device_train_batch_size"],
         "epochs": training_args["num_train_epochs"],
         "model": config["model"],
-        "lora-r": config["lora_args"]["r"]
+        "lora-r": config["lora_args"]["r"],
     }
     return [f"{k}-{v}" for k, v in kwargs.items()]
+
 
 def main():
     # Load the configuration,
@@ -112,15 +114,17 @@ def main():
         .with_format("torch"),
         compute_metrics=compute_metrics,
     )
-    trainer.add_callback(callback.WandbPredictionCallback(
-        trainer=trainer,
-        tokenizer=tokenizer,
-        val_dataset=ds["test"]
-        .select(range(config["data"]["num_test"]))
-        .with_format("torch"),
-        num_samples=10,
-        freq=config["training_args"]["eval_steps"],
-    ))
+    trainer.add_callback(
+        callback.WandbPredictionCallback(
+            trainer=trainer,
+            tokenizer=tokenizer,
+            val_dataset=ds["test"]
+            .select(range(config["data"]["num_test"]))
+            .with_format("torch"),
+            num_samples=10,
+            freq=config["training_args"]["eval_steps"],
+        )
+    )
 
     trainer.train()
 
