@@ -106,7 +106,7 @@ class LLMEval:
                 request_url="https://api.openai.com/v1/chat/completions",
                 api_key=os.getenv("OPENAI_API_KEY"),
                 max_requests_per_minute=500,
-                max_tokens_per_minute=60000,
+                max_tokens_per_minute=200000,
                 token_encoding_name="cl100k_base",
                 max_attempts=5,
                 logging_level=logging.INFO,
