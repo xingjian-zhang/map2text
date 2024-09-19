@@ -41,9 +41,10 @@ def main():
         default="all",
     )
     parser.add_argument(
-        "--process_json",
-        action="store_true",
-        help="Whether the experiment output is in the JSON format, instructed by prompt.",
+        "--top_num",
+        type=int,
+        default=0,
+        help="The number of top results to use for calculating the mean score in the prompting method. Default is 0."
     )
     args = parser.parse_args()
     experiment_file = args.experiment_file
@@ -62,16 +63,24 @@ def main():
         print(f"Loaded {len(experiment_output)} outputs from {experiment_file}.")
         predictions, references = [], []
         for output in experiment_output:
-            prediction = output["prediction"]
-            reference = output["target"]
-            if args.process_json:
-                prediction = safe_load_answer_from_json(prediction)
-                if prediction is None:
-                    continue
-            predictions.append(prediction)
-            references.append(reference)
+            if args.top_num == 0 or args.top_num == 1:
+                prediction = output["prediction"]
+                reference = output["target"]
+                if args.top_num == 1:
+                    prediction = prediction[0]
+                predictions.append(prediction)
+                references.append(reference)
+            elif args.top_num <= len(output["prediction"]):
+                reference = output["target"]
+                for i in range(args.top_num):
+                    predictions.append(output["prediction"][i])
+                    references.append(reference)
+            else: 
+                reference = output["target"]
+                for i in range(len(output["prediction"])):
+                    predictions.append(output["prediction"][i])
+                    references.append(reference)
         print(f"Processed {len(predictions)} valid outputs.")
-
     # Evaluate the experiment.
     evaluation = Evaluation(metric_names=metrics)
     results = evaluation.compute(predictions, references)

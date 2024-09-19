@@ -164,10 +164,12 @@ class GenerationExperiment:
                     gen = [gen]*length
                     score = evaluation.compute(gen, references)['cosine_cosine']
                     scores.append(score)
-                score_list.append(scores)
-                best_idx = scores.index(max(scores))
-                best_pred = generations[best_idx]
-                best_preds.append(best_pred)
+                score_gen_pairs = list(zip(scores, generations))
+                sorted_score_gen_pairs = sorted(score_gen_pairs, key=lambda x: x[0], reverse=True)
+                sorted_preds = [gen for _, gen in sorted_score_gen_pairs]
+                sorted_scores = [score for score,_ in sorted_score_gen_pairs]
+                score_list.append(sorted_scores)
+                best_preds.append(sorted_preds)
             for i,pred in enumerate(preds):
                 outputs.append(
                     {
