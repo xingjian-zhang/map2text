@@ -224,6 +224,7 @@ class PromptingBasedGenerator(IdeaGenerator):
 
     def decode_all(self, low_dim_embeddings: np.ndarray) -> List[Tuple[str, Any]]:
         messages = []
+        neighbors = []
         for query in tqdm.tqdm(low_dim_embeddings, desc="Generating messages"):
             indices, dists = self.sampler.sample(query, time_split=self.test_time)
             ref_vecs = [self.low_dim_embeddings[i] for i in indices]
@@ -231,6 +232,7 @@ class PromptingBasedGenerator(IdeaGenerator):
             ref_times = [self.times[i] for i in indices]
             task = QRTask(query, None, None, ref_vecs, ref_texts, ref_times)
             messages.append(self.get_prompt(task))
+            neighbors.append(ref_texts)
         preds = process_chat_requests(
             self.model_name,
             messages,
@@ -241,4 +243,4 @@ class PromptingBasedGenerator(IdeaGenerator):
             },
             **self.api_kwargs,
         )
-        return list(zip(preds, messages))
+        return list(zip(preds, messages, neighbors))

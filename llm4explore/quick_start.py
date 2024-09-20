@@ -14,6 +14,7 @@ import yaml
 
 from llm4explore.model import non_trainable_gen, pretrain_map, trainable_gen
 from llm4explore.model.base import IdeaGenerator, IdeaMapper
+from llm4explore.utils.evaluate import Evaluation
 
 PATH_MATCHER = re.compile(r"\$\{([^}^{]+)\}")
 
@@ -53,6 +54,7 @@ class GenerationExperiment:
         low_dim_embeddings_new: np.ndarray,
         targets_new: List[str],
         output_path: str,
+        generator_type: str,
         num_tests: int = None,
     ):
         self.generator = generator
@@ -60,6 +62,7 @@ class GenerationExperiment:
         self.targets_new = targets_new
         self.output_path = output_path
         self.num_tests = num_tests or len(targets_new)
+        self.generator_type = generator_type 
 
     @classmethod
     def from_config(cls, config: Any):
@@ -137,26 +140,64 @@ class GenerationExperiment:
             low_dim_embeddings_new,
             targets_new,
             config["output"],
+            config["method"]["type"],
             config["data"]["num_tests"],
         )
 
     def run(self):
         queries = self.low_dim_embeddings_new[: self.num_tests]
         results = self.generator.decode_all(queries)
-        preds, logs = zip(*results)
-        targets = self.targets_new[: self.num_tests]
-        outputs = []
-        for i in range(len(preds)):
-            outputs.append(
-                {
-                    "target": targets[i],
-                    "prediction": preds[i],
-                    "queries": queries[i].tolist(),
-                    "log": logs[i],
-                }
-            )
-        with open(self.output_path, "w") as f:
-            json.dump(outputs, f, indent=4)
+        if self.generator_type == "prompting":
+            preds, logs, neighbors = zip(*results)
+            targets = self.targets_new[: self.num_tests]
+            outputs = []
+            evaluation = Evaluation(metric_names=["cosine"])
+            best_preds = []
+            score_list = []
+            for i,generate in enumerate(preds):
+                data = json.loads(generate)
+                generations = [each["key_idea"] for each in data['predictions']]
+                references = neighbors[i]
+                scores = []
+                for gen in generations:
+                    length = len(references)
+                    gen = [gen]*length
+                    score = evaluation.compute(gen, references)['cosine_cosine']
+                    scores.append(score)
+                score_gen_pairs = list(zip(scores, generations))
+                sorted_score_gen_pairs = sorted(score_gen_pairs, key=lambda x: x[0], reverse=True)
+                sorted_preds = [gen for _, gen in sorted_score_gen_pairs]
+                sorted_scores = [score for score,_ in sorted_score_gen_pairs]
+                score_list.append(sorted_scores)
+                best_preds.append(sorted_preds)
+            for i,pred in enumerate(preds):
+                outputs.append(
+                    {
+                        "target": targets[i],
+                        "prediction": best_preds[i],
+                        "generations": pred,
+                        "scores": score_list[i],
+                        "queries": queries[i].tolist(),
+                        "log": logs[i],
+                    }
+                )
+            with open(self.output_path, "w") as f:
+                json.dump(outputs, f, indent=4)
+        else:
+            preds, logs = zip(*results)
+            targets = self.targets_new[: self.num_tests]
+            outputs = []
+            for i,pred in enumerate(preds):
+                outputs.append(
+                    {
+                        "target": targets[i],
+                        "prediction": pred,
+                        "queries": queries[i].tolist(),
+                        "log": logs[i],
+                    }
+                )
+            with open(self.output_path, "w") as f:
+                json.dump(outputs, f, indent=4)
 
 
 def path_constructor(loader, node):
