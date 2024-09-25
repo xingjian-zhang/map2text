@@ -12,7 +12,7 @@ import numpy as np
 import pandas as pd
 import yaml
 
-from llm4explore.model import non_trainable_gen, pretrain_map, trainable_gen
+from llm4explore.model import non_trainable_gen, pretrain_map, trainable_gen, trainable_ffn
 from llm4explore.model.base import IdeaGenerator, IdeaMapper
 from llm4explore.utils.evaluate import Evaluation
 
@@ -116,6 +116,13 @@ class GenerationExperiment:
                 data_old=targets_old,
                 low_dim_embeddings_old=low_dim_embeddings_old,
                 high_dim_embeddings_old=high_dim_embeddings_old,
+                **config["method"]["init_args"],
+            )
+        elif generator_type == "embedding_ffn":
+            generator = trainable_ffn.EmbeddingBasedFFNGenerator(
+                n_dims=n_dims,
+                data_old=targets_old,
+                low_dim_embeddings_old=low_dim_embeddings_old,
                 **config["method"]["init_args"],
             )
         elif generator_type == "prompting":
