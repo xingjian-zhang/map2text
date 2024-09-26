@@ -14,6 +14,7 @@ from typing import Any, Dict, List
 from subprocess import run
 
 import numpy as np
+import umap
 
 from llm4explore.model.base import IdeaMapper
 from llm4explore.model.common import hash_array
@@ -65,8 +66,12 @@ class PLMMapper(IdeaMapper):
         Returns:
             A numpy array of encoded representations with reduced dimensions.
         """
-        embeddings = self.encode_by_plm(data)
-        np.savez(self.save_path, high_dim_embeddings=embeddings)
+        # Check if the embeddings already exist
+        if os.path.exists(self.save_path):
+            embeddings = np.load(self.save_path)["high_dim_embeddings"]
+        else:
+            embeddings = self.encode_by_plm(data)
+            np.savez(self.save_path, high_dim_embeddings=embeddings)
         reduced_embeddings = self.reduce_dims(embeddings)
         np.savez(
             self.save_path,
@@ -108,6 +113,8 @@ class PLMMapper(IdeaMapper):
         hash_str = hash_array(embeddings)
         if self.dr_algorithm == "largevis":
             reduced_embeddings = self.run_largevis(embeddings, hash_str)
+        elif self.dr_algorithm == "umap":
+            reduced_embeddings = self.run_umap(embeddings, hash_str)
         else:
             raise ValueError(
                 f"Unsupported dimension reduction algorithm: {self.dr_algorithm}"
@@ -161,3 +168,16 @@ class PLMMapper(IdeaMapper):
         reduced_embeddings = np.loadtxt(out_path, skiprows=1)
 
         return reduced_embeddings
+
+    def run_umap(self, embeddings: np.ndarray, hash_str: str) -> np.ndarray:
+        """Run the UMAP algorithm on embeddings.
+
+        Args:
+            embeddings (np.ndarray): Embeddings to reduce.
+            hash_str (str): Hash string used for file naming.
+
+        Returns:
+            np.ndarray: Embeddings with reduced dimensions.
+        """
+        reducer = umap.UMAP(**self.dr_kwargs)
+        return reducer.fit_transform(embeddings)

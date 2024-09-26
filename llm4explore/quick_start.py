@@ -12,9 +12,7 @@ import numpy as np
 import pandas as pd
 import yaml
 
-from llm4explore.model import non_trainable_gen, pretrain_map, trainable_gen
 from llm4explore.model.base import IdeaGenerator, IdeaMapper
-from llm4explore.utils.evaluate import Evaluation
 
 PATH_MATCHER = re.compile(r"\$\{([^}^{]+)\}")
 
@@ -30,6 +28,8 @@ class MappingExperiment:
 
     @classmethod
     def from_config(cls, config: Any):
+        from llm4explore.model import pretrain_map
+
         # Load data.
         data = pd.read_csv(config["data"]["path"], sep="\t")
         targets = data[config["data"]["target_col"]].dropna().tolist()
@@ -62,10 +62,12 @@ class GenerationExperiment:
         self.targets_new = targets_new
         self.output_path = output_path
         self.num_tests = num_tests or len(targets_new)
-        self.generator_type = generator_type 
+        self.generator_type = generator_type
 
     @classmethod
     def from_config(cls, config: Any):
+        from llm4explore.model import non_trainable_gen, trainable_gen
+
         # Load text data.
         data = pd.read_csv(
             config["data"]["path"],
@@ -148,10 +150,12 @@ class GenerationExperiment:
         queries = self.low_dim_embeddings_new[: self.num_tests]
         results = self.generator.decode_all(queries)
         if self.generator_type == "prompting":
+            from llm4explore.utils.evaluate import Evaluation
+
+            evaluation = Evaluation(metric_names=["cosine"])
             preds, logs, neighbors = zip(*results)
             targets = self.targets_new[: self.num_tests]
             outputs = []
-            evaluation = Evaluation(metric_names=["cosine"])
             best_preds = []
             score_list = []
             for i,generate in enumerate(preds):
