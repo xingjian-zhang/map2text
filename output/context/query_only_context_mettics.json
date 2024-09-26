@@ -1,0 +1,17 @@
+{
+    "bleu_bleu": 0.0174,
+    "bleu_precisions": 0.06717500000000001,
+    "bleu_brevity_penalty": 0.7662,
+    "bleu_length_ratio": 0.7897,
+    "bleu_translation_length": 6875,
+    "bleu_reference_length": 8706,
+    "bertscore_precision": 0.8641,
+    "bertscore_recall": 0.8534,
+    "bertscore_f1": 0.8586,
+    "rouge_rouge1": 0.1711,
+    "rouge_rouge2": 0.024,
+    "rouge_rougeL": 0.1209,
+    "rouge_rougeLsum": 0.1206,
+    "meteor_meteor": 0.1366,
+    "cosine_cosine": 0.8228
+}
