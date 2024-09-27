@@ -56,6 +56,7 @@ class GenerationExperiment:
         output_path: str,
         generator_type: str,
         num_tests: int = None,
+        target_col: str = None,
     ):
         self.generator = generator
         self.low_dim_embeddings_new = low_dim_embeddings_new
@@ -63,6 +64,7 @@ class GenerationExperiment:
         self.output_path = output_path
         self.num_tests = num_tests or len(targets_new)
         self.generator_type = generator_type
+        self.target_col = target_col
 
     @classmethod
     def from_config(cls, config: Any):
@@ -145,6 +147,7 @@ class GenerationExperiment:
             config["output"],
             config["method"]["type"],
             config["data"]["num_tests"],
+            target_col=config["data"]["target_col"],
         )
 
     def run(self):
@@ -161,7 +164,7 @@ class GenerationExperiment:
             score_list = []
             for i,generate in enumerate(preds):
                 data = json.loads(generate)
-                generations = [each["key_idea"] for each in data['predictions']]
+                generations = [each[self.target_col] for each in data['predictions']]
                 references = neighbors[i]
                 scores = []
                 for gen in generations:
