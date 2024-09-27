@@ -1,61 +1,9 @@
-import json
-import logging
-import os
-from typing import Any, Dict, List
+from typing import Dict, List
 
 import evaluate
 import numpy as np
 from sentence_transformers import SentenceTransformer
-
-from llm4explore.utils.api import process_chat_requests
-
-
-LLM_EVAL_PROMPT = [
-    {
-        "role": "system",
-        "content": 'You are an expert in scientific research and can evaluate the semantic similarity between pairs of key-idea aspect summarizations from scientific papers.   Key idea refers to the main intellectual merit of this paper, often in comparison to the context.  This could normally be a novel idea or solution proposed in this paper that distincts it from what’s already done in literature.  You will be provided with two inputs, and your task is to assign a similarity score on a scale from 1 to 10, where 1 indicates completely dissimilar content and 10 indicates identical content. Before scoring, provide a brief justification for your score.  Structure your response in the following JSON format: \n{\n  "score": score,\n  "justification": "Brief explanation for the score"\n}\n',
-    },
-    {
-        "role": "user",
-        "content": "Input 1:The authors create a web platform that supports the work of psychologists, streamlining the collection of relevant information about people with dementia.\nInput 2:Non-pharmacological interventions are the most common and the most effective for people with dementia. Using biographical or personalized materials has been proven to benefit these interventions.",
-    },
-    {
-        "role": "assistant",
-        "content": '{\n  "justification": Both inputs are related to people with dementia. However, the first input talks about a web platform to help psychologists collect information, while the second input focuses on the effectiveness of non-pharmacological interventions in dementia care, particularly using biographical or personalized materials. They share a similar context but differ in specific focus and application.", \n  "score": 1\n}',
-    },
-    {
-        "role": "user",
-        "content": "Input 1:The authors create a web platform that supports the work of psychologists, streamlining the collection of relevant information about people with dementia.\nInput 2:The paper focuses on non-pharmacological interventions for people with dementia, emphasizing the effectiveness of biographical or personalized materials.",
-    },
-    {
-        "role": "assistant",
-        "content": '{\n "justification":Both input discuss only one common key-point: people with dementia. Input 1 discusses a web platform to assist psychologists in collecting information about people with dementia.  Input 2 focuses on non-pharmacological interventions for dementia, particularly biographical or personalized materials.  While both relate to dementia, they address different aspects—one is about a technological tool for data collection, and the other about therapeutic methods.  Their key ideas share some thematic overlap but are fundamentally different in focus and application.", \n  "score": 2\n}',
-    },
-    {
-        "role": "user",
-        "content": "Input 1:The authors create a web platform that supports the work of psychologists, streamlining the collection of relevant information about people with dementia.\nInput 2:The web platform make improvements in the collection of meaningful data about a person, and on maintaining awareness of the therapy as a whole.",
-    },
-    {
-        "role": "assistant",
-        "content": '{\n  "justification": Both inputs describe two main-points: creating a web platform and improving the collection of data for specific professional use.   Input 1 specifies two more key-points: the platform supports psychologists working with people with dementia, while Input 2 emphasizes improvements in data collection and therapy awareness. The core idea of a web platform facilitating data collection is similar, but the specific focus areas slightly differ.", \n  "score": 5\n}',
-    },
-    {
-        "role": "user",
-        "content": "Input 1:The authors create a web platform that supports the work of psychologists, streamlining the collection of relevant information about people with dementia.\nInput 2:The authors propose a web platform to collect and manage biographical materials in a streamlined manner, enabling reminiscence and other biographical cognitive stimulation practices for people with dementia.",
-    },
-    {
-        "role": "assistant",
-        "content": '{\n  "justification"::Both inputs describe a web platform aimed at supporting the care of people with dementia by streamlining the collection of relevant information.   While input 2 miss one key-point: the platform is supporting psychologists generally, leading to score of 8. ", \n  "score": 8\n}',
-    },
-    {
-        "role": "user",
-        "content": "Input 1:The authors create a web platform that supports the work of psychologists, streamlining the collection of relevant information about people with dementia.\nInput 2:The authors created a web platform to support psychologists by streamlining the collection of relevant biographical information about people with dementia, facilitating reminiscence and other biographical cognitive stimulation practices.",
-    },
-    {
-        "role": "assistant",
-        "content": '{\n  "justification":Both inputs describe a web platform designed to assist psychologists by streamlining the collection of information about people with dementia.   Input 2 provides a little additional detail by mentioning biographical information, but the core idea remains nearly identical. ", \n  "score": 9\n}',
-    },
-]
+import atometric
 
 
 class CosineSimilarity:
@@ -96,61 +44,6 @@ class CosineSimilarity:
         return {"cosine": float(np.mean(cosine_similarities))}
 
 
-class LLMEval:
-    """Compute the LLM evaluation metric."""
-
-    def __init__(self, model_name: str = "gpt-4o", api_kwargs: Dict[str, Any] = None):
-        self.model_name = model_name
-        if api_kwargs is None:
-            api_kwargs = dict(
-                request_url="https://api.openai.com/v1/chat/completions",
-                api_key=os.getenv("OPENAI_API_KEY"),
-                max_requests_per_minute=500,
-                max_tokens_per_minute=200000,
-                token_encoding_name="cl100k_base",
-                max_attempts=5,
-                logging_level=logging.INFO,
-            )
-        self.api_kwargs = api_kwargs
-
-    def generate_prompt(self, text_1: str, text_2: str):
-        """Generate the prompt for the language model."""
-        user_prompt = f"Input 1: {text_1}\nInput 2: {text_2}"
-        message = LLM_EVAL_PROMPT + [{"role": "user", "content": user_prompt}]
-        return message
-
-    def compute(self, predictions: List[str], references: List[str]):
-        messages = [
-            self.generate_prompt(pred, ref)
-            for pred, ref in zip(predictions, references)
-        ]
-        results = process_chat_requests(
-            model_name=self.model_name,
-            messages=messages,
-            parameters={
-                "temperature": 0,
-                "top_p": 0.95,
-                "response_format": {"type": "json_object"},
-            },
-            **self.api_kwargs,
-        )
-        results_numeric = []
-        for r in results:
-            try:
-                results_numeric.append(float(json.loads(r)["score"]))
-            except Exception as e:
-                logging.warning(f"Invalid result: {r}")
-                logging.warning(e)
-                results_numeric.append(None)
-        # Count the number of valid results
-        valid_results = [r for r in results_numeric if r is not None]
-        if len(valid_results) < len(results_numeric):
-            logging.warning(
-                f"Invalid results: {len(results_numeric) - len(valid_results)}"
-            )
-        return {"llmeval": float(np.mean(valid_results))}
-
-
 class Evaluation:
     SUPPORTED_METRICS = {
         "bleu": {"source": "huggingface", "average": True},
@@ -167,7 +60,9 @@ class Evaluation:
             "average": False,
         },
         "cosine": {"source": "custom", "average": True},
-        "llmeval": {"source": "custom", "average": True},
+        "atometric-i": {"source": "custom", "average": False}, # cs-research-idea
+        "atometric-c": {"source": "custom", "average": False}, # cs-research-context
+        "atometric-p": {"source": "custom", "average": False}, # persona
     }
 
     def __init__(self, metric_names: List[str]):
@@ -186,9 +81,12 @@ class Evaluation:
             elif metric_info["source"] == "custom":
                 if metric_name == "cosine":
                     self.metrics[metric_name] = CosineSimilarity()
-                elif metric_name == "llmeval":
-                    self.metrics[metric_name] = LLMEval()
-
+                elif metric_name == "atometric-i":
+                    self.metrics[metric_name] = atometric.Atometric.from_task_type("cs_research_idea")
+                elif metric_name == "atometric-c":
+                    self.metrics[metric_name] = atometric.Atometric.from_task_type("cs_research_context")
+                elif metric_name == "atometric-p":
+                    self.metrics[metric_name] = atometric.Atometric.from_task_type("persona")
     def compute(self, predictions: List[str], references: List[str]):
         results = {}
         for metric_name, metric in self.metrics.items():
