@@ -122,6 +122,7 @@ class GenerationExperiment:
             )
         elif generator_type == "prompting":
             generator = non_trainable_gen.PromptingBasedGenerator(
+                target= config["data"]["target_col"],
                 n_dims=n_dims,
                 texts=targets_old,
                 low_dim_embeddings=low_dim_embeddings_old,
