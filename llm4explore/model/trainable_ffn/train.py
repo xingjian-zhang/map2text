@@ -43,7 +43,7 @@ def main():
     best_epoch = 0
 
     # Load data
-    data = np.load("data/key_ideas.npz")
+    data = np.load(config["data"]["path"])
     low_dim_embeddings = data["low_dim_embeddings"]
     high_dim_embeddings = data["high_dim_embeddings"]
 
