@@ -1,6 +1,3 @@
 [submodule "llm4explore/external/largevis"]
 	path = llm4explore/external/largevis
 	url = git@github.com:lferry007/LargeVis.git
-[submodule "llm4explore/external/atometric"]
-	path = llm4explore/external/atometric
-	url = https://huggingface.co/spaces/jimmyzxj/atometric

@@ -14,7 +14,6 @@ bleu_reference_length: 8706
 bleu_translation_length: 8251
 bleurt_scores: 0.3397
 cosine_cosine: 0.8559
-llmeval_llmeval: 3.7
 meteor_meteor: 0.1897
 rouge_rouge1: 0.2302
 rouge_rouge2: 0.0347
