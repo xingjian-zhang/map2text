@@ -126,6 +126,7 @@ class PromptingBasedGenerator(IdeaGenerator):
         self,
         model_name: str,
         prompt_type: str,
+        target: str,
         n_dims: int,
         texts: List[str],
         low_dim_embeddings: np.ndarray,
@@ -138,6 +139,7 @@ class PromptingBasedGenerator(IdeaGenerator):
         self.times = times
         self.model_name = model_name
         self.prompt_type = prompt_type
+        self.target = target
         sampler_kwargs = sampler_kwargs or {}
         rag_kwargs = rag_kwargs or {}
         api_kwargs = api_kwargs or {}
@@ -177,12 +179,12 @@ class PromptingBasedGenerator(IdeaGenerator):
         joined_ref_texts = "\n".join(task.references_texts)
         user_message = {
             "role": "user",
-            "content": f"Predict new key idea based on these key ideas: {joined_ref_texts}",
+            "content": f"Predict new {self.target} based on these {self.target}s: {joined_ref_texts}",
         }
         if include_answer:
             assistant_message = {
                 "role": "assistant",
-                "content": f'{{"predictions": [{{"key_idea": "{task.query_text}"}}]}}',
+                "content": f'{{"predictions": [{{"{self.target}": "{task.query_text}"}}]}}',
             }
             return [user_message, assistant_message]
         return [user_message]
