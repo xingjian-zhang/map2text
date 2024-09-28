@@ -12,3 +12,4 @@ tiktoken
 torch
 tqdm
 vec2text
+atometric @ git+https://github.com/xingjian-zhang/atometric.git

@@ -12,9 +12,7 @@ import numpy as np
 import pandas as pd
 import yaml
 
-from llm4explore.model import non_trainable_gen, pretrain_map, trainable_gen, trainable_ffn
 from llm4explore.model.base import IdeaGenerator, IdeaMapper
-from llm4explore.utils.evaluate import Evaluation
 
 PATH_MATCHER = re.compile(r"\$\{([^}^{]+)\}")
 
@@ -30,6 +28,8 @@ class MappingExperiment:
 
     @classmethod
     def from_config(cls, config: Any):
+        from llm4explore.model import pretrain_map
+
         # Load data.
         data = pd.read_csv(config["data"]["path"], sep="\t")
         targets = data[config["data"]["target_col"]].dropna().tolist()
@@ -56,16 +56,20 @@ class GenerationExperiment:
         output_path: str,
         generator_type: str,
         num_tests: int = None,
+        target_col: str = None,
     ):
         self.generator = generator
         self.low_dim_embeddings_new = low_dim_embeddings_new
         self.targets_new = targets_new
         self.output_path = output_path
         self.num_tests = num_tests or len(targets_new)
-        self.generator_type = generator_type 
+        self.generator_type = generator_type
+        self.target_col = target_col
 
     @classmethod
     def from_config(cls, config: Any):
+        from llm4explore.model import non_trainable_gen, trainable_gen
+
         # Load text data.
         data = pd.read_csv(
             config["data"]["path"],
@@ -127,6 +131,7 @@ class GenerationExperiment:
             )
         elif generator_type == "prompting":
             generator = non_trainable_gen.PromptingBasedGenerator(
+                target= config["data"]["target_col"],
                 n_dims=n_dims,
                 texts=targets_old,
                 low_dim_embeddings=low_dim_embeddings_old,
@@ -149,21 +154,24 @@ class GenerationExperiment:
             config["output"],
             config["method"]["type"],
             config["data"]["num_tests"],
+            target_col=config["data"]["target_col"],
         )
 
     def run(self):
         queries = self.low_dim_embeddings_new[: self.num_tests]
         results = self.generator.decode_all(queries)
         if self.generator_type == "prompting":
+            from llm4explore.utils.evaluate import Evaluation
+
+            evaluation = Evaluation(metric_names=["cosine"])
             preds, logs, neighbors = zip(*results)
             targets = self.targets_new[: self.num_tests]
             outputs = []
-            evaluation = Evaluation(metric_names=["cosine"])
             best_preds = []
             score_list = []
             for i,generate in enumerate(preds):
                 data = json.loads(generate)
-                generations = [each["key_idea"] for each in data['predictions']]
+                generations = [each[self.target_col] for each in data['predictions']]
                 references = neighbors[i]
                 scores = []
                 for gen in generations:
