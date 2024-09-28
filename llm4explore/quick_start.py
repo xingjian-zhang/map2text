@@ -122,6 +122,13 @@ class GenerationExperiment:
                 high_dim_embeddings_old=high_dim_embeddings_old,
                 **config["method"]["init_args"],
             )
+        elif generator_type == "embedding_ffn":
+            generator = trainable_ffn.EmbeddingBasedFFNGenerator(
+                n_dims=n_dims,
+                data_old=targets_old,
+                low_dim_embeddings_old=low_dim_embeddings_old,
+                **config["method"]["init_args"],
+            )
         elif generator_type == "prompting":
             generator = non_trainable_gen.PromptingBasedGenerator(
                 target= config["data"]["target_col"],
