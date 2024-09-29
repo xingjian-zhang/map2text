@@ -1,5 +1,5 @@
 import pytest
-from llm4explore.model.common import ANNSampler, KNNSampler
+from map2text.model.common import ANNSampler, KNNSampler
 import numpy as np
 
 

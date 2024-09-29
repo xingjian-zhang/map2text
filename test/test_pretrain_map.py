@@ -1,7 +1,7 @@
 import logging
 import os
 
-from llm4explore.model.pretrain_map import PLMMapper
+from map2text.model.pretrain_map import PLMMapper
 
 
 def test_plm_mapper():

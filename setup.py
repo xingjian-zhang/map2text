@@ -8,7 +8,7 @@ def load_requirements(filename="requirements.txt"):
 
 
 setup(
-    name="llm4explore",
+    name="map2text",
     version="0.1",
     packages=find_packages(),
     install_requires=load_requirements(),
