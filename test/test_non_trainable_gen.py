@@ -5,8 +5,8 @@ from typing import List
 import numpy as np
 import pytest
 
-from llm4explore.utils.api import process_embedding_requests
-from llm4explore.model.non_trainable_gen import (
+from map2text.utils.api import process_embedding_requests
+from map2text.model.non_trainable_gen import (
     EmbeddingBasedGenerator,
     PlagiarismGenerator,
     PromptingBasedGenerator,

@@ -1,0 +1,18 @@
+type: generation
+output:
+  output/cs_research_idea/plagiarism.json
+data:
+  path: data/massw.tsv
+  target_col: key_idea
+  time_col: year
+  time_split: 2023
+  num_tests: 200
+embeddings:
+  path: data/key_idea.npz
+method:
+  type: plagiarism
+  init_args:
+    sampler_kwargs:
+      k_min: 2
+      k_max: 20
+      dist_threshold: 0.1
