@@ -1,8 +1,11 @@
 type: training
+save_path: models/cs_research_idea
 data:
   path: data/key_ideas.npz
 model_kwargs:
+  dim_in: 2
   hidden_dim: 2048
+  dim_out: 1536
 train_kwargs:
   num_epochs: 10
   train_prop: 0.8
