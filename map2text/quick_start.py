@@ -68,7 +68,7 @@ class GenerationExperiment:
 
     @classmethod
     def from_config(cls, config: Any):
-        from map2text.model import non_trainable_gen, trainable_gen
+        from map2text.model import non_trainable_gen, trainable_gen, trainable_ffn
 
         # Load text data.
         data = pd.read_csv(
