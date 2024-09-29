@@ -68,7 +68,7 @@ class GenerationExperiment:
 
     @classmethod
     def from_config(cls, config: Any):
-        from map2text.model import non_trainable_gen, trainable_gen, trainable_ffn
+        from map2text.model import non_trainable_gen, trainable_ffn
 
         # Load text data.
         data = pd.read_csv(
@@ -136,13 +136,6 @@ class GenerationExperiment:
                 texts=targets_old,
                 low_dim_embeddings=low_dim_embeddings_old,
                 times=times[times < time_split].values,
-                **config["method"]["init_args"],
-            )
-        elif generator_type == "finetune":
-            generator = trainable_gen.FineTunedPLMGenerator(
-                n_dims=n_dims,
-                data_old=targets_old,
-                low_dim_embeddings_old=low_dim_embeddings_old,
                 **config["method"]["init_args"],
             )
         else:

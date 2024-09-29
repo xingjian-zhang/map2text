@@ -1,6 +1,6 @@
 type: generation
 output:
-  out/gpt4o_fs_cot_0723.json
+  output/cs_research_idea/gpt4o_fs_cot.json
 data:
   path: data/massw.tsv
   target_col: key_idea
@@ -8,7 +8,7 @@ data:
   time_split: 2023
   num_tests: 200
 embeddings:
-  path: out/ada2_key_ideas.npz
+  path: data/key_idea.npz
 method:
   type: prompting
   init_args:

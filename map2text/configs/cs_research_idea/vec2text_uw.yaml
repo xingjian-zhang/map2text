@@ -1,6 +1,6 @@
 type: generation
 output:
-  out/plagiarism_200.json
+  output/cs_research_idea/vec2text_uw.json
 data:
   path: data/massw.tsv
   target_col: key_idea
@@ -8,11 +8,15 @@ data:
   time_split: 2023
   num_tests: 200
 embeddings:
-  path: out/ada2_key_ideas.npz
+  path: data/key_idea.npz
 method:
-  type: plagiarism
+  type: embedding
   init_args:
+    weighted: False
     sampler_kwargs:
       k_min: 2
       k_max: 20
       dist_threshold: 0.1
+    vec2text_kwargs:
+      num_steps: 5
+      sequence_beam_width: 0
