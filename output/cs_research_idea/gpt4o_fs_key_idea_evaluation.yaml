@@ -1,0 +1,33 @@
+atometric-i_f1:
+    loose: 0.4917
+    moderate: 0.2195
+    strict: 0.098
+atometric-i_precision:
+    loose: 0.5379
+    moderate: 0.2402
+    strict: 0.0946
+atometric-i_recall:
+    loose: 0.4529
+    moderate: 0.2021
+    strict: 0.1016
+bertscore_f1: 0.86
+bertscore_hashcode: roberta-large_L17_no-idf_version=0.3.12(hug_trans=4.44.2)
+bertscore_precision: 0.8572
+bertscore_recall: 0.863
+bleu_bleu: 0.0197
+bleu_brevity_penalty: 1.0
+bleu_length_ratio: 1.2387
+bleu_precisions:
+- 0.233
+- 0.0342
+- 0.008
+- 0.0024
+bleu_reference_length: 8639
+bleu_translation_length: 10701
+bleurt_scores: 0.3651
+cosine_cosine: 0.8364
+meteor_meteor: 0.1938
+rouge_rouge1: 0.225
+rouge_rouge2: 0.0368
+rouge_rougeL: 0.16
+rouge_rougeLsum: 0.1601
