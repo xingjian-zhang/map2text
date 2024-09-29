@@ -1,5 +1,5 @@
 import pytest
-from llm4explore.utils.evaluate import Evaluation
+from map2text.utils.evaluate import Evaluation
 
 
 class TestEvaluation:

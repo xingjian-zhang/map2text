@@ -4,7 +4,7 @@ import os
 
 from utils import change_dir
 
-from llm4explore.utils.api import process_chat_requests, process_embedding_requests
+from map2text.utils.api import process_chat_requests, process_embedding_requests
 
 
 def test_process_embedding_requests(change_dir):
