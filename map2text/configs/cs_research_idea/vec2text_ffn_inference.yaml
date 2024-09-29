@@ -1,6 +1,6 @@
 type: generation
 output:
-  out/vec2text_ffn_200.json
+  output/vec2text_ffn.json
 data:
   path: data/massw.tsv
   target_col: key_idea
@@ -8,7 +8,7 @@ data:
   time_split: 2023
   num_tests: 200
 embeddings:
-  path: out/ada2_key_ideas.npz
+  path: data/key_idea.npz
 method:
   type: embedding_ffn
   init_args:
