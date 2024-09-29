@@ -1,0 +1,15 @@
+type: training
+save_path: models/persona
+data:
+  path: data/persona.npz
+model_kwargs:
+  dim_in: 2
+  hidden_dim: 2048
+  dim_out: 1024
+train_kwargs:
+  num_epochs: 10
+  train_prop: 0.8
+  batch_size: 32
+  lr: 0.001
+  beta1: 0.9
+  beta2: 0.999
