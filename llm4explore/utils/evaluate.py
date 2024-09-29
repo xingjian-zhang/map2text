@@ -65,7 +65,7 @@ class Evaluation:
         "atometric-p": {"source": "custom", "average": False}, # persona
     }
 
-    def __init__(self, metric_names: List[str]):
+    def __init__(self, metric_names: List[str] = None):
         if metric_names is None:
             metric_names = self.SUPPORTED_METRICS.keys()
         self.metric_names = metric_names

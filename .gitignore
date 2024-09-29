@@ -5,6 +5,8 @@ out/
 wandb/
 jobs/
 cache/
+dev.ipynb
+dump.json
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
