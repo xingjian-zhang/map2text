@@ -1,6 +1,6 @@
 type: generation
 output:
-  out/gpt4o_zs_0723.json
+  output/cs_research_idea/gpt4o_zs_key_idea_0927.json
 data:
   path: data/massw_llm4explore.tsv
   target_col: key_idea
@@ -8,12 +8,12 @@ data:
   time_split: 2023
   num_tests: 200
 embeddings:
-  path: out/ada2_key_ideas.npz
+  path: data/ada2_key_ideas.npz
 method:
   type: prompting
   init_args:
     model_name: gpt-4o
-    prompt_type: zero-shot-prompting
+    prompt_type: key_idea_zero-shot-prompting
     sampler_kwargs:
       k_min: 2
       k_max: 20

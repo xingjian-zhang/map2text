@@ -1,22 +1,19 @@
 type: generation
 output:
-  output/cs_research_idea/gpt4o_rag_key_idea_0927.json
+  output/persona/gpt4o_fs_persona.json
 data:
-  path: data/massw_llm4explore.tsv
-  target_col: key_idea
-  time_col: year
-  time_split: 2023
+  path: data/persona.tsv
+  target_col: persona
+  time_col: split_id
+  time_split: 1
   num_tests: 200
 embeddings:
-  path: data/ada2_key_ideas.npz
+  path: data/persona.npz
 method:
   type: prompting
   init_args:
     model_name: gpt-4o
-    prompt_type: key_idea_few-shot-rag-prompting
-    rag_kwargs:
-      n_examples: 5
-      criteria: knn
+    prompt_type: persona_few-shot-prompting
     sampler_kwargs:
       k_min: 2
       k_max: 20
