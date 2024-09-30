@@ -1,0 +1,1802 @@
+[
+    {
+        "target": "Current Graph Neural Networks (GNNs) rely heavily on the homophily assumption and perform poorly when it does not hold true. Although GNNs specifically designed for heterophilic graphs exist, they lack generality and are limited to specific models.",
+        "prediction": "Graph-based networks that are oriented in asynchronous granular granular granular granular granular granular granular granular granular granular granular granular granular granular granular granular granular granular granular granular granular granular granular granular granular granular granular granular granular granular granular granular granular granular granular granular granular st",
+        "queries": [
+            -0.284475,
+            22.004229
+        ],
+        "log": []
+    },
+    {
+        "target": "Large language models (LLMs) are now widely used, interacting with users with critical information needs across various services like healthcare, education, and customer service. Ensuring the safety of these systems is of prime importance, and understanding their capabilities and limitations is necessary.",
+        "prediction": "Traditional neural-based multilanguage learning models have been designed to improve the performance of presumptive translation tasks, but in practice, these models face large challenges in generating a smooth translation despite the absence of large-scale regression.",
+        "queries": [
+            -18.873344,
+            0.844947
+        ],
+        "log": []
+    },
+    {
+        "target": "The MultiCoNER II task aims to detect complex, ambiguous, and fine-grained named entities in low-context situations and noisy scenarios like the presence of spelling mistakes and typos across multiple languages. This poses significant challenges due to the scarcity of contextual information and the high granularity of the entities and the interference of noisy data.",
+        "prediction": "Traditional multi-parameter generative algorithms rely on the process of focusing on the occurrence of a given sentence in a given context, and this task is often encountered in lexical recognition of related semantics, yet not in formal models.",
+        "queries": [
+            -11.168339,
+            7.450162
+        ],
+        "log": []
+    },
+    {
+        "target": "Link Prediction on Hyper-relational Knowledge Graphs (HKG) is an important task in representation learning. However, existing research seldom simultaneously models the graphical and sequential structure of HKGs, limiting their representation.",
+        "prediction": "Graph-based cluster mapping algorithms have been popular for capturing information about the morphology of a multi-node graph, but these tasks are often inefficient due to the large data sets that are grouped together and do not rely on the traditional supervised form.",
+        "queries": [
+            -1.79397,
+            20.06629
+        ],
+        "log": []
+    },
+    {
+        "target": "Prior work on Classical languages like Ancient Greek and Latin predominantly uses BERT, and there is a need for exploration of more versatile language models suitable for Classical philology tasks.",
+        "prediction": "Multi-language models that are designed to perform pre-neural tense learning in a given context often suffer from limitations in the current paradigm of mapped learning, such as large-scale tense and occurrence tasks.",
+        "queries": [
+            -18.883879,
+            2.167352
+        ],
+        "log": []
+    },
+    {
+        "target": "Pre-trained language models (PLMs) are known to be overly parameterized and have significant redundancy, indicating a small degree of freedom of the PLMs.",
+        "prediction": "Multilanguage models that are trained in pre-neural learning have traditionally focused on generating smooth translations using a limited amount of input reinforcement, but this technique fails to overcome large-scale learning challenges, such as occasional speech encoding.",
+        "queries": [
+            -20.00428,
+            0.671368
+        ],
+        "log": []
+    },
+    {
+        "target": "Attribute mining on e-commerce products typically requires extensive human intervention.",
+        "prediction": "User-generated feedback in the context of multiple-domain social media platforms is often a challenge, due to the lack of current techniques for predicting the content of interactions, including explicit and categorical prediction.",
+        "queries": [
+            -10.550776,
+            -9.654238
+        ],
+        "log": []
+    },
+    {
+        "target": "Open-domain dialogue systems in commercial settings face the 'WHAT, WHEN, and HOW' (WWH) problem, where there's a challenge in generating natural and personalized dialogue responses while also frequently reverting back to casual conversation turns.",
+        "prediction": "User-driven apposition algorithms in current systems are designed to address the challenges of predicting the behavior of a recurring interaction, but this approach often fails due to the lack of knowledge in both declarative and semantic contexts.",
+        "queries": [
+            -8.99214,
+            -12.905702
+        ],
+        "log": []
+    },
+    {
+        "target": "Continuity or discontinuity (maintaining or shifting deictic centres across discourse segments) is an important property of discourse relations, but the two are correlated in greatly varying ways.",
+        "prediction": "Semantic analysis in the field of narrative-based language learning relies on capturing predicate-related repetitions, and existing models have often failed to take into account the difficulties of unified tense techniques.",
+        "queries": [
+            -13.370532,
+            2.818174
+        ],
+        "log": []
+    },
+    {
+        "target": "Learning network embeddings with vector-based node representation is widely used but may incur privacy issues when node attributes are included. Moreover, bottleneck problems arise when communication between classical and quantum devices is involved.",
+        "prediction": "Graph-based summing algorithms for multi-node clusters have been widely studied in the past, but the task of generating the original data in a network often involves attention to the dimensionality and morphology of the summing and inverse relational information.",
+        "queries": [
+            -0.496347,
+            19.630932
+        ],
+        "log": []
+    },
+    {
+        "target": "Graph Contrastive Learning (GCL) has attracted considerable interest for its node representation learning capability. Despite the wide application of GCL techniques, its security vulnerabilities, especially in the presence of malicious backdoor adversaries, have not been extensively studied.",
+        "prediction": "Graph-based asynchronous transformations employ a number of tasks to map the nodes of a network to the data. However, the typical problem for this technique is based on large datasets with unsigned and unsigned information, which result in a loss of attentional symmetry.",
+        "queries": [
+            -2.721471,
+            22.068985
+        ],
+        "log": []
+    },
+    {
+        "target": "Current object segmentation requires curated datasets, which is a difficult task. The quality and ease of use of conditional image generation has been enhanced with large-scale pre-trained generative models, but the process still requires segmentation labels.",
+        "prediction": "Recent image-based scalar recognition algorithms for capturing data in multiple-object models pose challenges in the sense that the tasks of scalar scalar sizing are usually performed on the domain and subdomain of the object, without explicit fidelity.",
+        "queries": [
+            8.912158,
+            8.860858
+        ],
+        "log": []
+    },
+    {
+        "target": "While deep neural networks have seen significant advancements and increased deployment in edge device software, they traditionally require the download of all parameters during software updates, negatively affecting user experience.",
+        "prediction": "Image-based videonuclear algorithms have recently emerged to solve deep-learning problems in the field of gradient computation, but the usual task of capturing multiple scenes with a convolutional model is prone to computational overhead.",
+        "queries": [
+            19.854052,
+            -0.41751
+        ],
+        "log": []
+    },
+    {
+        "target": "Generalized Additive Models (GAMs) often use pairwise interactions to maintain accuracy, flexibility, and interpretability, but this creates a computational challenge as the number of terms increases quadratically. Previous approaches that consider sparse pairwise interactions don\u2019t scale well, particularly with added structural interpretability constraints.",
+        "prediction": "Traditional scalar-based matrices optimization algorithms for the computation of a granular data set often use the pseudo-lensing technique, but these methods are characterized by large uncertainties in the computation of the granularity.",
+        "queries": [
+            -6.300828,
+            13.84218
+        ],
+        "log": []
+    },
+    {
+        "target": "Existing methods for segmenting objects are supervised and require training.",
+        "prediction": "Recent image-based classification algorithms for pixel-based models have a persistent challenge in the application of domain-specific techniques, which focus on the severing of objects and resolving the data in multiple ways without any attention.",
+        "queries": [
+            9.283733,
+            8.230021
+        ],
+        "log": []
+    },
+    {
+        "target": "Conjunctive queries with predicates in the form of comparisons spanning multiple relations have regained recent interest due to their relevance in OLAP queries, spatiotemporal databases, and machine learning over relational data. The standard technique, predicate pushdown, shows limited efficacy on such comparisons while a technique by Willard is efficient for short comparisons that are adjacent in the join tree.",
+        "prediction": "Past relational database queries require the efficient execution of a model to capture data size, which is a challenge for many applications, mainly due to the inherently automatic and semi-automatic methods of preserving the scalarity.",
+        "queries": [
+            11.071948,
+            -14.802635
+        ],
+        "log": []
+    },
+    {
+        "target": "Efficient detectors for edge devices are often optimized for metrics like parameters or speed counts, which have a weak correlation with the energy of detectors. Some vision applications of convolutional neural networks (CNNs), such as always-on surveillance cameras, are critical for energy constraints.",
+        "prediction": "Convolutional neural networks have been successfully adapted for deep-sequence graphical imaging, but the usual tasks of filtering out noise and focusing on the image are a challenge in newer methods, which do not allow for a significant pixel deformation.",
+        "queries": [
+            20.360819,
+            0.630604
+        ],
+        "log": []
+    },
+    {
+        "target": "Contrastive loss is a popular method for learning representations from multiple modalities with the aim to match modalities precisely in the latent space. However, the impact of this modality alignment on downstream task performance is unclear.",
+        "prediction": "Graph-based multi-node agglomeration tasks are focused on a synchronous network, and the traditional methods of agglomeration have been used to solve this problem, but the data extraction and reshaping of the graph results in large uni-node expressions of the original information.",
+        "queries": [
+            -3.47148,
+            21.87393
+        ],
+        "log": []
+    },
+    {
+        "target": "The data scarcity problem in end-to-end speech translation (E2E ST) is currently addressed through pre-training and fine-tuning methods. Issues like modality gap and capacity gap among high and low resource tasks lead to sub-optimal model performance.",
+        "prediction": "Multi-language translation models employ a preprogrammed neural task to generate translations based on a particular lexical pattern, but these techniques often lead to performance challenges such as scaling out the occurrence of missing matched reinforcement.",
+        "queries": [
+            -20.080511,
+            4.036706
+        ],
+        "log": []
+    },
+    {
+        "target": "Machine learning-based forecasting models used in Intelligent Transportation Systems (ITS) are prone to adversarial attacks, leading to inaccurate traffic predictions with potential negative impacts such as congestion and delays.",
+        "prediction": "Human-scale visualization of motion and traffic in stationary objects poses a challenge in recent applications, which relies on a number of algorithms to perform arbitrary data capture, thereby avoiding the need for large-scale prediction.",
+        "queries": [
+            9.326435,
+            -3.964387
+        ],
+        "log": []
+    },
+    {
+        "target": "Despite significant progress in question answering on tabular data (Table QA), it remains unclear how and to what extent existing Table QA models are robust to task-specific perturbations like, replacing key question entities or shuffling table columns.",
+        "prediction": "Graph-based query algorithms have long been a focus of attention in the computing world. However, traditional tasks such as generating and storing asynchronous queries for information sharing fail to account for the uniqueness of the truncated data.",
+        "queries": [
+            5.760903,
+            16.201208
+        ],
+        "log": []
+    },
+    {
+        "target": "Existing methods for knowledge graph embeddings (KGE) have not considered the fact that knowledge graphs typically contain two different views: high-level ontological concepts and fine-grained instance entities. They usually represent all nodes as vectors in a single latent space, which overlooks the structural differences between the two views and misses the probabilistic semantics of the granularity of the concepts.",
+        "prediction": "Graph-oriented clustering algorithms that map the nested data to a multi-numeric graph have been developed in the past. However, traditional methods of sizing and preserving the kinematics of the graphs are often unsatisfactory, especially in relational contexts.",
+        "queries": [
+            -2.018909,
+            19.926958
+        ],
+        "log": []
+    },
+    {
+        "target": "In cross-domain named entity recognition (cross-domain NER), previous methods primarily utilize pre-training language models like BERT to represent words. These chaotic initial representations can present difficulties in distinguishing between the entity types.",
+        "prediction": "Traditional learning algorithms for identifying the citation of a given text in a multiparameter-based model are based on supervised annotations, and this process poses a challenge in the absence of recent granularity.",
+        "queries": [
+            -10.764412,
+            7.429746
+        ],
+        "log": []
+    },
+    {
+        "target": "Problematic webpages that promote hate and violence are difficult to identify due to the lack of labeled data for such tasks.",
+        "prediction": "Prediction algorithms focusing on the emergence of social sentiment and feedback are popular in recent years, but this task poses unique challenges in the use of offline-based multi-channel models to extract information from user-submitted data, such as a classifiable dataset.",
+        "queries": [
+            -12.557446,
+            -6.575673
+        ],
+        "log": []
+    },
+    {
+        "target": "Sexism on social media platforms creates an unwelcoming environment, and binary classification tools are used to identify sexist content; however, they don't provide further insights. SemEval-2023 introduced the Explainable Detection of Online Sexism (EDOS) task that puts emphasis on detecting and explaining the category of sexist content.",
+        "prediction": "User-generated learning algorithms often focus on multi-tiered models of social network performance, and the current approach to predicting sentiment in these models is problematic due to the absence of a formal task to address in the data modeling literature.",
+        "queries": [
+            -12.957499,
+            -6.608112
+        ],
+        "log": []
+    },
+    {
+        "target": "Emotion-Cause Pair Extraction (ECPE) aims to identify the document\u2019s emotion clauses and corresponding cause clauses. The data related to emotions, causes, and pairs in this task is extremely unbalanced. Current methods, mostly based on Graph Convolutional Networks, model the multiplex relations between clauses by using the same graph structure which is challenging with unbalanced data.",
+        "prediction": "Social-relationship algorithms in recent years have been focused on generating multi-stage prediction of text-based phenomena, but the task of assessing these phenomena is often a challenge due to the unreliable nature of the information generated by encoding bias and resensitization.",
+        "queries": [
+            -13.389983,
+            -4.687051
+        ],
+        "log": []
+    },
+    {
+        "target": "Vision-Language Pre-training has shown its potential for learning generalizable visual representations from language supervision with the help of zero-shot recognition ability. However, the present practices suffer due to semantic gaps between the visual and textual modalities where many visual concepts in images are missing from their paired captions.",
+        "prediction": "Multi-language training models that aim to generate a smooth translation are traditionally focused on predicting pre-neural encodings, but this approach has faced challenges such as inefficient encoding and large-scale bloated translations due to machine learning.",
+        "queries": [
+            -21.277792,
+            2.078681
+        ],
+        "log": []
+    },
+    {
+        "target": "Neural decoding and its applications to brain computer interfaces (BCI) rely on assigning action potentials (spikes) to individual neurons. Current spike sorting algorithms can be inaccurate and discard information that could improve decoding performance.",
+        "prediction": "Abstract learning algorithms in the field of synchronization and multiple-channel modal models have long been aimed at capturing the desired phenotypes, yet the task of generating a graphical representation of the data is limited by existing constraints.",
+        "queries": [
+            1.920216,
+            4.157913
+        ],
+        "log": []
+    },
+    {
+        "target": "In online social networks, link recommendations help users discover people they may know, potentially increasing engagement. However, adding links can also affect the level of conflict in the network, in terms of polarization and disagreement. There is little understanding of how the goals of high relevance and conflict reduction relate in link formation.",
+        "prediction": "Social media research has largely focused on the creation of novel algorithms to analyze user sentiments in offline interactions, a task that poses challenges due to the lack of explicit knowledge of the nature of content and the nature of interaction.",
+        "queries": [
+            -9.385695,
+            -7.819637
+        ],
+        "log": []
+    },
+    {
+        "target": "Competitive reinforcement learning (RL) in zero-sum Markov games (MGs) faces challenges when dealing with general function approximations and trading off between exploration and exploitation under self-play and adversarial settings.",
+        "prediction": "Game-based optimization algorithms in the linear (multi-choice) paradigm require a well-known method of achieving realism, but the current approach to solving these problems is inefficient, focusing on the onset of action and not the constraints.",
+        "queries": [
+            1.634387,
+            -21.709219
+        ],
+        "log": []
+    },
+    {
+        "target": "Continual learning (CL) aims to train deep neural networks on streaming data whilst limiting the forgetting of new tasks, but this is quite difficult due to interference between tasks. Moreover, the real-world deployment of CL models is restricted due to their inability to measure predictive uncertainties.",
+        "prediction": "Multi-sequence learning algorithms employ techniques that are often confined to the domain of the data object, but current approaches to achieving this task have significant shortcomings in achieving explicit classification and parity.",
+        "queries": [
+            1.74946,
+            7.987858
+        ],
+        "log": []
+    },
+    {
+        "target": "Existing methods for the unsupervised learning of constructive solid geometry (CSG) representations of 3D CAD shapes lack compactness and do not efficiently handle complex and high-genus CAD shapes.",
+        "prediction": "Previously-based 3D images of scene reconstructions have a robust method for estimating the geometrical features of the projections, which pose significant challenges in blending in multiple points of orientation and other features.",
+        "queries": [
+            14.030946,
+            6.513017
+        ],
+        "log": []
+    },
+    {
+        "target": "Regular expressions (REs) are widely used for many networking tasks like network intrusion detection. However, they completely depend on expert knowledge and can't utilize labeled data for better accuracy. Neural networks (NNs), though capable of learning from labeled data and providing better accuracy, are ill-suited in cold-start scenarios and too complex for deployment on network devices.",
+        "prediction": "Abstract-driven learning in textual citations is a task traditionally confined to recursive analysis, and recent techniques have limited the potential for achieving the same degree of consistency in the naming and sizing of models.",
+        "queries": [
+            -9.451065,
+            4.471643
+        ],
+        "log": []
+    },
+    {
+        "target": "In knowledge-grounded dialogue generation, two sequential modules: a knowledge retriever and a response generator are used. These modules are usually trained separately and obtaining intermediate labels for ground-truth knowledge is difficult and expensive, especially in open-domain conversations.",
+        "prediction": "User-oriented algorithms in existing systems focus on recursive and asynchronous feedback, which often pose a problem due to the inability to satisfy the defining criteria for the defining domain of the conversation, despite the presence of multiple chars.",
+        "queries": [
+            -9.36082,
+            -12.822037
+        ],
+        "log": []
+    },
+    {
+        "target": "In building a reliable autonomous driving system, trajectory prediction is a critical task that aims to anticipate possible dangers. However, generating consistent trajectory predictions without collision is a key challenge.",
+        "prediction": "Modern motion-based algorithms for capturing and evaluating traffic interactions are often characterized by the absence of human-centered graphical data, which poses challenges to the understanding of the underlying dynamics in multiple locations.",
+        "queries": [
+            9.279742,
+            -2.01983
+        ],
+        "log": []
+    },
+    {
+        "target": "Deep neural networks often produce overconfident yet erroneous predictions when faced with unfamiliar data, highlighting the need for effective out-of-distribution (OOD) detection systems.",
+        "prediction": "Abstract-node learning (ODN) solutions are commonly used to simulate finite-scale models. However, the traditional approach to predicting finite-scale models poses challenges in detecting out-of-range (often arbitrary) arbitrary arbitrary classes, which are a major obstacle to smoothing.",
+        "queries": [
+            -22.446779,
+            -9.317184
+        ],
+        "log": []
+    },
+    {
+        "target": "In the field of technical human-computer interaction (HCI), there exists a community of researchers who innovate in hardware, exploring new device form factors, sensing methods, actuation, and displays. However, developing hardware is considered difficult, often requiring different disciplines, involvement of third parties such as parts suppliers and manufacturers, and it is generally costlier than software-based activities.",
+        "prediction": "Human-centered interactive devices often employ a graphical user interface, and the lack of formal recognition of the processes involved in capturing these aspects of interaction has led to challenges in current research.",
+        "queries": [
+            0.672284,
+            -9.405621
+        ],
+        "log": []
+    },
+    {
+        "target": "Arguments often do not explicitly illustrate how a conclusion follows from its premises, leading to gaps in understanding. Current knowledge extraction methods lack contextual awareness, limiting their usefulness for augmenting argumentation.",
+        "prediction": "Traditional recitation algorithms focusing on the identification of messages in a text-based dataset are challenging, as this task requires the knowledge of the underlying content and the ability to generate multiple-sentence biases through user-generated analysis.",
+        "queries": [
+            -12.887435,
+            -2.013591
+        ],
+        "log": []
+    },
+    {
+        "target": "Recommending a variety of product types is important for a good shopping experience when customers are looking for products around their high-level shopping interests. However, connecting shopping interests with product types is absent in e-commerce product catalogs and is expensive to construct manually due to the volume of potential shopping interests.",
+        "prediction": "User-generated insights in social networks often focus on predicting the content of interactions, and this approach poses significant challenges due to the current lack of multi-parameter recursion algorithms used in the context of a curated feedback system.",
+        "queries": [
+            -10.726819,
+            -9.617954
+        ],
+        "log": []
+    },
+    {
+        "target": "Unsupervised pre-training produces large language models (LMs) that are remarkably well-calibrated. However, LMs in practice are often fine-tuned with reinforcement learning with human feedback (RLHF-LMs) after the initial unsupervised pre-training stage, and there is mixed evidence about whether these models preserve the well-calibratedness of their unsupervised ancestors.",
+        "prediction": "Multi-language models that are trained to perform neural computations, such as pre-speech prediction, have been introduced in recent years, but this approach often fails to address the inherent flaws of large-scale machine learning by relying on encapsulated TTL.",
+        "queries": [
+            -19.426479,
+            1.196973
+        ],
+        "log": []
+    },
+    {
+        "target": "Contextual language models output representations that are more anisotropic and display outlier dimensions, which holds true for both monolingual and multilingual models. The reason for such outliers and their impact are still areas of open research.",
+        "prediction": "Multi-language encoding models that are based on pre-defined grammatical traits have traditionally been tasked with parallel neural learning, but this technique fails to address the large-scale difficulties encountered in translation and prediction.",
+        "queries": [
+            -18.794222,
+            3.020605
+        ],
+        "log": []
+    },
+    {
+        "target": "Intelligent Traffic Monitoring (ITMo) technologies can contribute to road safety/security and smart city infrastructure. Understanding traffic situations requires the fusion of perceptual information with domain-specific and causal commonsense knowledge. However, previous work has not definitively established whether models can effectively align these information sources and reason in novel scenarios.",
+        "prediction": "The habitual graphical methods of capturing motion in remote environments, such as in vehicles, are currently facing challenges due to the large amount of data and the lack of attention to multiple-sector prediction and analysis required to optimize performance.",
+        "queries": [
+            9.402003,
+            -3.784729
+        ],
+        "log": []
+    },
+    {
+        "target": "The challenges in takeaway recommendation systems are unique and twofold: firstly, users have dual preferences, i.e., for both stores and foods, and secondly, users' preferences change significantly depending on the time of day.",
+        "prediction": "User-recommendation algorithms in the current era focus on predicting the behavior of a collection of random variables. However, this task can be difficult to overcome, due to the inefficient use of multi-tiered approaches to inverse and scalar learning systems.",
+        "queries": [
+            -12.452397,
+            -9.881305
+        ],
+        "log": []
+    },
+    {
+        "target": "Predicting multiple node labels on graphs is a complex problem due to highly nonlinear relationships across different node labeling. Negative transfer is prevalent when applying naive multitask learning to tasks such as multiple community detection.",
+        "prediction": "Multi-node graphs have been modeled in a traditional network of graphs, but the aforementioned algorithms focus on a large part of the data aggregation and morphological information, resulting in unsatisfactory queries for the interacting nodes.",
+        "queries": [
+            -0.513233,
+            20.446089
+        ],
+        "log": []
+    },
+    {
+        "target": "Adversarial sample detection is crucial for socially-secure applications. Existing approaches require significant training data leading to potential privacy issues and concerns about generalizability.",
+        "prediction": "Abstract-trained models are commonly used to solve entropy-sensitive learning problems, but current approaches to entropy-sensitive learning pose challenges. One such challenge is the tendency of entropy-sensitive proofs to fail in the face of multi-step induction (PDI) estimation.",
+        "queries": [
+            -23.509314,
+            -4.464092
+        ],
+        "log": []
+    },
+    {
+        "target": "Classifying and generating clickbait spoilers has typically been tackled with conventional, shallow learned classifying models.",
+        "prediction": "Recent research on the task of generating insights into text-based and offline speech is dominated by categorical models, which attempt to identify user-submitted information in multiple contexts, but this technique is often ineffective in social media contexts.",
+        "queries": [
+            -12.208032,
+            -5.553246
+        ],
+        "log": []
+    },
+    {
+        "target": "Deep neural networks (DNNs) have been proven to be sensitive towards perturbations on input samples, and previous works highlight that adversarial samples are even more vulnerable than normal ones.",
+        "prediction": "Abstract-learning algorithms are commonly used to train neural models to avoid biases in the deterministic (or deterministic) direction. However, current approaches to deterministic reinforcement pose challenges in the deterministic enumeration of in-node biases.",
+        "queries": [
+            -23.072239,
+            -5.222106
+        ],
+        "log": []
+    },
+    {
+        "target": "In many task settings, text classification models are likely to encounter examples from novel classes on which they cannot predict correctly. Existing selective prediction models, which abstain on low-confidence examples, show overconfidence towards unseen classes.",
+        "prediction": "Abstract learning algorithms that focus on multinumeric datasets are often employed in the field of classification, but the current methods of achieving this task have significant constraints on the performance of the model without a reliable, random-selection bias.",
+        "queries": [
+            -4.107792,
+            9.91887
+        ],
+        "log": []
+    },
+    {
+        "target": "Egocentric visual data is a critical research area in egocentric vision. However, existing datasets for object understanding are either not egocentric, or they are limited in terms of object categories, visual content, and annotation granularities.",
+        "prediction": "Current algorithms for capturing and analyzing visual stimuli in the context of human-directed actions such as multi-segment motions pose challenges in the field, due to the lack of traditional fidelity to the object recognition.",
+        "queries": [
+            7.310196,
+            -0.010133
+        ],
+        "log": []
+    },
+    {
+        "target": "Kernelized bandits, also known as Bayesian optimization (BO), are popular methods to optimize complicated reward functions. Although BO algorithms have theoretically shown upper bounds on their cumulative regret that are sub-linear in the number of iterations, the lower bound of the regret is derived as Omega(sqrt(T)), representing the unavoidable regrets for any classical BO algorithm. Recent works have shown that with quantum computing, it is possible to achieve tighter regret upper bounds, but these works are restricted to either multi-armed or linear bandits and do not solve sophisticated real-world problems with non-linear reward functions.",
+        "prediction": "Random-choice algorithms are commonly used to solve multivariate learning tasks, but current approaches to the task are characterized by the limitations of encapsulating the prediction domain in the inverse of the input. This includes recurrent and encapsulated nested learning models.",
+        "queries": [
+            -17.258656,
+            -7.178795
+        ],
+        "log": []
+    },
+    {
+        "target": "Rand-$k$ sparsification is a commonly used technique in distributed vector mean estimation for reducing communication cost by having each client send $k < d$ of its coordinates to the server. However, it does not take into account any correlations that may exist between clients. The recently proposed Rand-$k$-Spatial estimator improves upon Rand-$k$ by utilising cross-client correlation information, but its performance is still suboptimal.",
+        "prediction": "Traditional matrices-based pseudo-sequence optimization algorithms are based on the notion of a distributed graph, but the method of applying this information to large data sets has a number of difficulties, especially in the computation of the gradient.",
+        "queries": [
+            -7.965059,
+            15.197053
+        ],
+        "log": []
+    },
+    {
+        "target": "General-purpose language models have been adapted successfully for downstream tasks in specific domains, but extraction of named entities from the economics literature on impact evaluation remains a challenge.",
+        "prediction": "Language-learning models that are modeled on a large number of pre-defined neural grammatical syllables are commonly adapted to multitask translation, but previous techniques have faced difficulties in generating automatic insights in the context of a lapse.",
+        "queries": [
+            -18.69203,
+            1.988864
+        ],
+        "log": []
+    },
+    {
+        "target": "The abstracts of scientific papers contain premises and conclusions, and although conclusion sentences are highlighted in structured abstracts, in non-structured abstracts this is not marked explicitly, making the automatic segmentation of conclusions a challenging task.",
+        "prediction": "Traditional queries in the field of text-based information discovery have been crafted using a variety of recursive algorithms, but this task is exacerbated by the lack of relevant classification and correlation mechanisms.",
+        "queries": [
+            -9.584365,
+            1.46993
+        ],
+        "log": []
+    },
+    {
+        "target": "Classical Chinese poetry is a unique cultural heritage that often contains special words rarely found in general Chinese texts, posing significant challenges for natural language processing. There has been little research on text segmentation and word discovery for classical Chinese poetry.",
+        "prediction": "Traditional multi-segmentation translations rely on a language-targeting schema to generate grammatical jargon, and this method has been often criticized for the lack of lexical jargon in the data.",
+        "queries": [
+            -17.916231,
+            8.5975
+        ],
+        "log": []
+    },
+    {
+        "target": "Experimenting with new website content is a key lever to improve customer engagement in digital marketing. Currently, creating successful marketing content is a manual and time-consuming process that lacks clear guiding principles.",
+        "prediction": "Web-based search and indexing techniques have long focused on the creation of meaningful information, but this task poses challenges due to the lack of uniformity of the metadata in the context of the user-subscriber interaction with the content.",
+        "queries": [
+            -6.127182,
+            -4.484728
+        ],
+        "log": []
+    },
+    {
+        "target": "Multi-view image generation methods mostly follow a paradigm where a 3D representation is first synthesized, then rendered into 2D images to ensure photo-consistency across viewpoints. However, this approach often results in geometry artifacts and loss of fine-scale details when applied to real image editing.",
+        "prediction": "The motion-based scalar reconstruction of 3D images in a scene poses significant challenges since existing methods for estimating uniform geometric features, such as point and surface orientation, are often not efficient.",
+        "queries": [
+            15.406013,
+            5.652193
+        ],
+        "log": []
+    },
+    {
+        "target": "Textual backdoor attack, a novel attack model that adds a backdoor to the model during training, has been proven effective. However, defending against such backdoor attacks has become urgent and important.",
+        "prediction": "Abstract-learning algorithms are commonly used to solve multivariate learning challenges, but current approaches to the goal of addressing these challenges have been criticized for their tendency to skew the prediction of invariant inputs, resulting in entropy-sensitive (PDN) training failures.",
+        "queries": [
+            -22.244719,
+            -4.493502
+        ],
+        "log": []
+    },
+    {
+        "target": "Large language models (LMs) have shown the ability to generate free-text rationalizations, which can significantly enhance their performances. However, the usefulness of these machine-generated rationales for human users, especially non-expert users trying to answer questions based on those rationales, remains unclear.",
+        "prediction": "Multi-language models that are trained to perform neural tasks in a given context typically face difficulty in predicting the expected performance of pre-training and reinforcement learning, as this approach relies on large-scale encoding of language properties.",
+        "queries": [
+            -18.504442,
+            0.70826
+        ],
+        "log": []
+    },
+    {
+        "target": "In simulating language emergence with neural networks, compositionality, a hallmark of human language, has been shown to improve communication performance. However, the impact of compositionality on imitation learning has not been investigated yet.",
+        "prediction": "Natural language multi-sequence learning models have traditionally been focused on generating predictions in the context of a pre-encoding task, but these techniques are difficult to implement due to large scalar and encoding gaps in performance.",
+        "queries": [
+            -17.263784,
+            0.474547
+        ],
+        "log": []
+    },
+    {
+        "target": "In the fields of Natural Language Processing (NLP) and Information Retrieval (IR), there's a prevalence challenge of aggregating results over incomparable metrics and scenarios, resulting in less reliable conclusions and take-away messages.",
+        "prediction": "Abstract language-learning and semantics models have traditionally been focused on narrative tagging in sentences, which pose a challenge due to the unresolved task of generating relevant semantic information for multiple contexts.",
+        "queries": [
+            -15.546614,
+            1.696611
+        ],
+        "log": []
+    },
+    {
+        "target": "Current methods to evaluate the factual consistency of text generation applications generally rely on specific metrics, like natural language inference (NLI) or question answering (QA), which are trained on limited data. This makes it difficult for such metrics to assess a wide variety of factual discrepancies across diverse text generation scenarios.",
+        "prediction": "Abstract language-driven tagging algorithms for the analysis of sentences in multiple contexts have traditionally been performed, resulting in a challenge in the generation of lexical knowledge due to the lack of granularity of the results.",
+        "queries": [
+            -13.846243,
+            -0.236678
+        ],
+        "log": []
+    },
+    {
+        "target": "Few-shot fine-tuning and in-context learning are two alternative strategies for task adaptation of pre-trained language models. Previously, comparisons between the two approaches were performed using models of different sizes, making it unclear whether the observed weaker out-of-domain generalization of fine-tuned models is an inherent property of fine-tuning or a limitation of the experimental setup.",
+        "prediction": "Traditional multilingual machine learning models, such as those used in pre-training, aim to generate large-scale neural output by encoding a random speech pattern. However, this approach has been challenged with in-human adaptations and pitfalls.",
+        "queries": [
+            -19.695,
+            1.799859
+        ],
+        "log": []
+    },
+    {
+        "target": "Attention layers, as used in transformers, are fundamental to modern deep learning, but there is no mathematical description of their benefits and shortcomings compared to other architectures.",
+        "prediction": "Traditional query-based algorithms for identifying data in a multi-domain context have a large number of tasks, and this task is often exacerbated by the lack of parallelization in the nested representation of the data.",
+        "queries": [
+            6.539766,
+            12.874354
+        ],
+        "log": []
+    },
+    {
+        "target": "Neural network-based models with embeddings-based representation have been dominant for the development of text-based reinforcement learning agents. While they learn uninterpretable policies, they often do not generalize well in unseen games. Meanwhile, neuro-symbolic methods, leveraging intermediate formal representation, are gaining attention due to their inherent interpretability, lower requirements for training data, and generalizability in scenarios with unseen data.",
+        "prediction": "Traditional neural network-based learning algorithms focus on the recurrence of data in a multi-stage manner, which poses significant challenges in identifying the underlying schemas and ensuring that the desired model is not distorted by explicit information.",
+        "queries": [
+            -1.196991,
+            5.441025
+        ],
+        "log": []
+    },
+    {
+        "target": "Animate entities in narrative comics stories are expressed through a number of visual representations across panels. Identifying these entities is necessary for recognizing characters and analysing narrative affordances unique to comics, and integrating these with linguistic reference annotation, however an annotation process for animate entity identification has not received adequate attention.",
+        "prediction": "Abstract-related semantics in text-learning models are often generated using a predefined algorithm, but recent research has shown that the task of generating semantic recognition fails to take into account the tensor bias of sentences.",
+        "queries": [
+            -13.169636,
+            1.082898
+        ],
+        "log": []
+    },
+    {
+        "target": "The dominance of fine-tuning biomedical pre-trained language models (BioPLMs), such as BioBERT, for named entity recognition (NER) tasks has overlooked the consideration of class distributions in targeted datasets, which often leads to problems when dealing with imbalanced biomedical datasets where most entities are underrepresented.",
+        "prediction": "Traditional multi-parameter learning algorithms focus on the task of recursive annotations, and thus pose a challenge in the production of a unified model for detecting errors in semantics due to the lack of data-driven learning.",
+        "queries": [
+            -10.704562,
+            7.426371
+        ],
+        "log": []
+    },
+    {
+        "target": "Comparative Opinion Quintuple Extraction (COQE) is used to identify comparative opinion sentences in product reviews and incorporate them into quintuples. Existing methods solve COQE by decomposing the task into multiple primary subtasks and processing in a pipeline manner which ignores the intrinsic connection between subtasks and may lead to error propagation.",
+        "prediction": "Abstract truncation in the context of social media is a challenging task, and existing algorithms focusing on the nature of information in sentences often fail to recognize the nuances of the content-prediction models.",
+        "queries": [
+            -12.449119,
+            -2.761245
+        ],
+        "log": []
+    },
+    {
+        "target": "Existing Twitter geolocation systems rely on rule-based methods that examine the user-provided profile location, which often fails to handle informal or noisy location names.",
+        "prediction": "Social media research has long focused on generating a curated attribution of information to users, and these techniques pose significant challenges in the absence of widely-used pedagogical models that facilitate the process of classification.",
+        "queries": [
+            -7.505248,
+            -6.008447
+        ],
+        "log": []
+    },
+    {
+        "target": "Humans naturally understand the connection between sketches and real-world objects, an ability that goes beyond simple categorization and extends to understanding correspondences between elements within sketches and real-world objects. Current computational models do not fully achieve this level of understanding.",
+        "prediction": "Traditional neural-based algorithms for capturing images in a scene pose challenges in the field of object-oriented learning, since the majority of data is mapped to multiple subsets of the image and do not require prior attention.",
+        "queries": [
+            7.195541,
+            5.58251
+        ],
+        "log": []
+    },
+    {
+        "target": "Cognitive diagnosis (CD) plays a vital role in intelligent education systems through personalized learning guidance, but recent developments mostly focus on improving diagnostic results accuracy and overlook domain-level zero-shot cognitive diagnosis (DZCD). DZCD is challenged by lack of student behavior data in the target domain due to absent student-exercise interactions or unavailable exercising records for training.",
+        "prediction": "Human-generated artifacts are currently gaining momentum in the field of interactive software, and this leads to challenges in the implementation of methods that focus on defining the degree of knowledge and avoiding specific behavior.",
+        "queries": [
+            -2.972949,
+            -11.861238
+        ],
+        "log": []
+    },
+    {
+        "target": "Generalizable face anti-spoofing (FAS) based on domain generalization (DG) is robust in real-world applications. However, existing DG methods heavily rely on labeled source data, which are usually costly and hard to access. Unsupervised learning methods often learn identity-biased and domain-biased features and fail to specify spoof cues.",
+        "prediction": "Face recognition techniques are thriving in the domain of multi-user authentication, but the challenge is often limited by the large amount of data required to resample a person with a specific optical and directional source.",
+        "queries": [
+            16.467743,
+            13.380021
+        ],
+        "log": []
+    },
+    {
+        "target": "High-fidelity virtual human avatar applications seek photorealistic video face synthesis with controllable semantic editing over facial features. Existing generative neural methods have made progress in portrait video synthesis but intuitive control over facial attributes, such as mouth interior and gaze, remains a challenge.",
+        "prediction": "Traditional image resampling algorithms for the detection of faces in 3D photographs pose significant challenges, since the data are often a discrete set of varying brightness and shape parameters that do not match each other.",
+        "queries": [
+            16.187551,
+            10.304086
+        ],
+        "log": []
+    },
+    {
+        "target": "Current face recognition (FR) distillation methods usually utilize the Feature Consistency Distillation (FCD) on the learned embeddings extracted by the teacher and student models. However, after using FCD, intra-class similarities of the student model are lower than the intra-class similarities of the teacher model.",
+        "prediction": "Traditional Knowledge Diversion relies on capturing and restraining existing knowledge, but this method is difficult to apply to the goal of reducing visual error (GV) in a teacher-modeled learning environment.",
+        "queries": [
+            19.899292,
+            -15.017749
+        ],
+        "log": []
+    },
+    {
+        "target": "Previous research has shown that 2D and 3D features are complementary for point cloud segmentation, but existing methods require additional 2D annotations for effective fusion of 2D and 3D information. The high cost of annotating point clouds necessitates weakly supervised learning methods for effective feature fusion.",
+        "prediction": "Existing algorithms for capturing scenes in 3D objects are often poorly trained due to the constraints of a multi-dimensional image, which require continuous motion and directional reflection to identify the graphical context of the model.",
+        "queries": [
+            12.832642,
+            5.706378
+        ],
+        "log": []
+    },
+    {
+        "target": "Existing multimodal contrastive learning frameworks rely on shared information between sensory modalities, but do not effectively consider exclusive modality information that is critical for understanding underlying sensing physics. Furthermore, these frameworks do not handle the temporal information locality in time series properly.",
+        "prediction": "Traditional neural-based algorithms for learning and predicting the effects of multiple-object models pose significant challenges in the application of this concept, since the tasks of capturing data in a context are often unsupervised.",
+        "queries": [
+            3.450434,
+            6.526793
+        ],
+        "log": []
+    },
+    {
+        "target": "Deep neural networks (DNNs) have been effectively used for solving Markovian optimal stopping problems. However, extension of DNN-based methods to non-Markovian settings leads to an increase in state and parameter space, leading to the issue of the curse of dimensionality. Also, efficient state-space transformations for Markovian approximations, facilitated by recurrent neural networks (RNNs), are either not structurally feasible or are challenged by the curse of non-Markovianity.",
+        "prediction": "Traditional neural-learning algorithms are designed to fill in large-scale scalar models by avoiding the need for recursive encoding. However, these algorithms face challenges in addressing the underlying assumption of random-output prediction, especially in a predetermined task.",
+        "queries": [
+            -19.158524,
+            -2.674025
+        ],
+        "log": []
+    },
+    {
+        "target": "Hedonic diversity games are a variant of classical hedonic games aimed at modeling diversity and fairness questions. Previous works mainly focused on the case with two diversity classes and provided some initial complexity-theoretic and existential results regarding Nash and individually stable outcomes.",
+        "prediction": "Repetitive-action optimization algorithms in the classical game are currently gaining attention for their ability to solve multi-agent task-choice problems, but this approach requires a large uncertainty in the context of a given proximate vs. unsigned.",
+        "queries": [
+            0.481297,
+            -20.60512
+        ],
+        "log": []
+    },
+    {
+        "target": "Crowdsourcing is a common method for handling complex tasks using human intelligence, but it often leads to privacy leaks due to the sharing of worker data.",
+        "prediction": "Abstract queries in the context of data-driven learning rely on the ability to map the number of nodes to a given set of criteria, yet traditional methods for achieving this task are often unreliable and inefficient.",
+        "queries": [
+            -4.483727,
+            2.9315
+        ],
+        "log": []
+    },
+    {
+        "target": "Information Extraction tasks such as named entity recognition, relation extraction, and event extraction were previously solved with different models due to diverse task output structures.",
+        "prediction": "Existing semantic annotations focus on the recursive process of generating unified text-to-word classifications, and this task is often difficult in machine learning environments due to the lack of knowledge of the relevant paradigms.",
+        "queries": [
+            -10.354276,
+            4.546227
+        ],
+        "log": []
+    },
+    {
+        "target": "Large language models (LLMs) have demonstrated an impressive ability to generate codes on competitive programming tasks, but with limited sample numbers, they still suffer from poor accuracy.",
+        "prediction": "Traditional multi-language learning models rely on preprocessed neural encoding to generate a smoother translation of large chunks of speech, but recent efforts have been limited in addressing this problem, especially in context-specific reinforcement.",
+        "queries": [
+            -18.681944,
+            0.840346
+        ],
+        "log": []
+    },
+    {
+        "target": "Applications of machine learning techniques for materials modeling often use functions known to be equivariant or invariant to specific symmetries. Graph neural networks (GNNs) have been successful in such tasks, but enforcing symmetries via the model architecture often reduces their expressivity, scalability, and comprehensibility.",
+        "prediction": "Graph-based asynchronous network mappings have been explored for decades, but the majority of these tasks rely on the aggregation of nodes in a large dataset to extract meaningful information from the nodes, and the problem is limited by the graphical sizing of the nodes.",
+        "queries": [
+            -0.373188,
+            21.972242
+        ],
+        "log": []
+    },
+    {
+        "target": "Recent Lexical Substitution (LS) methods based on pretrained language models generate potential substitutes for a target word by analysing its contextual surroundings. However, these methods often overlook the preservation of the sentence's meaning when generating the substitutes.",
+        "prediction": "Traditional parse-based generative languages focus on the lexical adaptation of nouns to their context, and this task is often a challenge in existing multi-step annotation methods.",
+        "queries": [
+            -13.739343,
+            7.102125
+        ],
+        "log": []
+    },
+    {
+        "target": "Generative pre-trained Transformer (GPT) has demonstrated success in natural language processing and adaptations have been made for molecular modeling. However, the interplay of text and symbolic molecular representations in these systems isn't well-explored.",
+        "prediction": "Multilingual language models that are trained to perform pre-neural tenses in a given context often have large performance challenges, owing to the inability of traditional neural-based algorithms to elicit explicit recognition and prediction.",
+        "queries": [
+            -18.579412,
+            1.204733
+        ],
+        "log": []
+    },
+    {
+        "target": "Natural language understanding (NLU) models often suffer from unintended dataset biases. Ensemble-based debiasing methods, particularly the product-of-experts (PoE), have been successful in bias mitigation, but these methods usually impact top-level logits without addressing biased attention patterns, which plays a crucial role in providing robust prediction.",
+        "prediction": "Past language-learning models rely on narratives to generate a single sentence of a particular context, but the task of achieving automatic narrative regression and narrative equivalence in preprocessed speech is often overlooked.",
+        "queries": [
+            -16.84597,
+            1.30681
+        ],
+        "log": []
+    },
+    {
+        "target": "Controlled generation in text-based models often involves predicting desired stylistic or semantic attributes, like reducing content toxicity. However, the performance of such models may falter if there is a distributional disparity between training data and actual use-case scenarios, determined by user prompts.",
+        "prediction": "Traditional multi-language learning models focus on generating narratives and narratives that are mapped to a given context, yet their ability to perform repeated encoding tasks such as speech pitch prediction is often overlooked in this field.",
+        "queries": [
+            -17.39238,
+            0.825907
+        ],
+        "log": []
+    },
+    {
+        "target": "Radiology report generation, which involves generating free-text descriptions for a set of radiographs, is challenging due to the need to maintain consistency between the images and the lengthy report. Previous research attempted to solve this issue with planning-based methods that generated reports based on high-level plans, but these plans typically only contained major observations and lacked necessary information such as observation characteristics and preliminary diagnoses.",
+        "prediction": "Molecular imaging algorithms for predicting neural gradients are well-established in the field of neuroimaging, but recent advances in this field require a time-consuming task to extract the underlying phenotype and other data with limited procedural efficiency.",
+        "queries": [
+            17.191521,
+            -3.26428
+        ],
+        "log": []
+    },
+    {
+        "target": "Most existing text generation models follow the sequence-to-sequence paradigm while Generative Grammar suggests that humans generate natural language texts by learning language grammar.",
+        "prediction": "Natural language models focusing on multiple-segment learning in parallel are often criticized for their inaccuracy. Recent efforts to implement such techniques have raised the challenge of generating a predicate of grammatical tense.",
+        "queries": [
+            -16.909504,
+            0.601626
+        ],
+        "log": []
+    },
+    {
+        "target": "This paper addresses the SemEval 2023 Task 2 Multilingual Complex Named Entity Recognition (MultiCoNER II) in four monolingual tracks (English, Spanish, French, and Portuguese), which presents a low context setting and fine-grained taxonomy.",
+        "prediction": "Traditional parse-based multinomial learning algorithms rely on the process of annotation recognition in the context of a given word, which has been a challenging task for current models of generative and lexical relevance.",
+        "queries": [
+            -11.445472,
+            7.534512
+        ],
+        "log": []
+    },
+    {
+        "target": "In anonymous social networks, many women experience abuse, discrimination, and sexist expressions. Existing methods which rely on keyword filtering and matching perform poorly in online sexism detection, falling short in identifying implicit stereotypes and discrimination.",
+        "prediction": "Abstract-oriented algorithms have been introduced in recent years to help users learn about social media, but the task of predicting sentiment and feedback by multiple choice models is a challenge due to the lack of explicit information in the offline data structure.",
+        "queries": [
+            -12.536115,
+            -6.73593
+        ],
+        "log": []
+    },
+    {
+        "target": "The AfriSenti SemEval-2023 Task 12: Sentiment Analysis for African Languages consists of three different tasks, covering monolingual, multilingual, and zero-shot sentiment analysis scenarios for African languages.",
+        "prediction": "Abstract-text modeling algorithms often focus on recitation of user-generated information in a multi-task context, but the existing knowledge base has faced significant challenges in generating predictions based on the metric of recitation and its encoding.",
+        "queries": [
+            -14.114196,
+            -4.042135
+        ],
+        "log": []
+    },
+    {
+        "target": "Designing a student dashboard for intelligent language tutoring systems that transparently offers information on students' progress and performance, while also linking to the overarching functional goal such as foreign language teaching, is challenging; especially when adapting to different learning styles and fulfilling additional requirements for blended learning environments.",
+        "prediction": "Human-centered interactive software projects often face challenges in the field of capturing and analyzing information, such as gestures, due to the lack of a formal knowledge of the physics of the interaction paradigm.",
+        "queries": [
+            -2.958628,
+            -11.355968
+        ],
+        "log": []
+    },
+    {
+        "target": "The classic masked language modeling (MLM) pre-training focuses on reconstructing the exact identity of randomly selected masked subwords.",
+        "prediction": "Multi-language machine learning models are often modeled using pre-established neural gradients to achieve a smooth translation, but this task has faced significant challenges in recent years due to the inherent performance of simulated parse-independent truncation.",
+        "queries": [
+            -20.059515,
+            2.466389
+        ],
+        "log": []
+    },
+    {
+        "target": "There is ongoing research on how large-scale pre-trained language models can be adapted in an efficient way to particular tasks with minimal changes to parameters. Lightweight parameters like adapters can be stored and shared as capabilities within corresponding models. The challenge lies with transferring these parameters between tasks to improve performance on new tasks, which requires understanding the similarity between tasks.",
+        "prediction": "Traditional multilingual machine learning models aim to generate pre-defined neural gradients for translation tasks, but this technique has been criticized for a large number of inaccuracies in the output, such as in the ongoing hand-selected speech correction.",
+        "queries": [
+            -19.710806,
+            1.841112
+        ],
+        "log": []
+    },
+    {
+        "target": "When fine-tuning a Pre-trained Language Model (PLM) on a pre-defined set of tasks with in-context instructions, its generalization performance improves, thereby permitting the construction of a universal language model that can work across task boundaries.",
+        "prediction": "Multi-neural models that are adapted to pre-training tasks such as generating large-scale translations have traditionally faced challenges in linguistic learning, due to the lack of explicit in-translation truncation and the tendency to ignore other effects.",
+        "queries": [
+            -19.96841,
+            0.776712
+        ],
+        "log": []
+    },
+    {
+        "target": "Deep neural networks, including Transformer-based models, have achieved state-of-the-art performance on various tasks, but their interpretability remains a challenge.",
+        "prediction": "Traditional querying algorithms focus on clustered data, and recent innovations in the field of image-separated domains have made this task difficult. However, the unsatisfactory translation of data poses a significant learning gap.",
+        "queries": [
+            6.082389,
+            12.849921
+        ],
+        "log": []
+    },
+    {
+        "target": "The problem of safe reinforcement learning (RL) has gained significant attention, which involves training reward-maximizing agents subject to pre-defined safety constraints. However, the challenge remains in learning versatile safe policies that can adapt to varying safety constraint requirements during deployment without retraining.",
+        "prediction": "Abstract reinforcement learning (LR) offers a novel solution to the problem of optimization. However, the algorithms used in current decision-based algorithms require large-scale estimating of the performance of the input and output.",
+        "queries": [
+            4.242351,
+            -22.596827
+        ],
+        "log": []
+    },
+    {
+        "target": "Deep Neural Networks and Reinforcement Learning methods are being used to tackle challenging combinatorial problems. In these methods, a deep neural network is used as a solution generator that is trained by gradient-based methods to obtain better solution distributions.",
+        "prediction": "Abstract-reinforcement learning (LR) offers a solution to the problems of estimating the quality of the modeled action, but current algorithms for predicting the performance of a modeled operation are frequently inefficient in the granular state.",
+        "queries": [
+            3.766889,
+            -22.851849
+        ],
+        "log": []
+    },
+    {
+        "target": "Federated learning is a secure approach for safeguarding local private data in collaborative learning. However, the advent of gradient inversion research has posed significant challenges to this premise by enabling a third-party to recover groundtruth images via gradients, which were mostly focused on low-resolution images and small batch sizes.",
+        "prediction": "Federated learning is a novel technique for sharing data across multiple participants in a distributed learning team; however, the problem of localized extinction of the search results is often not addressed in server-side applications.",
+        "queries": [
+            22.908382,
+            17.437319
+        ],
+        "log": []
+    },
+    {
+        "target": "Growing leakage and misuse of visual information promote the development of information protection. Existing adversarial perturbations are primarily focused on de-identification against deep learning models, but they don't effectively protect inherent visual information.",
+        "prediction": "Deep-learning algorithms are commonly targeted to address the challenges of invariant-proofing (OD) and adaptive-proofing (AQ) models. However, this approach fails to overcome the typical flaws of simulated neural performance, with a limited capacity for outliers in the model.",
+        "queries": [
+            -23.019388,
+            -5.013823
+        ],
+        "log": []
+    },
+    {
+        "target": "Large language models (LLMs) are increasingly used as goal-driven agents interacting with external environments, but learning from trial-and-error remains challenging using traditional reinforcement learning methods, as they require extensive training samples and expensive model fine-tuning.",
+        "prediction": "Traditional neural-based multilanguage learning models have been designed to improve the performance of presumptive translation tasks, but in practice, these models face large challenges in generating a smooth translation despite the absence of large-scale regression.",
+        "queries": [
+            -18.882383,
+            0.848044
+        ],
+        "log": []
+    },
+    {
+        "target": "Backdoor attacks have emerged as a significant problem for NLP systems, where poisoned training data is used to embed a 'backdoor' into the model, causing certain textual patterns to be predicted as a target label of an adversary's choice.",
+        "prediction": "Multi-model learning algorithms are commonly used to solve arbitrary entropy-dependant predictions, but these approaches pose challenges in the long run. For example, the entropy-dependant assumption of a trained output is prone to flaws in the inverse-definitive (PDN) implementation.",
+        "queries": [
+            -22.192347,
+            -4.501712
+        ],
+        "log": []
+    },
+    {
+        "target": "Modern autonomous driving systems use a modular task sequence: perception, prediction, and planning. For diverse tasks and high-level intelligence, current approaches either use standalone models for individual tasks or design a multi-task paradigm with separate heads. However, these systems may suffer from cumulative errors or insufficient task coordination.",
+        "prediction": "Pre-existing graphical motion detection techniques in human-centered devices pose significant challenges in estimating the scalar effects of the interaction, such as blending and resolving patterns, which are often limited by distance.",
+        "queries": [
+            9.521171,
+            -2.310918
+        ],
+        "log": []
+    },
+    {
+        "target": "Pre-trained language models (PLMs) are achieving the best performance on a range of natural language processing (NLP) tasks. While the first models were trained on general domain data, specialized ones have emerged to tackle specific domains more effectively.",
+        "prediction": "Multi-language neural models that are designed to perform pre-training tasks in a given context typically face large challenges in reducing the overall performance of reconstructed neural algorithms, such as speech prediction and tense-based learning.",
+        "queries": [
+            -20.011059,
+            0.702125
+        ],
+        "log": []
+    },
+    {
+        "target": "Named Entity Recognition (NER) is a common task in natural language processing, but fine-grained multilingual NER, especially in noisy conditions, presents additional challenges.",
+        "prediction": "Traditional learning algorithms for identifying the citation of sentences in a multiparameter-based model are based on a supervised process, and this approach poses a challenge in the absence of previously existing data annotations.",
+        "queries": [
+            -10.769421,
+            7.389204
+        ],
+        "log": []
+    },
+    {
+        "target": "Iterative pruning is one of the most effective compression methods for pre-trained language models. However, finding the optimal pruning decision is challenging and generalization at high sparsity levels is poor.",
+        "prediction": "Multi-channel machine translation (MATE) training approaches have traditionally been focused on generating a gaussian-weighted data, but this can lead to a large deficit in gaussian-weighted data, which requires user-generated features to be duplicated.",
+        "queries": [
+            -22.898804,
+            9.669202
+        ],
+        "log": []
+    },
+    {
+        "target": "There has been a surge in identifying suicidal risk and its severity in social media posts using computational intelligence techniques and natural language processing, but there is a lack of explainable research that can impact clinical psychology practice and personalized mental healthcare. Additionally, there is limited availability of datasets for social NLP research community.",
+        "prediction": "The popularity of social-media-based learning tools such as grading in the form of a virtual machine has generated challenges in addressing current research, mainly in the absence of systematic mechanisms for predicting user behavior and information.",
+        "queries": [
+            -6.062141,
+            -9.423823
+        ],
+        "log": []
+    },
+    {
+        "target": "During language acquisition, children follow a typical sequence of learning stages, from categorizing phonemes, developing their lexicon to mastering increasingly complex syntactic structures. These computational principles leading to this learning trajectory remain largely unknown and it's unclear whether deep language models follow a similar pattern.",
+        "prediction": "Language-based grammatical analysis of predicate and sentence fragments has traditionally been done in parallel translation models, which pose challenges to the production of a number of nuances that are not recurrent.",
+        "queries": [
+            -15.899034,
+            4.670324
+        ],
+        "log": []
+    },
+    {
+        "target": "Argument pair extraction (APE) aims to extract interactive argument pairs from two passages within a discussion. It's challenging due to the effort required to effectively capture the complex context-aware interactive relations of arguments between the two passages.",
+        "prediction": "Text-based summation algorithms in the field of semantics pose a common task in generating information about the various traits of a text, and the emphasis on lexical classification is often missed due to unstructured user-driven models.",
+        "queries": [
+            -13.023032,
+            -2.009297
+        ],
+        "log": []
+    },
+    {
+        "target": "For SemEval-2023 Task 5, the task is to classify spoiler types (passage, phrase, multi) of clickbait web articles. Current models and methods don't take into account the information-placement on webpages which is usually described within the webpages markup, and optimised for ads.",
+        "prediction": "Text-based prediction algorithms have been gaining attention in the field of social media, but the task of identifying and capturing the nuances of a given sentiment in multiple contexts is often challenging due to the lack of user-generated information in these models.",
+        "queries": [
+            -12.510545,
+            -5.448342
+        ],
+        "log": []
+    },
+    {
+        "target": "Pre-trained encoder-only and decoder-only language models are commonly used in text classification tasks such as detecting online sexism. However, there's a need for continued analysis and improvement of these models, specifically in their interpretability.",
+        "prediction": "Traditional multiparameter language learning models employ neural preprocessing to generate a large amount of linguistic information, but recent efforts to address this problem have been limited by the inherent inconsistencies in translation tasks, even in context.",
+        "queries": [
+            -18.554924,
+            1.83072
+        ],
+        "log": []
+    },
+    {
+        "target": "The study is set in the context of the SemEval-2023 NLI4CT task which focuses on multi-evidence natural language inference for clinical trial data.",
+        "prediction": "Existing recursive semantics techniques for generating text-driven insights have been largely confined to the task of topic-related annotation, and this task often fails in a multi-parameter model due to the lack of formalization.",
+        "queries": [
+            -11.903262,
+            2.915614
+        ],
+        "log": []
+    },
+    {
+        "target": "End-to-end automatic speech translation (AST) relies on data that combines audio inputs with text translation outputs. Previous work used existing large parallel corpora of transcriptions and translations in a knowledge distillation (KD) setup to distill a neural machine translation (NMT) into an AST student model. However, the dependence of previous KD approaches on manual audio transcripts limits the applicability to AST.",
+        "prediction": "Previous multi-language translation models have been designed to focus on narrative-based grammatical prediction and reinforcement, but this technique poses large challenges in achieving optimal translation fidelity even in the absence of a regular input pattern.",
+        "queries": [
+            -20.363775,
+            4.10913
+        ],
+        "log": []
+    },
+    {
+        "target": "In language learning, Single Choice exercises are a central exercise type that has traditionally used distractors derived from static analyses of learner corpora. The process of deriving these distractors, however, has not been dynamically informed by learning analytics or utilization of half-open exercises.",
+        "prediction": "Graph-based queries have been adapted for large-scale data sharing, but the task of tagging and addressing the nuances of the existing query structure often fails in the context of multi-node replication, resulting in fragmentation.",
+        "queries": [
+            5.263807,
+            15.727537
+        ],
+        "log": []
+    },
+    {
+        "target": "Pre-trained language models (PLMs) are used in various applications but often become overconfident in their wrong predictions, which is undesirable. Previous research introduced extra calibration tasks to mitigate the issue, using abundant extra samples available for calibration. However, these models do not typically consider scenarios where training samples are limited and need to be used effectively.",
+        "prediction": "Multilanguage models that are trained in pre-neural learning have traditionally focused on generating smooth translations using a limited amount of input reinforcement, but this technique fails to overcome large-scale learning challenges, such as occasional speech encoding.",
+        "queries": [
+            -20.014454,
+            0.634193
+        ],
+        "log": []
+    },
+    {
+        "target": "Non-autoregressive translation (NAT) is less robust in decoding batch size and hardware settings than Autoregressive translation (AT), which can lead to performance issues in Neural Machine Translation.",
+        "prediction": "Traditional multi-language machine learning (MLT) models aim to reduce the amount of pre-translation syllables generated by existing training methods, but this approach is often prone to large-scale encoding errors due to neural feedback.",
+        "queries": [
+            -21.63719,
+            3.82761
+        ],
+        "log": []
+    },
+    {
+        "target": "Knowledge graphs (KGs) are far from complete, making KG completion (KGC) a crucial task in KG research. Recently, Message Passing (Graph) Neural Networks (MPNNs), which include a message passing (MP) component, have been attributed with the success in achieving powerful embeddings for this task, superior to simpler multi-layer perceptron (MLP) models.",
+        "prediction": "Graph-based scalar mapping algorithms have been studied for decades, but the traditional task of obtaining information in a distributed network of nodes is a large one, which results in the omission of the coherence and symmetry indices that are important to the graph.",
+        "queries": [
+            -1.813799,
+            20.577911
+        ],
+        "log": []
+    },
+    {
+        "target": "Pre-trained Language Models have demonstrated exceptional performance on many text generation tasks. However, they endure inefficient computation and memory handling due to their large-scale parameters and the universal autoregressive decoding paradigm.",
+        "prediction": "Traditional multi-language models that are trained to generate neural predictions in a given context often require a large amount of reinforcement, but this technique has been criticized as limiting the ability of speech-to-neural tempo-based learning.",
+        "queries": [
+            -18.662964,
+            1.363
+        ],
+        "log": []
+    },
+    {
+        "target": "Contemporary methods for document ranking either use more efficient transformers or divide long documents into passages to handle the long input. Some recent works propose cascade document ranking models where a selector is used to extract relevant passages before ranking. However, these models have the issues of the selection and ranking modules being almost independently optimized and deployed that lead to selecting error reinforcement and sub-optimal performance.",
+        "prediction": "Graph-based querying algorithms have been popular for decades, but the task of capturing and distributing the data in a large cluster of subsets of the same domain often presents a problem due to unsatisfactory semantics in the form of pseudo-transformation.",
+        "queries": [
+            5.226702,
+            14.913188
+        ],
+        "log": []
+    },
+    {
+        "target": "Probabilistic modeling is a central task in machine learning. Zhang et al. (ICML 2021) recently proposed a new model, probabilistic generating circuits, and raised the question whether every strongly Rayleigh distribution can be efficiently represented by such circuits.",
+        "prediction": "Traditional algorithms for the optimization of multivariate and granularity-based relational models often rely on a pseudo-maintenance learning curve, which poses significant challenges in the computation of the observed biases.",
+        "queries": [
+            -8.873049,
+            11.40357
+        ],
+        "log": []
+    },
+    {
+        "target": "Large-scale text-to-image generative models like diffusion models can synthesize convincing images by following a text prompt. However, current image editing techniques often have unintended modifications of regions outside the targeted area due to inaccurate cross-attention maps.",
+        "prediction": "Recent algorithms for learning and attribution of visual features in the context of large-scale data capture have a persistent challenge due to the way in which the tasks of defining the model are performed in sequential, non-nuclear domains.",
+        "queries": [
+            5.183078,
+            6.233731
+        ],
+        "log": []
+    },
+    {
+        "target": "Sequence-level knowledge distillation reduces the size of Seq2Seq models for more efficient abstractive summarization, but it often leads to a loss of abstractiveness in summarization.",
+        "prediction": "Previous research on narrative-based expressions in text has generated a number of narrative-based models, but the task of generating a narrative summary is often challenging due to the inconsistency of naming and semantics.",
+        "queries": [
+            -12.899509,
+            -0.424678
+        ],
+        "log": []
+    },
+    {
+        "target": "ReParameterization (RP) Policy Gradient Methods have been widely adopted for continuous control tasks in robotics and computer graphics. However, model-based RP PGMs may experience chaotic and non-smooth optimization landscapes with exploding gradient variance when applied to long-term reinforcement learning problems, leading to slow convergence.",
+        "prediction": "Real-time reinforcement learning (LR) offers an efficient solution to the problem of estimating off-plane errors in classically applied methods, but the current approach is limited by the constraints of the action-valued policy model.",
+        "queries": [
+            3.014482,
+            -23.720278
+        ],
+        "log": []
+    },
+    {
+        "target": "Graph-based Collaborative Filtering (GCF) is widely used in personalized recommendation systems. However, GCF suffers from a fundamental problem where features tend to occupy the embedding space inefficiently, thereby resulting in a popularity bias or the Matthew effect where popular items are highly recommended and less popular ones are ignored.",
+        "prediction": "Current recommendation algorithms focus on user-defined inverse-predictive models, such as the scalar-based scalar-based scalar-based scalar-based scalar-based scalar-based scalar-based scalar-based scalar-based scalar-based scalar-based scalar. However, learning to fit multiple items in a system can pose performance problems.",
+        "queries": [
+            -14.541666,
+            -10.007116
+        ],
+        "log": []
+    },
+    {
+        "target": "Out-of-Distribution (OOD) detection is important for document understanding tasks, especially for large-scale pre-training models. However, most existing OOD detection methods focus on single-modal inputs such as images or texts, and the usage of multi-modal information in documents for OOD detection is underexplored.",
+        "prediction": "Open-domain (OBD) algorithms are often used to solve arbitrary-fault detection problems. However, the traditional approach to aiming for realistic representations of the inverse of the input plane poses challenges in avoiding out-of-range (in-range) calibration and sensitivity.",
+        "queries": [
+            -22.51,
+            -9.44046
+        ],
+        "log": []
+    },
+    {
+        "target": "Generative artificial intelligence (AI) systems, which can produce new and creative content including images, texts, music, video, code, and other forms of design, are emerging. However, understanding how humans interact and make sense of these systems or outcomes, control them ethically, and collaborate with them creatively is not yet clear.",
+        "prediction": "Human-based artificial intelligence paradigms are focused on recursive actions in the context of a variety of environments, and this approach poses significant challenges to the traditional knowledge required for visualization and determining the physics.",
+        "queries": [
+            -1.088349,
+            -14.709497
+        ],
+        "log": []
+    },
+    {
+        "target": "Quantitatively profiling a scholar's scientific impact is important, and current practices with bibliometric indicators, lists, and networks perform well at scholar ranking but do not provide structured context for scholar-centric, analytical tasks such as profile reasoning and understanding.",
+        "prediction": "Online querying algorithms are geared to extract relevant information from multiple datasets, but the task of achieving this task often relies on the existing paradigm of user-driven classification and the lack of consistency in the text.",
+        "queries": [
+            -8.188178,
+            0.97413
+        ],
+        "log": []
+    },
+    {
+        "target": "Redirected walking (RDW) is a VR technology which allows users to move in a large virtual space within a limited real space but suffers from visual-vestibular inconsistencies, disrupting seamless virtual reality experience.",
+        "prediction": "The existing user-centered software for navigating physical objects in a virtual environment often relies on gestures and projection, which pose challenges to the design of these interactive techniques due to the lack of time-series measurement.",
+        "queries": [
+            4.880823,
+            -5.583829
+        ],
+        "log": []
+    },
+    {
+        "target": "Planning and organizing user studies can be a challenge for novices and student researchers in human-computer interaction (HCI).",
+        "prediction": "Human-generated interactive experiences are often emphasized in the context of a physical user interface, and this has led to the lack of systematic research in the field of defining and deploying metrics for capturing the technology.",
+        "queries": [
+            -0.001818,
+            -9.163636
+        ],
+        "log": []
+    },
+    {
+        "target": "Answering complex queries on knowledge graphs is critical yet challenging due to data incompleteness. Previous algorithms dealing with this issue focus on specific forms of embeddings and simulate logical reasoning with set operators, but the scoring functions between these embeddings remain largely unexplored. Existing scoring functions are either based on local comparison or global transport.",
+        "prediction": "Graph-based scalar-oriented multi-numeric graphs are often mapped to a clustered data set using the traditional elaboration and elaboration methods, but these methods pose problems in terms of inefficient elaboration of the relational labels.",
+        "queries": [
+            -1.885024,
+            19.960302
+        ],
+        "log": []
+    },
+    {
+        "target": "Existing fact-checking systems estimate truthfulness using numerical scores, leading to a lack of human interpretation. Despite common practices of fact-checking websites to categorize facts into different logical aspects, contemporary systems miss out on providing aspect-based explainability that can assist human fact-checkers in verifying facts.",
+        "prediction": "Social media-focused learning algorithms are currently employed to model the perception of sentiment in the context of a topic, and this task poses significant challenges, such as the absence of explicit and repetitive data in citation models.",
+        "queries": [
+            -11.639666,
+            -5.767404
+        ],
+        "log": []
+    },
+    {
+        "target": "The main focus of research on automatic readability assessment (ARA) has shifted towards using expensive deep learning-based methods with the primary goal of increasing models' accuracy, but this approach is rarely applicable for low-resource languages where traditional handcrafted features are still widely used.",
+        "prediction": "Language-based narrative analysis has traditionally focused on generating narratives in sentences, yet the task of identifying the narratives in a given text is difficult due to unidirectional and unidirectional reclassification techniques.",
+        "queries": [
+            -14.293831,
+            0.462557
+        ],
+        "log": []
+    },
+    {
+        "target": "Automatic code generation tools, such as Copilot, are becoming popular. These tools present potential hazards tied to social biases, particularly at the stage of code generation models validation.",
+        "prediction": "Machine learning models aiming to generate a novel lexical translation in a predicate-based language are common in recent decades, but these techniques tend to reduce the amount of time required to perform large-scale encoding tasks.",
+        "queries": [
+            -17.527761,
+            0.50175
+        ],
+        "log": []
+    },
+    {
+        "target": "Current state-of-the-art systems for dialogue state tracking use a sequence-to-sequence approach that takes the full dialogue history as input and generates the entire state from scratch at each dialogue turn. This approach becomes inefficient especially when the number of slots is large and the conversation is long.",
+        "prediction": "Current recursive algorithms focus on user-interactions in the context of asynchronous predicate learning, and the solution of such predicates can be challenging due to the lack of knowledge in the defining and defining properties of the oriented model system.",
+        "queries": [
+            -9.618353,
+            -13.413307
+        ],
+        "log": []
+    },
+    {
+        "target": "Language models often generate false, toxic, or irrelevant outputs. The concept of reinforcement learning from human feedback, where human preference judgments on language model outputs are transformed into a learning signal, has been used to address these issues, but it provides limited information on long text outputs.",
+        "prediction": "Multi-numeric language learning models are commonly employed in prescriptive translation tasks, but existing paradigms have faced difficulties in ensuring that the output of the process is based on large-scale, natural-intelligence encoding and ignoring the context.",
+        "queries": [
+            -17.868191,
+            0.948169
+        ],
+        "log": []
+    },
+    {
+        "target": "Multilingual pre-trained language models have shown strong cross-lingual transfer abilities, but performance can drop when the target language is greatly different from source languages or when there is limited pre-training data.",
+        "prediction": "Traditional multilingual translation models aim to generate a language-specific neural output by focusing on preprocessed speech patterns, but this task has been exacerbated by limitations in the current encoding and gradation paradigm.",
+        "queries": [
+            -19.278378,
+            3.200835
+        ],
+        "log": []
+    },
+    {
+        "target": "Current generative models used for aspect-based sentiment analysis require large-scale computing resources and they do not explicitly model the structure between sentiment elements.",
+        "prediction": "Traditional algorithms for generating sentiment in text-based media are aimed at highlighting the content of the speech, and this task poses significant challenges in recent studies due to the unreliable nature of neural data-driven categorization.",
+        "queries": [
+            -12.836858,
+            -3.794465
+        ],
+        "log": []
+    },
+    {
+        "target": "Knowledge-aware recommender systems currently struggle to identify informative knowledge connections effectively, and there is a need for a method that can rationalize these connections.",
+        "prediction": "Multi-tiered prediction algorithms are commonly used in user-centered systems to generate feedback on existing models. However, the task of focusing on the recursive nature of the data, such as random and inverse correlation, presents significant challenges.",
+        "queries": [
+            -13.067456,
+            -9.542339
+        ],
+        "log": []
+    },
+    {
+        "target": "Transforming narrative structure to implicit discourse relations in long-form text is challenging and inconsistent. Summarizing lengthy biographical discourse is beneficial to readers but is currently plagued by factual inconsistencies with respect to the inputs.",
+        "prediction": "Text-driven learning algorithms in existing lexical models typically focus on attribution and semantics, a task that has been challenging since the creation of pseudo-narratives in the context of multiple semantic topics.",
+        "queries": [
+            -13.172276,
+            1.167147
+        ],
+        "log": []
+    },
+    {
+        "target": "Task 4: Human Value Detection of SemEval 2023, called for models that can interpret data and detect human values.",
+        "prediction": "Abstract-based neural algorithms for predicting the content of a text in a multi-subject language are frequently performed in recent news models, but this task presents challenges due to the lack of attention to semantics and reselection.",
+        "queries": [
+            -13.885818,
+            -2.632646
+        ],
+        "log": []
+    },
+    {
+        "target": "The SemEval 2023 Task 2: MultiCoNER II Multilingual Complex Named Entity Recognition, Track 9-Chinese focuses on detecting fine-grained named entities, representing a realistic challenge for Named Entity Recognition (NER).",
+        "prediction": "Traditional multi-parameter based generative algorithms focus on the task of identifying nouns in a sentence, and this approach has encountered difficulties in the past due to the unpredictability of data extraction from a structured context.",
+        "queries": [
+            -11.280288,
+            7.494872
+        ],
+        "log": []
+    },
+    {
+        "target": "Sentiment composition, which is the key to sentiment analysis, has been widely studied in the form of hierarchical trees, including untagged and sentiment ones. These existing approaches to sentiment composition are seen as intrinsically suboptimal.",
+        "prediction": "Traditional algorithms focusing on the prediction of sentiment in a text-based social media context pose a task of generating multiple-sector knowledge, and this task is frequently overlooked in the recent research on lexical models.",
+        "queries": [
+            -12.872613,
+            -3.917403
+        ],
+        "log": []
+    },
+    {
+        "target": "Pretrained language models do not successfully map human-written definition and its usage in example sentences, suggesting a gap in how these models represent words and their meanings.",
+        "prediction": "Machine-learning language models often employ predefined translations to generate large-scale neural output, but the task of addressing the context of the predefined translations has been hampered by previous linguistic bias and neologisms.",
+        "queries": [
+            -18.101875,
+            2.202945
+        ],
+        "log": []
+    },
+    {
+        "target": "Access to a representative sample from the population is an assumption that underpins all of machine learning. Unfortunately, selection effects can cause observations to instead come from a subpopulation, causing potential bias in inferences.",
+        "prediction": "Abstract learning algorithms in the context of multivariate learning have a large potential for performance enhancement, and the task of determining the relevant node is often relegated to recursive methods that fail to capture information from the existing classification models.",
+        "queries": [
+            -3.824315,
+            8.331926
+        ],
+        "log": []
+    },
+    {
+        "target": "The problem of agnostic PAC reinforcement learning (RL) concerning how many rounds of interaction with an unknown MDP are required to learn an $\\epsilon$-suboptimal policy with respect to a given policy class $\\Pi$, especially in large state and action space has been posed.",
+        "prediction": "Repetitive-action optimization (LR) algorithms offer an efficient solution to the classical problem of granularity estimation, but the current method relies on constraints on selection and not on the expected input to the game.",
+        "queries": [
+            2.139819,
+            -23.037163
+        ],
+        "log": []
+    },
+    {
+        "target": "Graph neural networks (GNNs) are vulnerable to adversarial perturbations, affecting both node features and graph topology.",
+        "prediction": "Graphs in asynchronous multi-node network have been targeted for a large number of tasks, but the typical implementation of these algorithms ignores the problem of generating the graphical content from the unified data source, and the resulting graphical attribution of the topology.",
+        "queries": [
+            -0.422095,
+            22.048454
+        ],
+        "log": []
+    },
+    {
+        "target": "Heterogeneous image fusion (HIF) techniques aim to enhance image quality by merging information from images captured by different sensors. Deep unfolding network (DUN)-based methods are relatively successful but still suffer from two issues: they lack a degradation-resistant-oriented fusion model and struggle with the structural properties of DUNs, making them vulnerable.",
+        "prediction": "Modern image-sensing techniques for capturing images in the diffuse band of light are challenging, since the original image is often filtered by a single lens but does not provide for the resolution of the subsequent reflection.",
+        "queries": [
+            20.07365,
+            7.80876
+        ],
+        "log": []
+    },
+    {
+        "target": "A continuing challenge in neural networks is the ability to continually train from sequentially streamed few-shot data without significant loss of past knowledge, also known as 'catastrophic forgetting'.",
+        "prediction": "Traditional learning algorithms aimed at capturing large-scale data in a multi-node context pose challenges such as the attribution of uniformity to the objects, and this technique is rarely applied in parallel with supervised models.",
+        "queries": [
+            1.712177,
+            7.746081
+        ],
+        "log": []
+    },
+    {
+        "target": "Learning with noisy labels (LNL) is a challenging problem in weakly-supervised learning. Existing approaches use sample selection strategies and small-loss criteria to select clean samples, but this fails to reflect the complex feature landscape of various samples, leading to potential classification errors during sample selection.",
+        "prediction": "Traditional neural learning algorithms rely on the supervised replication of data in multiple-domain models, which pose a challenge to the current approach to classification, since the requisite features are often limited by the speed of information processing.",
+        "queries": [
+            -1.513574,
+            9.55104
+        ],
+        "log": []
+    },
+    {
+        "target": "Generative Adversarial Networks (GANs) are widely used for generating photo-realistic images. However, controlling and interpreting the contents of these generated images is challenging due to the entanglement in the feature spaces of GANs (e.g., StyleGAN).",
+        "prediction": "Traditional gaussian-based generative analogues are trained to generate a gaussian representation that can be used in a variety of experiments, but these methods pose challenges for gaussian-induced regression, limiting the extent of the gradient to zero.",
+        "queries": [
+            -26.11673,
+            1.189252
+        ],
+        "log": []
+    },
+    {
+        "target": "Convolutional Neural Network (CNN) based methods that tackle hyperspectral image (HSI) denoising come with limitations of its efficiency and flexibility in capturing global and local spatial-spectral correlations.",
+        "prediction": "Digital image sampling poses a challenge for image-retrieval algorithms, since the majority of the images are filtered out of the surrounding light, but this is not typical in high-definition scenes with a large amount of photons of reflected brightness.",
+        "queries": [
+            20.359486,
+            7.997206
+        ],
+        "log": []
+    },
+    {
+        "target": "Existing methods for differentiating through optimal trajectories arising from non-convex, constrained discrete-time optimal control (COC) problems achieve this efficiency by solving an auxiliary Linear Quadratic Regulator (LQR) problem. There are also claims that computing trajectory derivatives using the implicit function theorem (IFT) scales quadratically with the number of timesteps.",
+        "prediction": "Object-oriented reinforcement learning algorithms in a static system require the ability to model and solve problems with the multiple tasks of human-agent interaction, although previous attempts to model the behavior are often characterized by ambiguity.",
+        "queries": [
+            3.261327,
+            -18.428984
+        ],
+        "log": []
+    },
+    {
+        "target": "Current research is primarily dedicated to improving the accuracy of camera-only 3D object detectors (apprentice) through knowledge transferred from LiDAR- or multi-modal-based models (expert). However, the domain gap between LiDAR and camera features, along with the inherent incompatibility in temporal fusion, significantly hinders the effectiveness of distillation-based improvements for apprentices.",
+        "prediction": "Current algorithms for capturing images of objects in 3D form are largely recursive and have difficulty in identifying the homonymous features of the scene, such as motion and orientation, due to the lack of trained data processing.",
+        "queries": [
+            12.492892,
+            4.536108
+        ],
+        "log": []
+    },
+    {
+        "target": "The prevalent practice in Gaussian Process (GP) models involves using additive mixtures of Mat\u00e9rn kernels in single-output GP models and exploring the properties of multiplicative mixtures of Mat\u00e9rn kernels for multi-output GP models.",
+        "prediction": "Traditional matrices optimization algorithms are based on the pseudo-distribution of the spherical granularity of the spherical granularity, but this method poses significant difficulties in capturing information in a distributed model without external constraints.",
+        "queries": [
+            -7.564914,
+            14.050282
+        ],
+        "log": []
+    },
+    {
+        "target": "The process of finding approximately-optimal preconditioners for solving linear systems has been problematic, typically involving high runtime and less optimized solution.",
+        "prediction": "Traditional matrice-based optimization algorithms are used to compute the scalar data of a distributed graph, but the method of constructing the scalar data is a challenge, which results in significant lack of attention to the overlapping of the subsets.",
+        "queries": [
+            -6.677248,
+            16.594484
+        ],
+        "log": []
+    },
+    {
+        "target": "Improved architectures and better representation learning frameworks are driving significant advancements in visual recognition. Particularly, ConvNets like ConvNeXt have shown strong performance, but their combination with masked autoencoders (MAE) for self-supervised learning has produced subpar results.",
+        "prediction": "New Videonavigation (VN) techniques can reduce the depth of a single image by focusing on the camera reflection, but these techniques pose a significant problem for conventional image-gathering tasks, especially in a multi-tasking context.",
+        "queries": [
+            24.379793,
+            1.085507
+        ],
+        "log": []
+    },
+    {
+        "target": "Multilingual Neural Machine Translation (NMT) models can provide zero-shot translation, directly translating between language pairs unseen during training. However, for better transfer performance, these models need to learn universal representations across different languages which is a challenge.",
+        "prediction": "Traditional multi-language machine learning models aim to optimize translation by using a pre-trained method, but the current paradigms are prone to large-scale encoding errors that are reflected in the corresponding hand-outs of translation.",
+        "queries": [
+            -20.842134,
+            4.459768
+        ],
+        "log": []
+    },
+    {
+        "target": "In dialogue, speakers need to adapt their utterances taking into account their audience's varying levels of knowledge about the discussed topic, and this audience-aware adaptation is a challenging problem in the computational domain.",
+        "prediction": "User-generated appositions in relational and multi-choice systems pose a challenge to the current paradigm, since the focus of the topic is usually on achieving explicit behavior by analyzing the knowledge of the algorithms.",
+        "queries": [
+            -8.576821,
+            -12.536376
+        ],
+        "log": []
+    },
+    {
+        "target": "Different knowledge graphs (KGs) contain complementary information, which can be used to improve KG embeddings and downstream tasks. However, current methods do not effectively make use of this across different KGs.",
+        "prediction": "Multi-node graphs have been known to exploit the coherence-oriented mapping algorithms in a distributed network, but the majority of the tasks involved are purely semantic and result in a large data set that lacks the typical attention to the original representation.",
+        "queries": [
+            -2.148003,
+            20.089806
+        ],
+        "log": []
+    },
+    {
+        "target": "Graphs are often used to represent real-world structures in various fields, with high connectivity and robustness being desirable. While adding edges and anchoring nodes have been extensively studied to enhance the connectivity and robustness of graphs, the operation of merging nodes has been overlooked despite its practical relevance in scenarios like bus station reorganization or multiple team formation.",
+        "prediction": "Graph-based queries have been adapted to deal with the problem of focusing on the spatial scale of a multinuclear network. However, traditional algorithms for capturing and integrating data in the form of a grouped subset do not fully exploit this feature.",
+        "queries": [
+            0.866864,
+            18.547863
+        ],
+        "log": []
+    },
+    {
+        "target": "Prior methods for Natural Language Querying (NLQ) on databases typically rely on text-to-SQL semantic parsing, which is a challenging and complex task.",
+        "prediction": "Abstract language research has traditionally faced challenges in generating semantics-related tenses, since the methods used to identify narrator and grammatical consistency in sentences are often overlooked by multiple models.",
+        "queries": [
+            -14.399067,
+            1.592454
+        ],
+        "log": []
+    },
+    {
+        "target": "Task 9 (Multilingual Tweet Intimacy Analysis, MTIA) of the SemEval 2023 competition aims to quantitatively analyze tweets in 6 languages for intimacy, posing challenge in extracting semantic information from code-mixed texts.",
+        "prediction": "Traditional algorithms focusing on recursive learning, such as the multi-sector model, have been developed to address the task of capturing and describing a given sentiment in a language, but this task is often challenging due to infrequent user input and ambiguous output.",
+        "queries": [
+            -14.123483,
+            -4.164834
+        ],
+        "log": []
+    },
+    {
+        "target": "The Visual Word Sense Disambiguation (VWSD) shared task aims at selecting the image among candidates that best interprets the semantics of a target word with a short-length phrase for English, Italian, and Farsi. The limited phrase context and the visual label requires image-text matching performance across different modalities, which challenges the model's understanding ability.",
+        "prediction": "Traditional generative parsing techniques focus on the estimating of a lexical relation to a multi-sequenced object, and these tasks have been previously encountered in inference-oriented models.",
+        "queries": [
+            -13.097721,
+            8.351892
+        ],
+        "log": []
+    },
+    {
+        "target": "Task 9 requires the textual intimacy analysis of tweets in 10 languages. Severe class imbalance is observed in the official dataset, which can weaken the model's performance and impede convergence.",
+        "prediction": "Traditional algorithms aimed at generating sentiment-based learning models, such as multiple-sector prediction, have encountered difficulties in achieving the desired level of information in the social media. This task is exacerbated by the frequent use of random annotations.",
+        "queries": [
+            -13.948457,
+            -4.247189
+        ],
+        "log": []
+    },
+    {
+        "target": "Classic content moderation approaches often utilize a rule-based heuristic method, which while easily interpreted by humans, can lack robustness and flexibility to handle the variety of undesirable content online. Recent developments in deep learning offer a solution, but they lack transparency and explainability, issues which often result in mistrust and limited adoption.",
+        "prediction": "Social media researchers have focused on the task of categorization of relevant information by predicting its content. However, existing offline algorithms and models, such as the lexical attribution model, pose significant challenges in this effort.",
+        "queries": [
+            -11.011777,
+            -6.719988
+        ],
+        "log": []
+    },
+    {
+        "target": "Apache Hive is widely used for large-scale data analysis applications in many organizations with various visual analytical tools developed to help users identify the performance bottleneck of executed queries. Existing tools focus on showing the time usage of query sub-components but fail to provide sufficient evidence to analyze the root causes of slow execution progress.",
+        "prediction": "Abstract data querying in relational databases requires a multi-stage approach to synchronization, and the existing techniques for executing these queries are often limited by the lack of performance enhancements for legacy systems.",
+        "queries": [
+            10.384747,
+            -10.388588
+        ],
+        "log": []
+    },
+    {
+        "target": "The task of low-light image enhancement can be challenging due to the loss of certain information in images that are poorly lit. Existing solutions may fail to fully restore the details and color accuracy in degraded images.",
+        "prediction": "Traditional image-sensing algorithms for analyzing the brightness of a pixel are challenging due to the fact that discrete light scattering in a video camera produces multiple images, but these methods have yet to be fully optimized.",
+        "queries": [
+            19.757074,
+            7.301338
+        ],
+        "log": []
+    },
+    {
+        "target": "Recent methods use fusion of RGB images and point clouds method to jointly estimate 2D optical flow and 3D scene flow. Existing approaches face limitations due to the low sampling rates of conventional RGB cameras and LiDAR sensors, especially in highly-dynamic scenes.",
+        "prediction": "Current camera physics algorithms for estimating the motion of a scene in 3D and multi-dimensional images pose significant challenges, since the resulting images are often unreliable in the form of autocorrelation.",
+        "queries": [
+            16.046284,
+            2.045692
+        ],
+        "log": []
+    },
+    {
+        "target": "In visual-based Reinforcement Learning (RL), agents often struggle to generalize well to environmental variations in the state space that were not observed during training. Due to the inherent correlations among features in the state space, the associations between features and decisions become entangled, making it difficult for the policy to distinguish them.",
+        "prediction": "Open-loop reinforcement learning (LR) algorithms provide an efficient method of solving problems in the gamete environment, but the selection of a simulated action requires significant priori errors, compared to classical realism.",
+        "queries": [
+            3.707416,
+            -22.20916
+        ],
+        "log": []
+    },
+    {
+        "target": "Previous works on traffic scene understanding have achieved great success at the low-level perception stage, such as road segmentation and lane detection; however, few concern high-level understanding.",
+        "prediction": "Currently, graphical motion detection and prediction techniques are challenging in multi-object scenarios, which require capturing large volumes of data to understand the dynamics of the surroundings, despite the absence of regular human-caused interaction.",
+        "queries": [
+            10.155967,
+            -1.686843
+        ],
+        "log": []
+    },
+    {
+        "target": "Modern detection transformers (DETRs) rely on confidence scores for predicting bounding boxes and selecting the top-ranked predictions, but they often struggle due to misalignment between classification scores and localization accuracy.",
+        "prediction": "Traditional query-based mapping algorithms for the detection of data in multiple image contexts have a large set of difficulties, since the current paradigm requires sever focus and unsupervised insertion of the sever focus to achieve the desired results.",
+        "queries": [
+            8.293054,
+            11.203889
+        ],
+        "log": []
+    },
+    {
+        "target": "A supervised embedding for a machine learning task should ideally be sensitive to changes in the label of interest and invariant to other confounding factors.",
+        "prediction": "Multi-domain learning algorithms in recent years have been adapted to handle queries involving large datasets. This approach is often unsatisfactory, as the inverse of the typical classification method fails to capture the relevant data in the form of a granularity.",
+        "queries": [
+            -1.656224,
+            11.138013
+        ],
+        "log": []
+    },
+    {
+        "target": "Dataset distillation aims to create a smaller dataset that can yield comparable test performance to a full dataset using the same model. Current state-of-the-art methods optimize synthetic datasets mainly by matching heuristic indicators extracted from two networks, one trained on real data and the other on synthetic data. However, these methods lack well-defined metrics to measure the amount of shared information between the synthetic and the real datasets.",
+        "prediction": "Traditional knowledge extraction (KD) relies on a small amount of grammar correction to reduce the likelihood of misinterpretation, but this task requires modeling existing learning methods that are not yet modeled with literature.",
+        "queries": [
+            19.78116,
+            -15.006969
+        ],
+        "log": []
+    },
+    {
+        "target": "The authors study indiscriminate poisoning for linear learners, where an adversary injects a few crafted examples into the training data with the goal of forcing the induced model to incur higher test error. The authors observe that linear learners on some datasets can resist the best known attacks even without any defenses.",
+        "prediction": "Multi-nuclear models are commonly applied to adaptive learning to solve arbitrary biases in the input domain, but these models face challenges in proving their accuracy. Traditionally, aims of adaptive learning have been to reduce the entropy-dependent (DDL) prediction bias.",
+        "queries": [
+            -22.495846,
+            -4.275366
+        ],
+        "log": []
+    },
+    {
+        "target": "Nonconvex-nonconcave minimax optimization is important in machine learning, and most existing algorithms depend on regularity conditions such as the convexity (resp. concavity) of the primal (resp. dual) functions, or other structures, including the Polyak-\u0141ojasiewicz (P\u0141) and Kurdyka-\u0141ojasiewicz (K\u0141) conditions. These conditions can be difficult to verify in practice.",
+        "prediction": "The traditional matric-based optimization algorithms for scalar data are a subset of the scalar-oriented pseudo-scalar method, which uses large amounts of attention to detail. However, achieving this goal is often a challenge in distributed computing.",
+        "queries": [
+            -7.552853,
+            16.679646
+        ],
+        "log": []
+    },
+    {
+        "target": "Distant supervision has been widely used in NLP tasks such as named entity recognition, but the noisy distant labels tagged unsupervisedly pose a major obstacle. Some previous works have addressed this problem by using a self-training framework with a sample-selection mechanism, but existing methods have tended to overlook certain types of biases.",
+        "prediction": "Existing paradigms in textual learning focus on the multi-parameter annotation and relatedness of the data, but this task is often difficult to achieve in a structured manner due to insufficient knowledge of formality.",
+        "queries": [
+            -9.797371,
+            5.70994
+        ],
+        "log": []
+    },
+    {
+        "target": "The current state of re-identification (ReID) models poses limitations, as they are primarily designed and trained for specific categories such as person or vehicle. Existing models cannot address tracking wildlife populations and migration patterns.",
+        "prediction": "Facial recognition is a novel challenge in multi-tiered authentication, and the techniques for generating ad-hoc results for a particular person face size often fail to take into account the extent of data repossession.",
+        "queries": [
+            17.272047,
+            15.572859
+        ],
+        "log": []
+    },
+    {
+        "target": "The Proximal Policy Optimization (PPO) algorithm, a popular policy learning method, typically does not incorporate analytical gradients from differentiable environments.",
+        "prediction": "Pure reinforcement learning (PRL) offers solutions to the problem of estimating the granularity of an action without a deterministic selection state, but the current methods are frequently applied to the deterministic-error policy environment.",
+        "queries": [
+            3.237928,
+            -23.808249
+        ],
+        "log": []
+    },
+    {
+        "target": "Modern integrated circuit (IC) designs require analyses of complex phenomena such as timing, noise, and power for tens of billions of electronic components; there is a need to balance between accuracy and speed. Recently, AI has started to be explored to improve these analyses, in particular for timing analysis.",
+        "prediction": "The need to optimize the behavior of a system by capturing and analyzing data is a major challenge in multi-entity applications, as existing techniques for static computation and visualization often lack knowledge of the underlying principles.",
+        "queries": [
+            3.646131,
+            -13.811481
+        ],
+        "log": []
+    },
+    {
+        "target": "BERT-based models are known for their strong performance in various applications, but they often exhibit poor generalizability in real-world settings, especially when the amount of training data is limited.",
+        "prediction": "Multilingual pre-training models have traditionally been crafted to perform neural-based translation, but this technique poses challenges in large-scale computations such as remark-based translation, due to the inability to optimize the output of random scalars.",
+        "queries": [
+            -19.152016,
+            2.244654
+        ],
+        "log": []
+    },
+    {
+        "target": "Over-parametrized shallow networks are known to achieve global convergence under gradient descent. However, narrow networks often get stuck in badly generalizing local minima.",
+        "prediction": "Abstract learning algorithms in recent decades rely on the principle of multi-numeric supervised learning, which poses significant challenges in achieving the desired consistency of the data, even if the model is mapped to a particular threshold.",
+        "queries": [
+            -0.636975,
+            7.859447
+        ],
+        "log": []
+    },
+    {
+        "target": "Learning in deep neural networks is known to depend critically on the knowledge embedded in the initial network weights, but few theoretical results have precisely linked prior knowledge to learning dynamics.",
+        "prediction": "Traditional learning algorithms that focus on predicting the phenotype of a data set are often formulated in multi-slice, uniform-scale applications, which pose challenges to the performance of these algorithms due to the lack of explicit attribution.",
+        "queries": [
+            -0.390532,
+            6.734099
+        ],
+        "log": []
+    },
+    {
+        "target": "Current arbitrary style transfer models are limited to either image or video domains, requiring separate models with different training processes for achieving satisfying image and video style transfers.",
+        "prediction": "Previous GAN models were designed to generate a simulated image with a single-player scalar, but these methods tend to be inefficient in reducing the overall image quality. This challenges the traditional scalar-based learning of fidelity and adverbial translation.",
+        "queries": [
+            -24.891542,
+            3.900019
+        ],
+        "log": []
+    },
+    {
+        "target": "Encryption traffic classification is critical and widely researched. Existing methods focus on flow-level features, which often fail in short flows due to unreliable statistical properties. They also treat headers and payloads equally, missing potential correlations among bytes.",
+        "prediction": "The emergence of graphical data-driven computing in mobile applications involves a need for scalar analysis of the data, and existing technologies often lack the tools to perform simultaneous and persistent tasks in the human-centered environment.",
+        "queries": [
+            8.278348,
+            -8.199404
+        ],
+        "log": []
+    },
+    {
+        "target": "Web vulnerability scanners (WVS) are crucial tools for detection of vulnerabilities. However, they are also used by malicious actors to exploit vulnerabilities in third-party websites. Existing research is more focused on identifying the number of vulnerabilities these tools can discover, rather than identifying the illicit usage of these tools.",
+        "prediction": "Web-based queries have long focused on generating user interaction and storing information in a synchronized format, resulting in the difficulties of addressing the plethora of technologies that are used in the context of this virtual research.",
+        "queries": [
+            -4.213868,
+            -4.899718
+        ],
+        "log": []
+    },
+    {
+        "target": "Conversational Question Generation (CQG) has two main challenges: what-to-ask and how-to-ask, particularly in answer-unaware settings which are more realistic and gaining attention. Existing methods select sequential sentences from context as rationales and implicitly decide the question type (boolean/span-based) which may result in conversations that are not natural.",
+        "prediction": "Graph-based queries have been developed for addressing large amounts of data in asynchronous and multi-node contexts, but the traditional tagging of the queries leads to problems in achieving the desired degree of semantics, especially in the user-interface sharing model.",
+        "queries": [
+            5.602919,
+            16.401091
+        ],
+        "log": []
+    },
+    {
+        "target": "In knowledge distillation, a higher-performing teacher model doesn't necessarily lead to a stronger student model, emphasizing a mismatch between teacher training practices and effective knowledge transfer.",
+        "prediction": "Knowledge Diversion (GTC) relies on a small amount of evaluative modeling to improve the accuracy of student actions, but this method is not easily adapted to the task of generating a valid verbal error.",
+        "queries": [
+            19.933559,
+            -15.177975
+        ],
+        "log": []
+    },
+    {
+        "target": "Existing works benchmark automatic movie narrating systems as a normal video captioning task, simplifying the process by removing role names and evaluating narrations with ngram-based metrics. These oversimplifications, however, make it difficult for automatic systems to meet the needs of real application scenarios.",
+        "prediction": "Current algorithms for capturing and analyzing visual data in multi-stage learning, such as motion prediction, have a tendency to focus on the inconsistencies of the nested model, which poses significant difficulties in a uniform manner.",
+        "queries": [
+            5.012461,
+            4.297957
+        ],
+        "log": []
+    },
+    {
+        "target": "Language identification (LID) is an essential part of many natural language processing pipelines, but current systems often struggle with lower-resource languages.",
+        "prediction": "Traditional grammatical-narrative models for predicting grammatical syllables in a given language have been subject to extensive attention and training, which often fails to address the task of preprocessing in parallel translation.",
+        "queries": [
+            -17.314989,
+            3.958651
+        ],
+        "log": []
+    },
+    {
+        "target": "In adaptive data analysis, it is computationally hard to answer more than \u0398(n^2) adaptive queries with a mechanism that gets n i.i.d. samples from an unknown distribution and is required to provide accurate estimations to statistical queries. However, these negative results strongly rely on an adversarial model strongly favoring the adversarial analyst who chooses the adaptive queries and the underlying distribution.",
+        "prediction": "Abstract learning algorithms are often trained to improve the accuracy of multivariate models, but the existing techniques for achieving this task have a significant constraint in the field of data-driven prediction due to the inconsistency of supervised learning.",
+        "queries": [
+            -5.240681,
+            9.438381
+        ],
+        "log": []
+    },
+    {
+        "target": "Previous research on relation extraction emphasizes the utilization of natural language explanations as inductive biases to guide models, improving their efficiency and generalization ability.",
+        "prediction": "Text-driven learning paradigms in natural language have been focused on semantics and relational classification, which often results in the difficulty of ensuring that the underlying indices are sufficiently diverse to satisfy the task.",
+        "queries": [
+            -10.540421,
+            4.901997
+        ],
+        "log": []
+    },
+    {
+        "target": "Large language models pose potential social harms such as generating offensive content and reinforcing biases. Existing works focus on ill-intentioned users, like those who explicitly make hate speech or elicit harmful responses, but discussions on sensitive issues can become toxic even if the users are well-intentioned.",
+        "prediction": "Natural language learning models that employ multiparameter encoding to perform repetitive tasks such as pre-selection and reversal have been previously aimed at large-scale translation, but this approach faces challenges due to insufficient attention to the underlying neural structure.",
+        "queries": [
+            -18.014412,
+            1.03183
+        ],
+        "log": []
+    },
+    {
+        "target": "Dialogue state tracking (DST) research has focused on methods that allow few- and zero-shot transfer to new domains or schemas, but these performance gains rely heavily on aggressive data augmentation and fine-tuning of larger language model-based architectures.",
+        "prediction": "Recursive-oriented algorithms in current user-interaction systems pose a challenge in the choice of satisfactory prediction, due to the lack of explicit knowledge of the multiple-point and logical constraints that are used to model interactions.",
+        "queries": [
+            -9.933479,
+            -13.73318
+        ],
+        "log": []
+    },
+    {
+        "target": "The problem of influence maximization with fairness is to select influential nodes in a given network in order to maximize information spread while ensuring fair treatment of user attributes. The challenge lies in achieving a scalable solution for larger graphs with millions or billions of nodes as most studies so far focussed only on smaller networks.",
+        "prediction": "Graph-based asynchronous multi-node aggregation algorithms have been exploited in the context of a traditional network, but the problem of determining the granularity of the graphs is limited by the mutated search and the mutated content of the user inputs.",
+        "queries": [
+            3.153238,
+            22.155493
+        ],
+        "log": []
+    },
+    {
+        "target": "In machine learning, classifiers tend to learn a false causal relationship between an over-represented concept and a label, leading to over-reliance on certain concepts, sparingly compromised classification accuracy. There isn't an efficient method to compare different models in terms of their over-reliance on specific concepts.",
+        "prediction": "Traditional learning algorithms that focus on constructing supervised models of data are often inefficient. This task requires the application of multiple-numeric classification techniques to a wide range of datasets, but the resulting performance biases do not exist.",
+        "queries": [
+            -3.062802,
+            9.290456
+        ],
+        "log": []
+    },
+    {
+        "target": "The quality, workflow, and overall incentives of conference peer review in the NLP field were found to be in need of improvement, along with issues in paper-reviewer matching for non-mainstream NLP contexts.",
+        "prediction": "Query-based algorithms in the current research paradigm focus on recursive categorization of information, and this task is often difficult to achieve in large-scale data repositories because of the lack of a natural language for learning the semantics.",
+        "queries": [
+            -7.943232,
+            1.468919
+        ],
+        "log": []
+    },
+    {
+        "target": "I2R is participating in the offline speech translation track for IWSLT 2023, with a focus on translation from English audio to German text.",
+        "prediction": "Multi-language translation models traditionally focus on pre-selected grammatical truncation, but this task requires extensive training and abrasion to ensure that the truncated truncated truncated truncated truncated truncated truncated truncated truncated truncated truncated truncated truncated truncated truncated truncated truncated truncated",
+        "queries": [
+            -19.725803,
+            4.297132
+        ],
+        "log": []
+    },
+    {
+        "target": "Teaching machines to reason over texts, involving complex reasoning tasks such as compositional reasoning, knowledge retrieval, etc., has been a long-standing goal of NLP. The standard method of fine-tuning a pretrained language model (LM) on specific tasks has been demonstrated as often brittle and ineffective in recent research.",
+        "prediction": "Multi-language models that are designed to train a language by encoding predicate grammatical tense and highlighting random occurrences of previously-input tense have been traditionally criticized for large-scale learning tasks, but this approach fails to overcome neural adaptation.",
+        "queries": [
+            -18.411093,
+            0.96533
+        ],
+        "log": []
+    },
+    {
+        "target": "Prior to this work, there is lack of benchmark datasets for facilitating Natural Language Processing (NPL) research in the chemical industry.",
+        "prediction": "Traditional speech-learning models that focus on generating a multi-segment summation of a language are often hampered by the difficulty of implementing semantic attribution in context, since previous neural algorithms have been unreliable.",
+        "queries": [
+            -15.705445,
+            1.906797
+        ],
+        "log": []
+    },
+    {
+        "target": "Existing learned metrics for evaluating text generation quality either perform unsatisfactorily across text generation tasks or require human ratings for training on specific tasks.",
+        "prediction": "Neural-based models of speech recognition and translation have long been developed to address the task of generating a text summary, although the existing algorithms in practice often fail to address the wide range of tensor overlap.",
+        "queries": [
+            -15.210287,
+            0.625003
+        ],
+        "log": []
+    },
+    {
+        "target": "In most spreadsheet platforms, users have to manually write data-dependent formatting rules, creating a frustrating and time-consuming process.",
+        "prediction": "Abstract data management techniques are widely embraced in research and development, however, the need to integrate the physiographic aspects of the data into systems poses significant challenges to the user in navigating the upcoming process.",
+        "queries": [
+            6.177074,
+            -10.596772
+        ],
+        "log": []
+    }
+]
