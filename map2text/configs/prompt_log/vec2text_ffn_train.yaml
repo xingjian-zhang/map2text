@@ -1,7 +1,7 @@
 type: training
-save_path: models/cs_research_idea
+save_path: models/prompt_log
 data:
-  path: data/key_ideas.npz
+  path: data/prompt_log.npz
 model_kwargs:
   dim_in: 2
   hidden_dim: 2048

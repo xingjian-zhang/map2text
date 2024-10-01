@@ -10,6 +10,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch.utils.data import DataLoader, TensorDataset, random_split
 
+
 def main():
     # Load the configuration,
     parser = argparse.ArgumentParser()
@@ -32,7 +33,7 @@ def main():
     )
     logging.info(f"Configuration: {config}")  # NOTE: logging may expose api keys.
 
-    dim_in, dim_out = 2, 1536
+    dim_in, dim_out = model_kwargs["dim_in"], model_kwargs["dim_out"]
     model = nn.Sequential(
         nn.Linear(dim_in, model_kwargs["hidden_dim"]),
         nn.ReLU(),
@@ -106,7 +107,8 @@ def main():
             best_state_dict = model.state_dict()
             best_epoch = epoch + 1
 
-    save_file = os.path.join(log_dir, "model.pth")
+    os.makedirs(config["save_path"], exist_ok=True)
+    save_file = os.path.join(config["save_path"], "ffn.th")
     logging.info(f"Best model: Epoch {best_epoch}, Simialrity {max_similarity}")
     logging.info(f"Saving model to {save_file}")
     torch.save(best_state_dict, save_file)
