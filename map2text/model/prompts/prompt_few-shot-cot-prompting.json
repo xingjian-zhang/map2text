@@ -1,0 +1,46 @@
+[
+    {
+        "role": "system",
+        "content": "You are an expert in generating relevant Text-to-Image prompts. Your task is to predict a new and reasonable Text-to-Image prompt based on a series of given prompts. The Text-to-Image prompts often organized into special structures that consist of the subject, form, and intent of the generation tasks and present unique categories of information needs. You'll be provided with a few text-to-image prompts, your task is to generate five relevant and reasonable text-to-image prompts based on the provided prompts. Follow these steps for better generation: \n1.Common Subject: Identify recurring objects or elements in the provided prompts.\n2.Similar Form: Analyze the artistic or technical style (form) shared across the provided prompts. \n Ensure that your generated text-to-image prompts is formatted similarly to the given examples. \n\nStructure your response in a JSON format, here's the format I'd like you to use:\n{\n  \"predictions\": [\n    {\n   \"common subject\": \"Summarize the common objects or elements identified in the provided prompts.\",\n     \"similar form\": \"Describe the artistic or technical styles shared among the prompts.\",\n        \"prompt\": \"Predicted Prompt 1\",\n      }\n    // ...  additional prompts\n  ]\n}"
+    },
+    {
+        "role": "user",
+        "content": "Predict a prompt based on these prompts:a painting of the face of a true goddess.\n belenus  a sun god of the sky, he is often shown as a handsome man carrying a shining sun disc he is said to have brought warmth and light to the world, and is often associated with the healing arts.\n ceridwen  a goddess of wisdom and knowledge, she is often depicted as a crone or hag she is said to have brewed a magical cauldron of inspiration and knowledge, from which the legendary bard taliesin is said to have drunk.\n llew llaw gyffes  a sun god of the sky, he is often shown as a handsome man with golden hair and sunbeam rays emanating from his head he is said to have been cursed by his jealous mother arianrhod, and transformed into an owl.\n a goddess of war and wisdom, often portrayed as a brave and fearless warrior she is associated with strength, courage, and battle.\na pen sketch of the flower of the dead soul.\n a painting of the goddess hera by rossetti.\n "
+    },
+    {
+        "role": "assistant",
+        "content": "{\n  \"predictions\": [\n    {\n      \"common subject\": \"Gods and goddesses represented with symbolic or mythical elements.\",\n      \"similar form\": \" Artistic portrayals, including paintings and sketches, depicting divine figures with an emphasis on their attributes or associated myths.\",\n    \"prompt\": \" the goddess isis, mother of all creation, surrounded by the animals of the nile.  \",\n  }\n ]\n}"
+    },
+    {
+        "role": "user",
+        "content": "Predict a prompt based on these prompts:photorealistic paintingfigure head coming out of drain head, liminal space, oil on canvas, edward hopper vibe, oskar schlemmer gegenlicht, 2005,painting by andrea eitel.\n photorealistic painting clay figures with geometric bodies by miloslav chlup, oil on canvas, liminal space, edward hopper vibe, melancholic setting with realistic human.\n photorealistic painting clay figures with geometric bodies by miloslav chlup, oil on canvas, liminal space, edward hopper.\n photorealistic painting giant figure in minimalistic room by oskar schlemmer, oil on canvas, edward hopper vibe, melancholic setting with sideway point of view, realistic human with, pastel colors,malevich.\n photorealistic painting clay figures with geometric bodies by miloslav chlup, oil on canvas, liminal space, edward hopper,oskar schlemmer,picasso,salvador dali.\n photorealistic painting clay figures with geometric bodies by miloslav chlup, oil on canvas, liminal space, edward hopper, oskar schlemmer and picasso colab.\n photorealistic painting static figures across the complex elevator system room by oskar schlemmer, oil on canvas, edward hopper vibe, melancholic setting with sideway point of view, realistic human with sad expression, pastel colors.\nphotorealistic painting giant figure in multilevel construct room by oskar schlemmer, oil on canvas, edward hopper vibe, melancholic setting with sideway point of view, realistic human with sad expression, pastel colors.\n "
+    },
+    {
+        "role": "assistant",
+        "content": "{\n  \"predictions\": [\n    {\n      \"common subject\": \" Clay or geometric figures depicted in a photorealistic manner, often situated in liminal or minimalistic spaces. \",\n      \"similar form\": \"Photorealistic oil paintings that exhibit a melancholic or surreal vibe, influenced by artists like Edward Hopper and involving collaborations or elements of modernist styles such as Cubism. \",\n      \"prompt\": \" photorealistic painting clay figures with geometric bodies by miloslav chlup, oil on canvas, liminal space, edward hopper,cubism formed mannequins. \",\n  }\n ]\n}"
+    },
+    {
+        "role": "user",
+        "content": "Predict a prompt based on these prompts:the goth kids smoking cigarettes and worshipping satan, satanic panic 1980s.\n a creepy looking insect creature, beautiful oil painting by gustave dore.\n druid of the stellated hexaflexagon, hk horror dvd by escher beeple. \nsteampunk sega dreamcast.\n"
+    },
+    {
+        "role": "assistant",
+        "content": "{\n  \"predictions\": [\n    {\n      \"common subject\": \" Surreal and dark subjects, often blending elements of horror or fantasy with modern or steampunk influences. \",\n      \"similar form\": \"Oil paintings and creative depictions featuring gothic or surreal styles influenced by Gustave Doré, with a mixture of horror, fantasy, and unique modern interpretations. \",\n    \"prompt\": \" the hippopotamus nightmare, gustave dore oil painting. \",\n  }\n ]\n}"
+    },
+    {
+        "role": "user",
+        "content": "Predict a prompt based on these prompts:beautiful portrait of lee van cleef as a cybernetic cowboy.\nclaymaton lee van cleef cowboy, in the style of wallace and gromit.\nwild wild west desperado, in the style of a vapor drive on the eternal flame of nightmare realm into the abyss of an eldritch western by karl ernst von baer.\n wild west wanted dead or alive poster of thief.\n the boxing match went on for 4 hours.\n cyber cowboy standoff at noon vs an alien bloodknight made of cybercore.\n"
+    },
+    {
+        "role": "assistant",
+        "content": "{\n  \"predictions\": [\n    {\n      \"common subject\": \" Lee Van Cleef depicted as a cowboy, integrated with sci-fi or cyberpunk elements.\",\n      \"similar form\": \"Artistic portrayals blending Western motifs with futuristic or cybernetic themes, incorporating elements of surreal or alternative styles. \",\n      \"prompt\": \" Lee Van Cleef as a sci-fi cyberpunk futuristic cowboy. \",\n  }\n ]\n}"
+    },
+    {
+        "role": "user",
+        "content": "Predict a prompt based on these prompts:frog phone in the style of animal crossing.\naward winning photograph of a fluffy pink bird, national geographic, accurate wellmade.\na fursuit, hd photo.\nadorable bird wearing a silver armour.\n award winning photograph of a purple and azure bird, photo.\n a turtle crawling through cheese fields by james gurney, oil on canvas.\n a sheep dressed as a rock star, complete with sunglasses and a guitar.\nthis picture of a wombat won awards, its a really good wombat picture, you cant resist this wombat.\n  "
+    },
+    {
+        "role": "assistant",
+        "content": "{\n  \"predictions\": [\n    {\n      \"common subject\": \" Animals depicted in imaginative or anthropomorphic scenarios, often with whimsical or humorous attributes. \",\n      \"similar form\": \"High-quality, award-winning photographs or detailed artistic representations, often showcasing playful, creative settings with a focus on charm and whimsy. \",\n      \"prompt\": \" Chicken fursona staring from the window of an airplane, HD award-winning photograph. \",\n  }\n ]\n}"
+    }
+]

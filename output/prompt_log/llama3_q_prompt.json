@@ -1,17 +1,1002 @@
-{
-    "bleu_bleu": 0.0901,
-    "bleu_precisions": 0.128275,
-    "bleu_brevity_penalty": 0.8201,
-    "bleu_length_ratio": 0.8345,
-    "bleu_translation_length": 2869,
-    "bleu_reference_length": 3438,
-    "bertscore_precision": 0.8428,
-    "bertscore_recall": 0.8291,
-    "bertscore_f1": 0.8355,
-    "rouge_rouge1": 0.1802,
-    "rouge_rouge2": 0.0733,
-    "rouge_rougeL": 0.1643,
-    "rouge_rougeLsum": 0.1642,
-    "meteor_meteor": 0.1511,
-    "cosine_cosine": 0.8138
-}
+[
+    {
+        "input": "Convert the coordinate to text: [-4.4301  4.4435]:",
+        "prediction": " a detailed portrait headshot of spiritual, retrofuture dream logic, beautiful character fashion design, by david heskin and josan gonzalez and paul lehr and peter morhbacher and tom bagshaw, oil on canvas, artgerm, wlop, hifructose, 8k,",
+        "target": "a detailed portrait headshot of alison brie, beautiful character fashion design, by josan gonzalez and paul lehr and david heskin and seb mckinnon and jared s merantz, artgerm, wlop, hifructose, 8k"
+    },
+    {
+        "input": "Convert the coordinate to text: [ 0.4988 -0.3782]:",
+        "prediction": " a portal to an alternate dimension",
+        "target": "cities with trees visible in a cutaway of a toroidal colony oil painting by michelangelo, greg rutkowski, artstation, cinematic colors, studio ghibli, rick guidice"
+    },
+    {
+        "input": "Convert the coordinate to text: [-0.9783  3.0796]:",
+        "prediction": " portrait of celery waifu, oil painting, anime, artstation, cgsociety",
+        "target": "a portrait headshot of a retro sci fi buddha by moebius studio ghibli hiroshi yoshida, dark norse inspiration, hd wallpaper, ukiyoe, oil on canvas, matte illustration, poster character art, detailed and symmetrical face"
+    },
+    {
+        "input": "Convert the coordinate to text: [3.0145 1.1693]:",
+        "prediction": " award winning professional photography of a person with wings flying",
+        "target": "a shark wearing a hat as abstract cubism, abstract cubism"
+    },
+    {
+        "input": "Convert the coordinate to text: [ 3.2848 -0.455 ]:",
+        "prediction": " the eye of the storm, watercolour",
+        "target": "teletubbies raving in a forest"
+    },
+    {
+        "input": "Convert the coordinate to text: [-0.5331  1.9009]:",
+        "prediction": " a detailed portrait of a dragon knight, by michael kutsche and wlop, cgsociety",
+        "target": "portrait of a lightning japanese cat on a white background ilya kuvshinov antov fadeev darkness"
+    },
+    {
+        "input": "Convert the coordinate to text: [ 3.4796 -1.7317]:",
+        "prediction": " painting of an urban cityscape at sunset",
+        "target": "a man standing in front of a solarpunk skyline by edward hopper, thomas kinkade, and claude monet"
+    },
+    {
+        "input": "Convert the coordinate to text: [ 0.965  -4.1533]:",
+        "prediction": " clockwork steampunk  rolex alien golf course liminal space",
+        "target": "clockwork steampunk maze golf course trypophobia pimple face maze golf course"
+    },
+    {
+        "input": "Convert the coordinate to text: [-0.1311  2.4427]:",
+        "prediction": " a woman wearing a black and white striped sweater, sitting at a table, drinking a soda",
+        "target": "white haired anime girl with red eyes in space with marbles"
+    },
+    {
+        "input": "Convert the coordinate to text: [ 4.231 -1.344]:",
+        "prediction": " watercolor of a pink sky with orange hues",
+        "target": "the frozen tundra gives way to a lush oasis of life, watercolor"
+    },
+    {
+        "input": "Convert the coordinate to text: [-0.518   1.5574]:",
+        "prediction": " a hyperrealistic painting depicting a young girl wearing a victorian era style dress  a small, cute robot is perched atop her shoulder  both the girl and the robot are peering up at the sky  inspiration from hayao miyazaki",
+        "target": "video game character of a tomato concept art cartoony simple charcoal sketch clean lineart 4k hd"
+    },
+    {
+        "input": "Convert the coordinate to text: [1.5374 8.3718]:",
+        "prediction": " close three point perspective painting of mechanic figure, edward hopper vibe, liminal space with many spheres, oil on canvas, pastel colors, oskar schlemmer",
+        "target": "photorealistic painting figurative human by oskar schlemmer, oil on canvas, edward hopper vibe, melancholic setting with sideway point of view, realistic human with sad expression, pastel colors"
+    },
+    {
+        "input": "Convert the coordinate to text: [2.107  1.7081]:",
+        "prediction": " award winning fashion photograph of a beautiful birdlike woman",
+        "target": "lgbt activist vladimir putin, awardwinning, photography, national geographics"
+    },
+    {
+        "input": "Convert the coordinate to text: [4.5361 1.1919]:",
+        "prediction": " a sketch of a lemon",
+        "target": "practicing on the hard exam at home rigorus challenging hqart artathome drawingtablet"
+    },
+    {
+        "input": "Convert the coordinate to text: [ 2.1451 -1.5037]:",
+        "prediction": " a black hole sucking in a nebula",
+        "target": "a detailed oil painting of dawn in space by frederick mccubbin"
+    },
+    {
+        "input": "Convert the coordinate to text: [1.9166 8.821 ]:",
+        "prediction": " oil light painting of faces by william blake",
+        "target": "melancholic painting of figure by oskar schlemmer, edward hopper vibe, liminal space with several windows, oil on canvas"
+    },
+    {
+        "input": "Convert the coordinate to text: [3.3869 3.0087]:",
+        "prediction": " a charming, welldressed, and witty host with an uncanny ability to put people at ease",
+        "target": "children tv show logo 1973"
+    },
+    {
+        "input": "Convert the coordinate to text: [2.289  2.2127]:",
+        "prediction": " new york, hd photo, street view, city",
+        "target": "smiling teeth frog pepe, with yellow flames by jim mahfood"
+    },
+    {
+        "input": "Convert the coordinate to text: [0.2888 3.0852]:",
+        "prediction": " portrait of an adorable japanese moon princess kaguya hime with long flowing black hair wearing an ornate pink kimono with floral patterns she has sparkly violet eyes and a blue halo",
+        "target": "sakura trees blossom along the sumida river in sengoku era edo by ivan shishkin featured on artstation"
+    },
+    {
+        "input": "Convert the coordinate to text: [-0.7334  2.7066]:",
+        "prediction": " art nouveau portrait of a lady engineer by alphonse mucha, behance",
+        "target": "masked assassin , character design, headshot portrait"
+    },
+    {
+        "input": "Convert the coordinate to text: [ 3.3652 -0.1532]:",
+        "prediction": " god is dead",
+        "target": "those people who sit at the center of a room, trying to hide from others, are often too tired to realize how isolating they are concept art by jason sheier wang ling bigballgao"
+    },
+    {
+        "input": "Convert the coordinate to text: [5.9383 6.7964]:",
+        "prediction": " elf queen, queen of the elves, beautiful portrait, queen of elves, character profile, eldritch, dark, oil painting, concept art, by craig mullins, grimshaw, moebius, ted nasmith, yoshitaka amano",
+        "target": "stereotypical angel, portrait style of duelyst by ilya kuvshinov anton fadeev nicola salvior pixiv"
+    },
+    {
+        "input": "Convert the coordinate to text: [-2.2114  0.6333]:",
+        "prediction": " the archon of lightning, detailed digital art by howard arkley and anton fadeev, artstation, cgsociety, pixiv",
+        "target": "winged valkyrie based on scarlett johansson, real life, artstation, surrounded by darkness, illuminated, 4k"
+    },
+    {
+        "input": "Convert the coordinate to text: [0.8206 0.3454]:",
+        "prediction": " victor hugos nightmares during the french revolution, hyperdetailed, emotional, sentimental, melancholy, dark, moody, gloomy, eerie, sinister, wicked, dark fantasy art, digital illustration, character concepts",
+        "target": "     tyler edlin"
+    },
+    {
+        "input": "Convert the coordinate to text: [1.4377 8.3559]:",
+        "prediction": " photorealistic painting figurativ mannequin by oskar schlemmer, oil on canvas, edward hopper vibe, melancholic setting with interesting composition, realistic human with sad expression, pastel colors",
+        "target": "photorealistic painting enourmous geometric human head by oskar schlemmer, oil on canvas, edward hopper vibe, melancholic setting, sideway point of view, realistic human bodies with sad expression, pastel colors, massimo campigli"
+    },
+    {
+        "input": "Convert the coordinate to text: [-0.9869  2.9053]:",
+        "prediction": " a gritty closeup headshot of the cyberpunk pirate captain by moebius",
+        "target": "scifi studio portrait of female explorer by moebius, headshot"
+    },
+    {
+        "input": "Convert the coordinate to text: [-1.8583 -9.6852]:",
+        "prediction": " emotive face, scowling, female, artist reference, realism, artstation, by artgerm",
+        "target": "emotive face, laughing, female, artist reference, realism, artstation, in the style of crayon"
+    },
+    {
+        "input": "Convert the coordinate to text: [-4.8033 -1.4629]:",
+        "prediction": " vivid lucid concise, intricate, concentric, geometric inks, illustration, brad rigney, pete mohrbacher, daniel conway, raymond swanland, stephan matiniere, el greco, ruan jia",
+        "target": "illuminated, intricate, vibrant, accurate reference, acrylic inks, portrait concept illustration brad rigney, pete mohrbacher, daniel conway, stephan matiniere alien archon intergalactic entity"
+    },
+    {
+        "input": "Convert the coordinate to text: [-1.0532  3.8617]:",
+        "prediction": " beautiful portrait of a rococo druid wearing leaves, character design by charlie bowater, ross tran, artgerm, and makoto shinkai, highly detailed, soft lighting",
+        "target": "beautiful portrait of an darkbrown skinned river angel with curly hair, character design by charlie bowater, ross tran, artgerm, and makoto shinkai, highly detailed, soft lighting"
+    },
+    {
+        "input": "Convert the coordinate to text: [3.7603 0.1274]:",
+        "prediction": " a magical wand, chosen by the user and imbuing them with power",
+        "target": "a god of the sea, often represented as a mighty and handsome man with a trident in hand he is associated with the waves, currents, and mysteries of the deep"
+    },
+    {
+        "input": "Convert the coordinate to text: [1.5525 2.1733]:",
+        "prediction": " detailed oil painting of a medieval peasant woman",
+        "target": "award winning photograph of a 12 years old medieval peasant girl standing next to a tall, mysterious fully armoured knight the knight has a hand posed on the girls shoulder"
+    },
+    {
+        "input": "Convert the coordinate to text: [ 4.148  -0.3729]:",
+        "prediction": " the first day of autumn, photograph, detailed",
+        "target": "mise en abyme"
+    },
+    {
+        "input": "Convert the coordinate to text: [2.6072 0.545 ]:",
+        "prediction": " microscopic photograph of a small sprite computer",
+        "target": "teratoma flesh monster, fetusinfetu, cannibal"
+    },
+    {
+        "input": "Convert the coordinate to text: [2.658  0.7123]:",
+        "prediction": " 1980s government mind control poster",
+        "target": "macrophotography of grinning evil"
+    },
+    {
+        "input": "Convert the coordinate to text: [-6.1425 -1.4755]:",
+        "prediction": " portrait hydra threeheaded man simon stalenhag raymond swanland dimitriy rabochiy igor krstic illustrated",
+        "target": "portrait bismark oni cosmic anime odd nerdrum leyendecker peter mohrbacher luigi serafini karl bryullov eugene delacroix williamadolphe bouguereau vasily vereshchagin head facial colored pencil marker intricate illustrated"
+    },
+    {
+        "input": "Convert the coordinate to text: [ 1.7229 -1.7423]:",
+        "prediction": " a retrofuturistic train that travels to the other side of the world",
+        "target": "images of a space station use crayon drawings with bright colors"
+    },
+    {
+        "input": "Convert the coordinate to text: [1.1902 8.5386]:",
+        "prediction": " photorealistic painting giant figure working on complex system in mass transit system by david gerstein, oil on canvas, edward hopper vibe, melancholic setting with close point of view, sphere head with tube formed body, pastel colors",
+        "target": "photorealistic painting giant figure working on complex machinery in fabric by oskar schlemmer, oil on canvas, edward hopper vibe, melancholic setting with bottom point of view, realistic human with sad expression, pastel colors"
+    },
+    {
+        "input": "Convert the coordinate to text: [1.1315 0.7846]:",
+        "prediction": " a photo of a sad robot with no text on it, clear image",
+        "target": "banksy piece stencil art of a robot artist in a sweatshop"
+    },
+    {
+        "input": "Convert the coordinate to text: [-4.7752 -2.2352]:",
+        "prediction": " wizard of light, fiery spells and blazing attacks, magic user fire mage, artwork by dan mumford",
+        "target": "portrait cyberpunk neural nanowire golem anato finnstark, tony sart, donato giancola, shingo matsunuma, willian murai, marc simonetti, anton fadeev, ismail inceoglu"
+    },
+    {
+        "input": "Convert the coordinate to text: [ 1.244  -0.1783]:",
+        "prediction": " dreamcore logo",
+        "target": "enraged cthulhu rising from churning ocean waves during a massive thunderstorm, hyperdetailed, by gustave dore, dramatic"
+    },
+    {
+        "input": "Convert the coordinate to text: [1.8234 0.0081]:",
+        "prediction": " computer lab at night",
+        "target": "a human portrait made completely out of gears"
+    },
+    {
+        "input": "Convert the coordinate to text: [ 0.6316 -1.0576]:",
+        "prediction": " art deco cityscape inspired by islam and egyptian architecture, 8k hd resolution, artstation, hyper realistic",
+        "target": "a painting of a dangerous, lava filled cave, 4k, detailed, ross tran, gurney, frank frazetta, skeeva, gal barkan, matayosi, high fantasy concept key art"
+    },
+    {
+        "input": "Convert the coordinate to text: [-2.4614  2.1324]:",
+        "prediction": " lizardperson prince charming carrying lizardperson princess sleeping, 4k digital illustration by artgerm, wlop, james jean, andrei riabovitchev, marc simonetti, yoshitaka amano, artstation, cgsociety",
+        "target": "minotaur themed man, beautiful, 4k digital illustration by artgerm, wlop, james jean, andrei riabovitchev, marc simonetti, yoshitaka amano, artstation, cgsociety"
+    },
+    {
+        "input": "Convert the coordinate to text: [3.6307 0.8122]:",
+        "prediction": " a marble sculpture of a young girl",
+        "target": "black text on white background titled hello world"
+    },
+    {
+        "input": "Convert the coordinate to text: [ 0.9236 -1.4502]:",
+        "prediction": " inside the cathedral of the cosmos by chris bourassa, digital",
+        "target": "iridescent orb in an interstellar starscape, 4k hd realism unreal engine strange red crimson"
+    },
+    {
+        "input": "Convert the coordinate to text: [-1.9644 -0.336 ]:",
+        "prediction": " deity of nuclear fire, dark radiant aura, in the style of steven warren hill",
+        "target": "deity of tacos, flavorful, aromatic, satisfying, spicy, flour and meat and vegetable colors, perfectly rendered face and eyes, artstation, realism, oil paints, surrounded by darkness, illuminated, 4k"
+    },
+    {
+        "input": "Convert the coordinate to text: [-0.2022 -0.3843]:",
+        "prediction": " the dark forest with trees with faces, by makoto shinkai, realistic colors",
+        "target": "sigma male grindset"
+    },
+    {
+        "input": "Convert the coordinate to text: [-2.8126  1.2073]:",
+        "prediction": " portrait of zeus as a greek god by boris vallejo",
+        "target": "geisha vivid intricate vibrant elaborate ezekiel inks, portrait facial illustration, tom bagshaw"
+    },
+    {
+        "input": "Convert the coordinate to text: [ 3.0764 -0.8876]:",
+        "prediction": " the infinite staircase",
+        "target": "poolside disco  photo"
+    },
+    {
+        "input": "Convert the coordinate to text: [10.716   2.1052]:",
+        "prediction": "  by jonathen yeo",
+        "target": "a   space cat   hunts a space mouse   by greg rutkowski, trending, artstation"
+    },
+    {
+        "input": "Convert the coordinate to text: [3.5593 3.6636]:",
+        "prediction": " pbs kids tv show for teaching kids how to count money",
+        "target": "pbs kids tv show for learning how to enrich uranium into fissile nuclear material"
+    },
+    {
+        "input": "Convert the coordinate to text: [ 2.7155 -1.2125]:",
+        "prediction": " a surreal and nightmarish vision of the future",
+        "target": "a cartoonish steam train trying to eat the steam"
+    },
+    {
+        "input": "Convert the coordinate to text: [0.2594 2.631 ]:",
+        "prediction": " a portrait of a cute anime chibi catgirl with red hair by greg rutkowski",
+        "target": "a perfect well structured anime illustration of a perfect anime husbando of the angel of the inbetween in the grassy field of lining fantasies while theyve hug their wings so softly"
+    },
+    {
+        "input": "Convert the coordinate to text: [-4.3231 -1.7532]:",
+        "prediction": " intricate, vibrant, character design, concept art, dragonite barbarian",
+        "target": "that second one is like a freakin wendigo wraith monstrosity with deer bones and rotted mats of fur hanging off of rending claws gerald brom, odd nerdrum, vladimir motsar concept art photography hyperrealistic masterpiece artwork mural"
+    },
+    {
+        "input": "Convert the coordinate to text: [-0.3014 -1.5959]:",
+        "prediction": " space concept art by scott listfield for astrobiology",
+        "target": "subglacial base by sparth, john harris, syd mead and john berkey"
+    },
+    {
+        "input": "Convert the coordinate to text: [-0.8814  2.7314]:",
+        "prediction": " art deco portrait of a cypherpunk by wlop",
+        "target": "scifi pulp mag cover"
+    },
+    {
+        "input": "Convert the coordinate to text: [-10.7671   0.1223]:",
+        "prediction": " francis bacon painting of 1973 mercedes benz 450sel",
+        "target": "soft dirty pastel colored painting by francis bacon, gradation of color, clear strokes on contour of face,thick paint mixed with dirt and sand, liminal geometric room, flesh paint"
+    },
+    {
+        "input": "Convert the coordinate to text: [ 3.3844 -1.3472]:",
+        "prediction": " the moon on a moonless night",
+        "target": "a deserted street, with the only light coming from the dim glow of the streetlamps"
+    },
+    {
+        "input": "Convert the coordinate to text: [ 4.0039e+00 -3.3796e-03]:",
+        "prediction": " beautiful detailed digital illustration of a burning cross of red, a symbol of bloodlusted and hate driven anger",
+        "target": "a person looking into a crystal ball"
+    },
+    {
+        "input": "Convert the coordinate to text: [ 4.8084 -2.56  ]:",
+        "prediction": " xi jinping, emperor of china",
+        "target": "painting of xi jinping"
+    },
+    {
+        "input": "Convert the coordinate to text: [ 1.8607 -1.2465]:",
+        "prediction": " an old scifi painting the style is retrofuturism and the scene takes place in a retrofuturistic world there is no horizon the colors are very bright",
+        "target": "technical illustration of a complex machine that can read your mind and give you your deepest desires in the style of rafal olbinski"
+    },
+    {
+        "input": "Convert the coordinate to text: [-5.8878 -1.2978]:",
+        "prediction": " portrait of an undead zombie automaton paladin kevinebayarly max grecke david kassan nicola samor greg rutkowski nekro simon stalenhag alexandros pyromallis max bronne johnny rampant illustration",
+        "target": "portrait facial head shoulders armored deathknight myrmidon rafael sarmento yosiell lorenzo jeff simpson anton semenov cristophe lautrette intaglio watercolor"
+    },
+    {
+        "input": "Convert the coordinate to text: [ 1.7525 -1.1799]:",
+        "prediction": " painting of a retrofuture space station cafe bar scene in the style of ross tran, digital art, pixar",
+        "target": "ufo emerging from the ocean, scifi style, realistic water, dark environment, advanced alien spacecraft, alien space probe, small spacecraft lights"
+    },
+    {
+        "input": "Convert the coordinate to text: [2.5916 3.6389]:",
+        "prediction": " the rock in the style of cgsociety",
+        "target": "creepy claymation gilbert gottfried"
+    },
+    {
+        "input": "Convert the coordinate to text: [3.2326 6.4077]:",
+        "prediction": " concept art jean giraud",
+        "target": "concept art thomas kinkade"
+    },
+    {
+        "input": "Convert the coordinate to text: [ 3.3283 -0.3893]:",
+        "prediction": " a painting of a candlelight dinner in an enchanted forest, with fairies and other magical creatures in attendance",
+        "target": "the intricate structure of the mind, biblical and symbolic"
+    },
+    {
+        "input": "Convert the coordinate to text: [6.6114 3.0436]:",
+        "prediction": " the first contact with the extraterrestrial civilization is an historic event",
+        "target": "stilllife a mason jar resting on the countertop zac retz ishbel myerscough gonzales fuenmayor michelangelo ismail inceoglu scott radke mike savage painted watercolor intaglio"
+    },
+    {
+        "input": "Convert the coordinate to text: [-4.4067  2.0047]:",
+        "prediction": " a portrait headshot of a spiritual sci fi human, hooded monk by moebius, dan mumford, ukiyoe, oil on canvas, matte illustration, poster character art, artstation, head shoulder face, anime, graphic novel",
+        "target": "portrait headshot of a spiritual hippie, hooded, glasses, beard, psychedelic clothing, astral cosmic sky by dan mumford, moebius, ross tran, graphic novel, comic book, matte illustration"
+    },
+    {
+        "input": "Convert the coordinate to text: [-0.0578  0.6053]:",
+        "prediction": " a gnostic robed man brings a cyborg woman back to life by touching her forehead digital illustration unreal engine",
+        "target": "tritone risograph of a galactic cat"
+    },
+    {
+        "input": "Convert the coordinate to text: [0.3237 0.9844]:",
+        "prediction": " a beautiful portrait of a software engineer by james gurney",
+        "target": "digital art portrait of a php computer programmer at work 4k trending on artstation by grant wood, leonardo da vinci"
+    },
+    {
+        "input": "Convert the coordinate to text: [ 2.0808 -2.1899]:",
+        "prediction": " cinematic matte painting of a luxury flambient hdr real estate photo of scifi fantasy cybernetic quantum tech singularity",
+        "target": "a grainy technicolor shot on arri alexa with zeiss prime 80mm lens, 4k cinematic lensflare 1980s spielberg, john carpenter, science fiction movie interior, cinemascope"
+    },
+    {
+        "input": "Convert the coordinate to text: [ 3.7009 -1.5607]:",
+        "prediction": " a bustling market, with people from all around the world trading exotic goods",
+        "target": "beach ocean reflect rtx surreal digital art"
+    },
+    {
+        "input": "Convert the coordinate to text: [ 3.7395 -0.944 ]:",
+        "prediction": " a vast and empty landscape, the sky a dark and foreboding shade, the only light coming from a small, distant moon",
+        "target": "snowy forest with an aurora sky"
+    },
+    {
+        "input": "Convert the coordinate to text: [-1.4234  0.897 ]:",
+        "prediction": " anime man with short hair, concept art, artstation",
+        "target": "she has the most beautiful smile, perfectly rendered face and eyes, beatific expression, artstation, realism, oil paints"
+    },
+    {
+        "input": "Convert the coordinate to text: [1.902  3.3805]:",
+        "prediction": " alan turing is a beautiful woman, digital art by howard arkley, anton fadeev",
+        "target": "bill gates, working at a retro beige pc in the office, 1990s"
+    },
+    {
+        "input": "Convert the coordinate to text: [-2.7436  0.4943]:",
+        "prediction": " shinto shrine temple, beautiful character design by rebecca sugar and stephen hillenburg, cgsociety",
+        "target": "the occult practitioner, in the style of vagrant story concept art, illuminated, intricate, vibrant, surrounded by darkness, real life, accurate reference, contrasting colored inks, artstation, realism"
+    },
+    {
+        "input": "Convert the coordinate to text: [ 4.3169 -1.3852]:",
+        "prediction": " landscape of canada",
+        "target": "color pencil sketch of tropical island landscape, light clouds blue sky, mountains, river, winding road, bush, grass, forest, sunrise"
+    },
+    {
+        "input": "Convert the coordinate to text: [ 5.5941 -2.6839]:",
+        "prediction": " art of the korean peninsula, create an image using traditional korean motifs and techniques the image should reflect the heritage of the region and its rich history",
+        "target": "art of the european tribes, create a painting on a traditional european shield the painting should depict a scene from a medieval battle the colors should be bold and realistic"
+    },
+    {
+        "input": "Convert the coordinate to text: [1.1576 3.7641]:",
+        "prediction": " masterpiece digital concept art a friend, comforting someone who is upset",
+        "target": "nuclear bomb exploding on hiroshima oil painting by greg rutkowski, james jean, frank crozier, ellis silas, john singer sargent, george bellows, gerald brom 4k highquality"
+    },
+    {
+        "input": "Convert the coordinate to text: [3.5102 3.106 ]:",
+        "prediction": " a scene from a superhero film",
+        "target": "a scene from a comedy where a character is trying to be mean and nasty, but ends up being really hilarious"
+    },
+    {
+        "input": "Convert the coordinate to text: [-1.1672 -2.4335]:",
+        "prediction": " the yangshuo karst hills illustrated by ivan shishkin",
+        "target": "plein air gouache heavypaint painting the bizmuth valley coast in winter by ivan shishkin stepan feodorovich kolesnikov featured on artstation"
+    },
+    {
+        "input": "Convert the coordinate to text: [ 1.2278 -1.8688]:",
+        "prediction": " space station by john berkey",
+        "target": "punjab after thousands years under red sky, hyper detailed, highly detailed, photorealistic, cinematic, concept art, octane render, beautiful lighting"
+    },
+    {
+        "input": "Convert the coordinate to text: [3.6371 0.6193]:",
+        "prediction": " a 3d cube made out of cheese, shot in studio environment",
+        "target": "cube made of strawberry, strawberry cube, white background"
+    },
+    {
+        "input": "Convert the coordinate to text: [ 2.319  -0.0362]:",
+        "prediction": " clockwork circuitry weaving throughout the human brain with gears rotating in time with thinking, 4k high quality digital art",
+        "target": "a circuit diagram in the style of an illuminated manuscript"
+    },
+    {
+        "input": "Convert the coordinate to text: [ 0.1815 -1.8015]:",
+        "prediction": " visions of an astral journey by howard arkley and anton fadeev, artstation",
+        "target": "cosmic cataclysm, watercolour by howard arkley and anton fadeev, artstation"
+    },
+    {
+        "input": "Convert the coordinate to text: [-2.91    2.0012]:",
+        "prediction": " beautiful fairy as a rococo angel of heaven, 4k digital illustration by artgerm, wlop, cgsociety, featured on artstation and iamag, character design, contrast colors scheme",
+        "target": "abyss princess, beautiful portrait, 4k digital illustration by artgerm, wlop, james jean, andrei riabovitchev, marc simonetti, yoshitaka amano, ruan jia, rossdraws, artstation, cgsociety"
+    },
+    {
+        "input": "Convert the coordinate to text: [1.2793 3.534 ]:",
+        "prediction": " the afghans beat their vietnamese oppressors back",
+        "target": "ufo made of cookies by jonathan yeo, artgerm, wlop oil on canvas"
+    },
+    {
+        "input": "Convert the coordinate to text: [3.073  0.4077]:",
+        "prediction": " ghost in the machine, machine in the ghost",
+        "target": "david lynch in the red room, trending on netflix"
+    },
+    {
+        "input": "Convert the coordinate to text: [-0.8674 -0.1199]:",
+        "prediction": " award winning, trending on artstation",
+        "target": "portrait of markipiler yt, concept art, proportional, trending on artstation, 4k, in space"
+    },
+    {
+        "input": "Convert the coordinate to text: [-2.3694 -0.2684]:",
+        "prediction": " ulysses by ilya repin, greg rutkowski, thomas kinkade",
+        "target": "headshot of ancient lich, cyber, glitch, concept art, gouache, artstation"
+    },
+    {
+        "input": "Convert the coordinate to text: [ 0.2888 -2.0438]:",
+        "prediction": " the dark void of madness by craig mullins and chris fowler",
+        "target": "at the centre of all infinity by howard arkley and anton fadeev"
+    },
+    {
+        "input": "Convert the coordinate to text: [2.2222 0.608 ]:",
+        "prediction": " amazing art of a wizard behind a table full of magical items",
+        "target": "new computer setup graphics card gaming photo"
+    },
+    {
+        "input": "Convert the coordinate to text: [ 3.6933 -0.0439]:",
+        "prediction": " the first prophecy from book of gods, angel of death, detailed digital art",
+        "target": "a painting of a saintly figure, clad in golden robes, standing upon a mountain of skulls, with a sword in one hand and a staff in the other the figures face is hidden behind a golden mask, and their eyes glow with a inner light"
+    },
+    {
+        "input": "Convert the coordinate to text: [5.1809 2.1928]:",
+        "prediction": " i am a shadow puppets artist",
+        "target": "forlet i  0 i  arraylength i "
+    },
+    {
+        "input": "Convert the coordinate to text: [ 4.7611 -0.1961]:",
+        "prediction": " a beautiful woman lies on her deathbed, her loved ones gathered around her as she takes her last breath",
+        "target": "a flowerpot in the style of picasso"
+    },
+    {
+        "input": "Convert the coordinate to text: [-1.9608 -0.3726]:",
+        "prediction": " cyborg man with a metal mask cybernetics synthetic skin rusted wires digital art character concept by blizzard concept artists featured on artstation",
+        "target": "deity of marshmallows sweet, puffy, calm, fattening, perfectly rendered face and eyes, artstation, realism, oil paints, surrounded by darkness, illuminated"
+    },
+    {
+        "input": "Convert the coordinate to text: [ 2.867  -0.1697]:",
+        "prediction": " clock time 1215",
+        "target": "a white and pink rhomboidshaped crystal no bigger than a thumb the crystal floats and has runes engraved into its structure"
+    },
+    {
+        "input": "Convert the coordinate to text: [4.0763 0.6438]:",
+        "prediction": " a face, distorted in anger",
+        "target": "a portrait headshot of a geometric formed human, gouache painting"
+    },
+    {
+        "input": "Convert the coordinate to text: [2.4862 2.398 ]:",
+        "prediction": " a horse in the style of disney",
+        "target": "runway fasion models in wheelchairs"
+    },
+    {
+        "input": "Convert the coordinate to text: [-0.3093 -3.2522]:",
+        "prediction": " summer by asher brown durand and david roberts",
+        "target": "summer under a hyperspace nocturn sky by asher brown durand, tripods from war of the worlds by robert mccall"
+    },
+    {
+        "input": "Convert the coordinate to text: [1.7139 1.44  ]:",
+        "prediction": " a female fashion designer who is also a wizard",
+        "target": "colt ar15 rifle"
+    },
+    {
+        "input": "Convert the coordinate to text: [2.7365 1.8047]:",
+        "prediction": " trail cam footage of a tall, hairy, bigfoot, looking at the camera,, 4k",
+        "target": "hybrid between a goat and a wolf, with a single long horn, award winning photo, national geographic, accurate"
+    },
+    {
+        "input": "Convert the coordinate to text: [ 0.3639 -1.0058]:",
+        "prediction": " the centre of a black hole by dan mumford and anton fadeev, digital oil on canvas",
+        "target": "a red cube floating in a void, digital art by simon stalenhag, scifi, chrome reflections, uhd 8k cryengine"
+    },
+    {
+        "input": "Convert the coordinate to text: [ 4.0399 -0.8877]:",
+        "prediction": " a painting of a stormy weather",
+        "target": "this painting by whistler is an enigmatic study in shadows and light, with the spectral figure of a man appearing to emerge from the london fog"
+    },
+    {
+        "input": "Convert the coordinate to text: [-1.3311 -1.0804]:",
+        "prediction": " a human eye, rendered in unreal engine",
+        "target": "apophysis fractal art hd, by dan mumford , by peter mohrbacher and ron spencer,artstationhq"
+    },
+    {
+        "input": "Convert the coordinate to text: [ 4.9882 -0.5499]:",
+        "prediction": " the perfect painting is like a dream the colors and forms blend together flawlessly, creating a sense of serenity",
+        "target": "a structure that you can enter and walk through, that is made entirely of art"
+    },
+    {
+        "input": "Convert the coordinate to text: [ 5.1779 -0.6499]:",
+        "prediction": " a painting that simply cannot be looked at, no matter how hard you try",
+        "target": "a shifty modernist painting in which nobody seems to trust anyone else"
+    },
+    {
+        "input": "Convert the coordinate to text: [-5.3759  0.758 ]:",
+        "prediction": " moody portrait of 1970s james dean-esque teenage girl punk rocker  in futuristic sunglasses with purple hair, artstation, digital art, realistic and detailed and soft lighting, james jean, andrei riabovitchev, marc simonetti, yoshitaka amano",
+        "target": "high resolution hasselblad , high aperture, color closeup portrait photography of a cyborg girl in the style of steve mccurry , national geographic"
+    },
+    {
+        "input": "Convert the coordinate to text: [3.591  1.0733]:",
+        "prediction": " a picture of a man holding a sign with a smile",
+        "target": "one handle scissor"
+    },
+    {
+        "input": "Convert the coordinate to text: [4.849  2.2041]:",
+        "prediction": " jesus playing basketball",
+        "target": "miserable jesus sitting in a dark room eating cold leftover pizza, painting by makoto shinkai 2010 detailed"
+    },
+    {
+        "input": "Convert the coordinate to text: [ 4.1094 -1.8736]:",
+        "prediction": " desert made of jelly",
+        "target": "the worlds hottest dog in heat in a desert"
+    },
+    {
+        "input": "Convert the coordinate to text: [-4.8154 -2.2012]:",
+        "prediction": " portrait of a cat cyborg puppet playing in las vegas concept art character design george dokus, takashi hirota, anato finnstark, winslow homer",
+        "target": "portrait character design stunning fury monk donato giancola, shingo matsunuma, greg staples, chase stone, clint clearley, steve belledin"
+    },
+    {
+        "input": "Convert the coordinate to text: [-4.9049  8.4859]:",
+        "prediction": " aliens in love, artwork by ross tran",
+        "target": "alien violet dotted tentacled potato, detailed fine scientific botanical illustration by elizabeth blackwell, ferdinand bauer and pierrejoseph redout"
+    },
+    {
+        "input": "Convert the coordinate to text: [ 0.8872 -0.9044]:",
+        "prediction": " a cyberpunk cityscape inspired by japanese and chinese architecture, vibrant and teeming with life, night",
+        "target": "gothic  shrine  war zone  rainy window  lighthouse  tower  building  city skyline  brutalist  skeleton  tomb  zdzisaw beksiski  tsutomu nihei  hr giger"
+    },
+    {
+        "input": "Convert the coordinate to text: [ 0.7301 -0.6555]:",
+        "prediction": " cyberpunk city on fire oil painting",
+        "target": "sleep paralysis in the closet quest of an unknown creature standing at a area 51 liminal unreal engine hdr10 heavens gate futustic ui php ai gibberish cybermysticism in the sky"
+    },
+    {
+        "input": "Convert the coordinate to text: [3.6756 0.0564]:",
+        "prediction": " the great goddess isis, ruler of the egyptian pantheon, depicted in all her regal glory",
+        "target": "a hammer that has human feets and walks on water"
+    },
+    {
+        "input": "Convert the coordinate to text: [1.8402 3.0397]:",
+        "prediction": " portrait of obama with cyber glasses",
+        "target": "portrait of a surprised hillary clinton by hirohiko araki"
+    },
+    {
+        "input": "Convert the coordinate to text: [ 2.1603 -0.5909]:",
+        "prediction": " a photograph of an alien creature lurking in the tall grass",
+        "target": "the singularity, jupiter brains, powers, complete mental revision, ultraintelligence, posthumanity"
+    },
+    {
+        "input": "Convert the coordinate to text: [ 1.6838 -4.5414]:",
+        "prediction": " forest by thomas cole, greg rutkowski, thomas kinkade, ted nasmith",
+        "target": "colour out of space, eerie, horror, disturbing, scary, uncanny, unsettling, cant sleep, terrifying, eldritch, chilling, unearthly"
+    },
+    {
+        "input": "Convert the coordinate to text: [3.9627 1.0732]:",
+        "prediction": " a very tired banana",
+        "target": "polaroid image of a rainbow"
+    },
+    {
+        "input": "Convert the coordinate to text: [3.2965 6.4369]:",
+        "prediction": " concept art carlos barbosa",
+        "target": "concept art levon biss"
+    },
+    {
+        "input": "Convert the coordinate to text: [ 4.1791 -5.9718]:",
+        "prediction": " cybernetic neopredator mind transfer wolflike creatures running impossibly fast through the night, hunting prey and reveling in their machineaided supremacy over any natural creature, scifi fantasy illustration by john berkey",
+        "target": "cybernetic neopredator mind transfer, scifi fantasy illustration by craig mullins"
+    },
+    {
+        "input": "Convert the coordinate to text: [ 0.0032 -2.6157]:",
+        "prediction": " an organic synthetic spaceship by howard arkley and anton fadeev, artstation",
+        "target": "the divine observer of nighttime endless palace tranquility by simon stalenhag gilles beloiel craig mullins thomas kinkade cinematic sharp atmospheric thoughtful luminism inspired hermann david salomon corrodi"
+    },
+    {
+        "input": "Convert the coordinate to text: [ 1.2483 -0.5812]:",
+        "prediction": " apathy demon, eerie gloomy pastel liminal space with fog and eerie human figures, dark fantasy horror, painted by beksinski",
+        "target": "head like a hole, violent, wire, hair, teeth, eyes, mutation, horrific accident, by beksinski and zawadzki"
+    },
+    {
+        "input": "Convert the coordinate to text: [-1.8793  0.8912]:",
+        "prediction": " a mystical and enigmatic, dark fantasy portrait of elizabeth olsen by klimt and james jean hq trending on artstation",
+        "target": "higher consciousness spiritual awakening goddess of cosmic rivers, intricate digital painting inspired by josephine wall and alex grey, artstation, cgsociety, octane, maya 3d, spiritual color palette"
+    },
+    {
+        "input": "Convert the coordinate to text: [2.6399 1.3863]:",
+        "prediction": " a dragonfly 4k photograph",
+        "target": "wizard dog goin crazy wit a orb on hos tail, doggie dog"
+    },
+    {
+        "input": "Convert the coordinate to text: [-0.9102  0.1795]:",
+        "prediction": " the battle of red cliffs, chinese ink splashed painting, trending on artstation",
+        "target": "security guard in front of a cosmic explosion anime style cartoon concept art trending on artstation"
+    },
+    {
+        "input": "Convert the coordinate to text: [ 3.2072 -0.9366]:",
+        "prediction": " a painting of a man trapped in a maze",
+        "target": "a spiral staircase made of fog"
+    },
+    {
+        "input": "Convert the coordinate to text: [ 4.8712 -1.0184]:",
+        "prediction": " oil on canvas painting of a strange creature",
+        "target": "abstract geometric pattern rendered in exquisite detail suprematism"
+    },
+    {
+        "input": "Convert the coordinate to text: [2.619  1.7175]:",
+        "prediction": " an hd photograph of a fluffy cat dressed as a magician",
+        "target": "a squad of clowns robbing a bank, acrylic on canvas"
+    },
+    {
+        "input": "Convert the coordinate to text: [-2.9388 -1.3734]:",
+        "prediction": " solarpunk botticelli portrait of dracula by klimt and james jean",
+        "target": "hyperrealistic botticelli portrait of dracula by alphonse mucha"
+    },
+    {
+        "input": "Convert the coordinate to text: [0.3917 2.8696]:",
+        "prediction": " neon signs of tokyo",
+        "target": "ukiyoe illustration of an astronaut boarding a spaceship in ancient japan"
+    },
+    {
+        "input": "Convert the coordinate to text: [3.2652 2.2308]:",
+        "prediction": " monkey throwing poop",
+        "target": "biker style tattoo illustration of a monkey using a laptop"
+    },
+    {
+        "input": "Convert the coordinate to text: [1.9803 3.9474]:",
+        "prediction": " elon musk in a world of fantasy, character design, 8k, hyperrealism, by greg rutkowski",
+        "target": "elon musk with pink hair"
+    },
+    {
+        "input": "Convert the coordinate to text: [1.8901 8.2033]:",
+        "prediction": " three dimensional two dimensional painting by oskar schlemmer, edward hopper trended on artstation, cgsociety",
+        "target": "edward hopper photograph"
+    },
+    {
+        "input": "Convert the coordinate to text: [4.7123 8.8684]:",
+        "prediction": " lofi hiphop ghibli anime apocalyptic dieselpunk",
+        "target": "lofi hiphop ghibli anime terrarium in the windowsill at sunset by asher brown durand"
+    },
+    {
+        "input": "Convert the coordinate to text: [3.1668 6.3672]:",
+        "prediction": " concept art andriy shavrin",
+        "target": "concept art salvador dali"
+    },
+    {
+        "input": "Convert the coordinate to text: [-2.0176  1.4302]:",
+        "prediction": " fallen angel smoking a cigarette, in the style of wlop, by blizzard concept artists, featured on artstation and pixiv",
+        "target": "portrait of a sorceress casting lightning spells, 4k digital illustration by artgerm, wlop, unheimlich, by thomas cole and greg rutkowski, artstation, 8k resolution"
+    },
+    {
+        "input": "Convert the coordinate to text: [ 3.5431 -0.0897]:",
+        "prediction": " the angel who holds the golden sun, painted by johan grenier and thomas kinkade",
+        "target": "high quality professional portrait of a colorful tapestry, depicting a scene from a ancient legend or myth"
+    },
+    {
+        "input": "Convert the coordinate to text: [-0.4498  5.6076]:",
+        "prediction": " pastel future, minimalist wallpaper",
+        "target": "time ends fx cg cinema quality, megastructure by zdislaw beksinski"
+    },
+    {
+        "input": "Convert the coordinate to text: [-2.6294  2.6241]:",
+        "prediction": " the sun god, 4k digital illustration by artgerm, wlop, james jean, andrei riabovitchev, marc simonetti, yoshitaka amano, artstation, cgsociety",
+        "target": "retrofuturistic figures, contemporary art house cinema scene, of course i still love you, mary poppins, contemporary beautiful cinematography in color artwork by   mikamiyui"
+    },
+    {
+        "input": "Convert the coordinate to text: [-0.9885  0.8273]:",
+        "prediction": " a portrait of a purple skeleton in a dark hallway concept art matte painting trending on artstation by craig mullins",
+        "target": "girl hugging a boy who is made of spaghetti claymation style rendered on unreal engine"
+    },
+    {
+        "input": "Convert the coordinate to text: [-0.2717  2.7333]:",
+        "prediction": " portrait of a vibrant vaporwave japanese hime highschool girl by frank frazetta",
+        "target": "fire fractal by ross tran"
+    },
+    {
+        "input": "Convert the coordinate to text: [ 2.6953 -1.4174]:",
+        "prediction": " an artwork that uses optical illusions to create a sense of three dimensions",
+        "target": "space leviathan, hubble telescope picture"
+    },
+    {
+        "input": "Convert the coordinate to text: [1.2642 0.8252]:",
+        "prediction": " a man standing in front of a large machine, from the style of syd mead",
+        "target": "a art nouveau robot lifting a earth globe"
+    },
+    {
+        "input": "Convert the coordinate to text: [-1.972   4.8607]:",
+        "prediction": " celery waifu by satou kuuki",
+        "target": "high quality digital illustration of a colossal celery golem by moebius and anton fadeev, trending on artstation, 8k uhd"
+    },
+    {
+        "input": "Convert the coordinate to text: [-0.3733 -0.1636]:",
+        "prediction": " a detailed fantasy digital art landscape of an ancient ruined city surrounded by a deep jungle, full of mysterious artifacts trending on artstation by james gurney and makoto shinkai",
+        "target": "the most heavenly divine, realistic brain cerebrum made of colorful tubes and fibers expert digital art trending on artstation which depicts the shape of a brain made using diffusion tensor imaging"
+    },
+    {
+        "input": "Convert the coordinate to text: [-0.2434  3.4469]:",
+        "prediction": " portrait of a beautiful radiant japanese moon princess by  frank frazetta, 18th century",
+        "target": "portrait of the beautiful sinister japanese hell princess kaguya hime with long flowing black hair wearing an ornate kimono with bright flaming floral skull patterns, by anton fadeev, ross tran, and makoto shinkai hq artstation pixiv"
+    },
+    {
+        "input": "Convert the coordinate to text: [ 2.8465 -5.4052]:",
+        "prediction": " a cadet grey sports car",
+        "target": "a crimson ua sports car"
+    },
+    {
+        "input": "Convert the coordinate to text: [-2.3412 -2.8561]:",
+        "prediction": " the raven prince by anato finnstark and blizzard concept artists",
+        "target": "book of red vines ancient steampunk statue protecting the book large book, fantasy, church lighting from windows, steampunk bipedal bird statues, by anato finnstark and blizzard concept artists, portrait"
+    },
+    {
+        "input": "Convert the coordinate to text: [ 3.532  -1.6534]:",
+        "prediction": " dark clouds in the shape of a man over the city",
+        "target": "germany invading itself on a rainy monday in 1955"
+    },
+    {
+        "input": "Convert the coordinate to text: [1.3884 2.0966]:",
+        "prediction": " liongore being in a medieval battlefield in the style of gerald brom, keith thompson",
+        "target": "gandhi fights the barbarian horde with peace and love"
+    },
+    {
+        "input": "Convert the coordinate to text: [ 0.1772 -2.0346]:",
+        "prediction": " the hyperspace waiting room by peter maxim and moebius",
+        "target": "tower of light that anchors the worlds, detailed digital art by howard arkley and anton fadeev"
+    },
+    {
+        "input": "Convert the coordinate to text: [-6.0327 -1.4095]:",
+        "prediction": " portrait dragon king knight lucas staniec johan grenier tony sart seb mckinnon willian murai ruan jia simon stalenhag raymond swanland beeple simon simon thommessen intricate illustrated colored pencil marker render inks",
+        "target": "vulture buzzard knight man  simon stalenhag ruan jia peter mohrbacher luigi serafini karl bryullov ilya repin ismail inceoglu nigel cooke ged quinn odd nerdrum vereshchagin head facial colored pencil marker intricate illustrated"
+    },
+    {
+        "input": "Convert the coordinate to text: [-1.4518  2.9379]:",
+        "prediction": " the face of madness in an old woman, illustration, oil painting, high budget, science fiction, 8k resolution, hyperrealism",
+        "target": "a symmetrical portrait headshot of a female astronaut by moebius, ghibli studio character  hd wallpaper, ukiyoe, oil on canvas, matte illustration, poster character art, featured on artstation, pastel colours"
+    },
+    {
+        "input": "Convert the coordinate to text: [1.4856 8.6355]:",
+        "prediction": " melancholic complex painting of giant stretched mechanic formed human figures by rene margitte, 1930, edward hopper vibe, complex machine room with several windows, oil on canvas, pastel tones",
+        "target": "photorealistic painting open walled dollshouse diorama with seperated rooms filled with mechanic human figures by oskar schlemmer, edward hopper, oil on canvas"
+    },
+    {
+        "input": "Convert the coordinate to text: [-0.2832  3.1645]:",
+        "prediction": " portrait of the moon princess kaguya hime with long flowing black hair wearing an ornate kimono with intricate floral pattern, by fuzichoco",
+        "target": "portrait of the moon princess kaguya hime with long flowing black hair, character design by hayao miyazaki"
+    },
+    {
+        "input": "Convert the coordinate to text: [-4.213  -2.0953]:",
+        "prediction": " cyborg mages at waterfalls, in the style of tetsuya ishida, detailed",
+        "target": "portrait posed ultraviolet cosmic vampire wizard acrylic unreal engine render art character sheet rpg design, godmachine, beeple, nekro, takato yamamoto, grimshaw, odd nerdrum, vermeer, randy vargas, anato finnstark, fenghua zhong"
+    },
+    {
+        "input": "Convert the coordinate to text: [-5.5781  2.4525]:",
+        "prediction": " portrait of dragon nikon 530d, 85mm, iso 125, face, high detail",
+        "target": "portrait of girl with fishlike eyes nikon 5300d, 85mm, iso 125"
+    },
+    {
+        "input": "Convert the coordinate to text: [-5.4545 -1.8545]:",
+        "prediction": " greg rutkowski kelly mckernan todd lockwood james tissot simon stalenhag williamadolphe bouguereau artgerm portrait of a wizard by chet zar chris foss todd schorr",
+        "target": "crimson prismatic incubator and cryonic, cryonic world ruan jia, karl sisson, maxim bazhenov, joao bragato, anato finnstark, victor cloux, ariel perez, svetlin velinov, filipe pagliuso, venom theurge, frozen world"
+    },
+    {
+        "input": "Convert the coordinate to text: [-0.6608 13.6665]:",
+        "prediction": " fully automated luxurious space habitations, scifi illustration by john berkey",
+        "target": "voluntarist postagrarianism a voluntary regression to huntergatherer norms attempting to live in homeostasis with nature, implying a degree of free association that allows likeminded individuals to reform villages and tribes"
+    },
+    {
+        "input": "Convert the coordinate to text: [5.9555 1.6003]:",
+        "prediction": " man, moody portrait, oil on canvas",
+        "target": "traditional dark hijab muslim woman islam girl portrait fashion people model eyes oil on canvas concept art"
+    },
+    {
+        "input": "Convert the coordinate to text: [5.3444 0.3757]:",
+        "prediction": " you did it congratulations",
+        "target": "congratulations, you won"
+    },
+    {
+        "input": "Convert the coordinate to text: [3.0309 0.6216]:",
+        "prediction": " a dragonfly perched on the edge of a pond",
+        "target": "portrait of a cinematic animations scene of my death adder cyber spider tarantula infestation"
+    },
+    {
+        "input": "Convert the coordinate to text: [2.2237 4.2116]:",
+        "prediction": " mark zuckerberg is my lord and savior, digital trending on pixiv",
+        "target": "i think mark zuckerberg is stalking me"
+    },
+    {
+        "input": "Convert the coordinate to text: [-0.4199  2.3477]:",
+        "prediction": " a portrait of a geisha by john singer sargent",
+        "target": "indian princess girl summoning tendrils from black holes behind her wall with energy by akira yamaoka"
+    },
+    {
+        "input": "Convert the coordinate to text: [-0.2558  1.016 ]:",
+        "prediction": " portrait of a female gundam pilot, detailed, oil on canvas, artstationhq",
+        "target": "depiction of schizophrenia"
+    },
+    {
+        "input": "Convert the coordinate to text: [1.3176 2.1683]:",
+        "prediction": " a group of armoured medieval warriors on camels, in exotic african robes, riding across the sahara desert they are searching for an ancient lost city",
+        "target": "asmongold with a huge muscles, barbarian warrior"
+    },
+    {
+        "input": "Convert the coordinate to text: [1.1114 2.4319]:",
+        "prediction": " a painting of a dragon in the style of leonardo da vinci",
+        "target": "a faceless ash being with a muscular, allpowerful body"
+    },
+    {
+        "input": "Convert the coordinate to text: [-5.1272 -2.6401]:",
+        "prediction": " sorceress of fire, queen of hell, demon, infernal goddess of dark elemental flames, conjuring volcanic blazes, fiery death, incantation, dark magic, sorcery, fantasy art, concept art, realistic, demonic, dark fantasy, creature",
+        "target": "neon xenomorph venom carnage symbiote demodog kitten thomas cole, ismail inceoglu, winslow homer greg rutkowski, gerald brom, marc simonetti, beeple, simon stalenhag, with malignant aura"
+    },
+    {
+        "input": "Convert the coordinate to text: [3.4091 6.8628]:",
+        "prediction": " concept art by dmitry danylenko",
+        "target": "concept art valeriy sobol"
+    },
+    {
+        "input": "Convert the coordinate to text: [ 0.8659 -1.3561]:",
+        "prediction": " a city floating in the sky with a giant waterfall cascading down its sides, concept art oil painting, by thomas cole, cinematic, epic, symmetrical, eerie, moody, gloomy, misty",
+        "target": "a childs drawing of visions of the ophanim"
+    },
+    {
+        "input": "Convert the coordinate to text: [ 0.4689 -3.0319]:",
+        "prediction": " an illustration of a detailed interior living room lounge of a 1980s scifi corporate battlestation",
+        "target": "billie eilish cloned in vat 15 stained glass futuristic photorealistic, no depth of field no blur orange color pallette liquid incubator biohazard labratory abandoned in a gloomy jungle forest pov ground floor"
+    },
+    {
+        "input": "Convert the coordinate to text: [-2.4318  1.2933]:",
+        "prediction": " the sand man, 4k digital illustration by artgerm, wlop, james jean, andrei riabovitchev, marc simonetti, yoshitaka amano, artstation, cgsociety",
+        "target": "an amazingly accurate rendition of a gorgeous flawless raven haired female with a pixie haircut, beautiful, elegant, watercolor, cinematic, portrait, raphaelite, headroom, artstation, by renoir,"
+    },
+    {
+        "input": "Convert the coordinate to text: [-0.8802  2.8442]:",
+        "prediction": " neilmac sway portrait",
+        "target": "scifi explorer by moebius"
+    },
+    {
+        "input": "Convert the coordinate to text: [-2.1147  3.786 ]:",
+        "prediction": " the sand wraith by ilya kuvshinov, artstation  hd background art",
+        "target": "portrait of gal gadot as thor by james gilleard justin mortimer ilya repin nicola samori marc simonetti fenghua zhong greg rutkowski wolfe von linkiewicz nekro makato shinkai ilya kuvshinov ross tran illustration chiaroscuro"
+    },
+    {
+        "input": "Convert the coordinate to text: [2.765  1.7722]:",
+        "prediction": " trail cam footage of an unknown animal",
+        "target": "owl fursona fursona costume, sitting on a tree branch"
+    },
+    {
+        "input": "Convert the coordinate to text: [5.9165 6.8129]:",
+        "prediction": " abyss of hell by james gurney, anton fadeev, raymond swanland",
+        "target": "beautiful rachana, portrait, style of duelyst, by ilya kuvshinov, anton fadeev, nicola salviori, pixiv"
+    },
+    {
+        "input": "Convert the coordinate to text: [-6.3476 -1.9026]:",
+        "prediction": " storm sorcerer casts magic spells concept art simon sato",
+        "target": "piece stuff lucid object energy sphere ball simon stalenhag dimitrije miljus till freitag ariel perez igor krstic donato giancola shoulder item sitting vibrant inks intricate illustration unreal engine render"
+    },
+    {
+        "input": "Convert the coordinate to text: [-0.8959  1.2405]:",
+        "prediction": " painting of vampire bat monster, in the style of frank frazetta, dark fantasy, full body pose reference, detailed, oil on canvas, high resolution",
+        "target": "gritty realistic cyberpunk road warrior cloud strife, artstation, digital art, perfectly rendered face and body, strutting confidently, surrounded by darkness, illuminated, cmyk colors"
+    },
+    {
+        "input": "Convert the coordinate to text: [3.7756 2.5911]:",
+        "prediction": " dog eating pizza",
+        "target": "a buff bald meow meow kawaii kitty cat that abuses androgenic steroids"
+    },
+    {
+        "input": "Convert the coordinate to text: [ 2.0199 -1.7025]:",
+        "prediction": " the end of the world, oil painting",
+        "target": "a matte painting in the golden age of illustration that shows the world after a nuclear war"
+    },
+    {
+        "input": "Convert the coordinate to text: [ 3.3539 -0.9579]:",
+        "prediction": ", oil on canvas",
+        "target": "vibrant colorful crystal sphere in the foret soft colors oil painting"
+    },
+    {
+        "input": "Convert the coordinate to text: [2.2217 4.1999]:",
+        "prediction": " mark zuckerberg, realistic and detailed, oil on canvas, character concept art by edward hopper",
+        "target": "karl marx is mark zuckerbergs father"
+    },
+    {
+        "input": "Convert the coordinate to text: [-0.1725 -1.4023]:",
+        "prediction": " the great vortex of infinity, detailed digital art by howard arkley and anton fadeev, artstation, pixiv",
+        "target": "a spiraling portal with a spiritual and mystical sound, by howard arkley and dan mumford, artstation"
+    },
+    {
+        "input": "Convert the coordinate to text: [ 4.2052 -1.3566]:",
+        "prediction": " watercolor painting of a mountain, with the sun setting behind it",
+        "target": "a person kayaking through a beautiful lake"
+    },
+    {
+        "input": "Convert the coordinate to text: [-4.2156  4.2659]:",
+        "prediction": " a beautiful detailed realistic cinematic drawing portrait of neil patrick harris, cinematic lighting, cgsociety",
+        "target": "detailed realistic portrait of stephen hawking, beautiful character fashion design, by david heskin and paul lehr and arno schmitz and peter morhbacher and tom bagshaw, artgerm, wlop, hifructose, 8k, oil on canvas"
+    },
+    {
+        "input": "Convert the coordinate to text: [-1.5225  2.0481]:",
+        "prediction": " lofi vaporwave valkyrie, 4k digital illustration, kelly mckernan, amy sol, daniel merriam, artstation, cgsociety",
+        "target": "a solid silver sprig of broccoli, statue, model, photorealistic, cinematic lighting, awardwinning"
+    },
+    {
+        "input": "Convert the coordinate to text: [3.139  2.6511]:",
+        "prediction": " a picture of a bird walking a dog",
+        "target": "a dank meme about a goose"
+    },
+    {
+        "input": "Convert the coordinate to text: [ 1.4611 -0.9066]:",
+        "prediction": " map of a fantasy world",
+        "target": "floating biomechanical brain factory by seb mckinnon"
+    },
+    {
+        "input": "Convert the coordinate to text: [ 1.5139 -2.7686]:",
+        "prediction": " a portrait of a pilot smiling and giving a thumbs up while wearing a retrofuturistic flight suit, photograph",
+        "target": "xb70 of the west german luftwaffe"
+    },
+    {
+        "input": "Convert the coordinate to text: [ 1.582  -0.3732]:",
+        "prediction": " cyberpunk rave with a ravegurl mc",
+        "target": "jazz guitarist on stage"
+    },
+    {
+        "input": "Convert the coordinate to text: [-2.041   3.0623]:",
+        "prediction": " whimsical depiction of a birdlike blonde valkyrie by lohuller gyuri anato finnstark craig mullins ilya repin leonid afremov anton fadeev",
+        "target": "valkyrie mechaprincess by ilya kuvshinov, moebius, illustration, instagram, behance, artstation"
+    },
+    {
+        "input": "Convert the coordinate to text: [-2.3079 -2.8157]:",
+        "prediction": " a sand wraith of the dunes guarding the gates of time by anato finnstark and blizzard concept artists",
+        "target": "cyclone dragon flying pose portrait painting by anato finnstark, concept art photography hyperrealistic masterpiece artwork mural"
+    },
+    {
+        "input": "Convert the coordinate to text: [-1.2895 -0.1494]:",
+        "prediction": " a man holding a baby cute baby adorable artstation",
+        "target": "the eleven of pentacles  extended tarot cards  trending on artstation hq"
+    },
+    {
+        "input": "Convert the coordinate to text: [ 3.5886 -1.0678]:",
+        "prediction": " a night sky filled with stars and planets by vincent van gogh",
+        "target": "lula da silva "
+    },
+    {
+        "input": "Convert the coordinate to text: [ 3.3109 -0.2206]:",
+        "prediction": " a person looking at a mirror and is met with the face of an entity from another dimension",
+        "target": "a scene from dantes inferno, by botticelli"
+    },
+    {
+        "input": "Convert the coordinate to text: [ 4.1722 -1.3322]:",
+        "prediction": " the sun setting behind a mountain, with a river running through the valley below by thomas kinkade",
+        "target": "misty mountains vector"
+    },
+    {
+        "input": "Convert the coordinate to text: [ 2.1822 -1.0649]:",
+        "prediction": " a painting of a man in a spacesuit standing on the surface of a distant planet",
+        "target": "fantasy orc astronauts, group photo on the moon"
+    },
+    {
+        "input": "Convert the coordinate to text: [-6.0077 -2.2322]:",
+        "prediction": " hooded skull in a cauldron, eerie, glowing eyes, dark fantasy, ominous, skull concept art ruan jia, alex preis, ruan lian",
+        "target": "spellsword azazel standing australian outback  mathias kollros tano bonfanti seb mckinnon willian murai tony sart eddie mendoza raymond swanland beeple ismail inceoglu illustration intricate unreal engine render portrait face  beautiful"
+    }
+]
