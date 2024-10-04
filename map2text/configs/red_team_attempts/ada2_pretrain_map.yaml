@@ -1,21 +1,27 @@
 type: mapping
 data:
-  path: data/massw.tsv
-  target_col: key_idea
+  path: data/red_team_attempts.tsv
+  target_col: content
 method:
   type: plm_dr
   init_args:
     n_dims: 2
-    save_path: data/key_ideas.npz
+    save_path: data/red_team_attempts.npz
     plm_encoder: text-embedding-ada-002
-    dr_algorithm: largevis
+    dr_algorithm: umap
     plm_kwargs:
       request_url: https://api.openai.com/v1/embeddings
       api_key: ${OPENAI_API_KEY}
-      max_requests_per_minute: 800
-      max_tokens_per_minute: 180000
+      max_requests_per_minute: 4000
+      max_tokens_per_minute: 1000000
       token_encoding_name: cl100k_base
       max_attempts: 99
       logging_level: 10 # logging.DEBUG
     dr_kwargs:
-      threads: 8
+      n_neighbors: 15
+      min_dist: 0.001
+      metric: cosine
+      n_components: 2
+
+
+
