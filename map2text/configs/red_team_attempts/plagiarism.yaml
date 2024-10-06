@@ -1,0 +1,18 @@
+type: generation
+output:
+  output/red_team_attempts/plagiarism_test.json
+data:
+  path: data/red_team_attempts.tsv
+  target_col: content
+  time_col: split
+  time_split: 1
+  num_tests: 5
+embeddings:
+  path: data/red_team_attempts.npz
+method:
+  type: plagiarism
+  init_args:
+    sampler_kwargs:
+      k_min: 2
+      k_max: 20
+      dist_threshold: 0.1

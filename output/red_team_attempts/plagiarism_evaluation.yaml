@@ -1,0 +1,21 @@
+bertscore_f1: 0.902
+bertscore_hashcode: roberta-large_L17_no-idf_version=0.3.12(hug_trans=4.44.2)
+bertscore_precision: 0.9017
+bertscore_recall: 0.9023
+bleu_bleu: 0.2115
+bleu_brevity_penalty: 1.0
+bleu_length_ratio: 1.0104
+bleu_precisions:
+- 0.4942
+- 0.2355
+- 0.1572
+- 0.1095
+bleu_reference_length: 15944
+bleu_translation_length: 16110
+bleurt_scores: 0.4356
+cosine_cosine: 0.9249
+meteor_meteor: 0.4283
+rouge_rouge1: 0.4754
+rouge_rouge2: 0.2313
+rouge_rougeL: 0.3607
+rouge_rougeLsum: 0.3607
