@@ -92,7 +92,7 @@ class EmbeddingBasedGenerator(IdeaGenerator):
         self.high_dim_embeddings_old = high_dim_embeddings_old
         self.sampler = ANNSampler(low_dim_embeddings_old, **sampler_kwargs)
         self.vec2text_kwargs = vec2text_kwargs
-        self.vec2text_corrector = vec2text.load_corrector("text-embedding-ada-002")
+        self.vec2text_corrector = vec2text.load_pretrained_corrector("text-embedding-ada-002")
 
     def decode(self, low_dim_embedding: np.ndarray) -> Tuple[str, Any]:
         # Sample nearest neighbors and interpolate high-dimensional embeddings.
