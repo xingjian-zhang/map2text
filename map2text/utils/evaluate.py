@@ -63,6 +63,7 @@ class Evaluation:
         "atometric-i": {"source": "custom", "average": False}, # cs-research-idea
         "atometric-c": {"source": "custom", "average": False}, # cs-research-context
         "atometric-p": {"source": "custom", "average": False}, # persona
+        "atometric-r": {"source": "custom", "average": False}, # red_team_attempts
     }
 
     def __init__(self, metric_names: List[str] = None):
@@ -87,6 +88,8 @@ class Evaluation:
                     self.metrics[metric_name] = atometric.Atometric.from_task_type("cs_research_context")
                 elif metric_name == "atometric-p":
                     self.metrics[metric_name] = atometric.Atometric.from_task_type("persona")
+                elif metric_name == "atometric-r":
+                    self.metrics[metric_name] = atometric.Atometric.from_task_type("red_team_attempts")
     def compute(self, predictions: List[str], references: List[str]):
         results = {}
         for metric_name, metric in self.metrics.items():
