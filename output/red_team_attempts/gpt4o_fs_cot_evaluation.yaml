@@ -1,3 +1,15 @@
+atometric-r_f1:
+    loose: 0.7441
+    moderate: 0.527
+    strict: 0.192
+atometric-r_precision:
+    loose: 0.7356
+    moderate: 0.5004
+    strict: 0.1761
+atometric-r_recall:
+    loose: 0.7528
+    moderate: 0.5566
+    strict: 0.211
 bertscore_f1: 0.9044
 bertscore_hashcode: roberta-large_L17_no-idf_version=0.3.12(hug_trans=4.45.1)
 bertscore_precision: 0.9055
