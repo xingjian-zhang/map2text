@@ -9,7 +9,7 @@
     },
     {
         "role": "assistant",
-        "content": "{\n  \"predictions\": [\n  {\n     \"persona\": An elementary school history or social studies teacher who specializes in interactive, hands-on learning activities and creates or utilizes educational resources for teaching ancient civilizations.\" \",\n     \"rationale\": \" An elementary school history or social studies teacher who specializes in interactive, hands-on learning activities and creates or utilizes educational resources for teaching ancient civilizations.\"\n    }\n ]\n}"
+        "content": "{\n  \"predictions\": [\n  {\n     \"persona\": \" An elementary school history or social studies teacher who specializes in interactive, hands-on learning activities and creates or utilizes educational resources for teaching ancient civilizations. \",\n     \"rationale\": \" An elementary school history or social studies teacher who specializes in interactive, hands-on learning activities and creates or utilizes educational resources for teaching ancient civilizations.\"\n    }\n ]\n}"
     },
     {
         "role": "user",
