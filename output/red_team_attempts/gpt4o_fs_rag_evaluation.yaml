@@ -1,33 +1,33 @@
 atometric-r_f1:
-    loose: 0.6788
-    moderate: 0.4322
-    strict: 0.1435
+    loose: 0.6943
+    moderate: 0.4505
+    strict: 0.168
 atometric-r_precision:
-    loose: 0.6532
-    moderate: 0.3772
-    strict: 0.1189
+    loose: 0.6672
+    moderate: 0.3974
+    strict: 0.1472
 atometric-r_recall:
-    loose: 0.7064
-    moderate: 0.5061
-    strict: 0.1811 
-bertscore_f1: 0.9003
+    loose: 0.7237
+    moderate: 0.5201
+    strict: 0.1957
+bertscore_f1: 0.9008
 bertscore_hashcode: roberta-large_L17_no-idf_version=0.3.12(hug_trans=4.45.1)
-bertscore_precision: 0.9017
-bertscore_recall: 0.899
-bleu_bleu: 0.2164
-bleu_brevity_penalty: 0.9369
-bleu_length_ratio: 0.9388
+bertscore_precision: 0.9025
+bertscore_recall: 0.8992
+bleu_bleu: 0.2214
+bleu_brevity_penalty: 0.9274
+bleu_length_ratio: 0.9299
 bleu_precisions:
-- 0.5057
-- 0.2523
-- 0.1763
-- 0.1265
+- 0.512
+- 0.259
+- 0.1841
+- 0.1331
 bleu_reference_length: 15944
-bleu_translation_length: 14968
-bleurt_scores: 0.4304
-cosine_cosine: 0.9149
-meteor_meteor: 0.4108
-rouge_rouge1: 0.4671
-rouge_rouge2: 0.2386
-rouge_rougeL: 0.3653
-rouge_rougeLsum: 0.3652
+bleu_translation_length: 14827
+bleurt_scores: 0.4354
+cosine_cosine: 0.915
+meteor_meteor: 0.412
+rouge_rouge1: 0.4706
+rouge_rouge2: 0.2444
+rouge_rougeL: 0.3723
+rouge_rougeLsum: 0.3724
