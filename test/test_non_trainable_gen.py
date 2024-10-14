@@ -7,9 +7,9 @@ import pytest
 
 from map2text.utils.api import process_embedding_requests
 from map2text.model.non_trainable_gen import (
-    EmbeddingBasedGenerator,
+    EmbeddingInversionGenerator,
     PlagiarismGenerator,
-    PromptingBasedGenerator,
+    RetrievalAugmentedGenerator,
 )
 
 
@@ -53,7 +53,7 @@ class TestNonTrainableGen:
         weighted,
         sampler_kwargs,
     ):
-        generator = EmbeddingBasedGenerator(
+        generator = EmbeddingInversionGenerator(
             n_dims=2,
             data_old=data_old,
             low_dim_embeddings_old=low_dim_embeddings_old,
@@ -81,7 +81,7 @@ class TestNonTrainableGen:
     def test_prompting_based_generator(
         self, data_old, low_dim_embeddings_old, sampler_kwargs
     ):
-        generator = PromptingBasedGenerator(
+        generator = RetrievalAugmentedGenerator(
             model_name="gpt-3.5-turbo",
             prompt_type="zero-shot-prompting",
             n_dims=2,
