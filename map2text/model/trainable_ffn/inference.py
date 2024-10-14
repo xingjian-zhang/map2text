@@ -8,8 +8,8 @@ import torch.nn as nn
 from map2text.model.base import IdeaGenerator
 
 
-class EmbeddingBasedFFNGenerator(IdeaGenerator):
-    """Embedding-based idea generator.
+class EmbeddingInversionFFNGenerator(IdeaGenerator):
+    """Embedding-inversion-based idea generator.
 
     This generator uses a feed-forward network to map low-dimenional embeddings to
     high dimension, and generate new ideas based on that.
