@@ -110,6 +110,7 @@ Semantic metrics (proposed metrics):
 - `atometric-i`: Atometric for CS research ideas
 - `atometric-c`: Atometric for CS research context
 - `atometric-p`: Atometric for persona
+- `atometric-r`: Atometric for red team attempts
 
 ## Style check
 
