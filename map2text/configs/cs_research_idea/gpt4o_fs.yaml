@@ -13,7 +13,7 @@ method:
   type: prompting
   init_args:
     model_name: gpt-4o
-    prompt_type: few-shot-prompting
+    prompt_type: key_idea_few-shot-prompting
     sampler_kwargs:
       k_min: 2
       k_max: 20
