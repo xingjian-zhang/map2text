@@ -3,7 +3,7 @@
 ## Installation
 
 ```bash
-git clone git@github.com:xingjian-zhang/map2text.git --recursive
+git clone https://github.com/.../map2text.git --recursive
 ```
 
 ```bash
@@ -22,8 +22,7 @@ make map2text/external/largevis/Linux/LargeVis
 
 Currently, we have three task datasets.
 Please download the corresponding files and put them in the `data/` directory:
-[Dropbox
-Link](https://www.dropbox.com/scl/fo/79c7obtbw9b6venmzq26b/AAaCZEdteHYiC4aJBwzbpwA?rlkey=68vtihs33b2qi0as041vwaxkx&st=5jh50ebp&dl=0).
+[Google drive](https://drive.google.com/drive/folders/1LsrLyhPSgI394c8oy8IAhzL0v6MDO0Og?usp=sharing).
 
 ### Research Contexts and Ideas
 
@@ -111,6 +110,7 @@ Semantic metrics (proposed metrics):
 - `atometric-i`: Atometric for CS research ideas
 - `atometric-c`: Atometric for CS research context
 - `atometric-p`: Atometric for persona
+- `atometric-r`: Atometric for red team attempts
 
 ## Style check
 

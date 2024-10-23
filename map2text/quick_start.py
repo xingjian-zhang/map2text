@@ -115,7 +115,7 @@ class GenerationExperiment:
             )
         elif generator_type == "embedding":
             high_dim_embeddings_old = high_dim_embeddings[times < time_split]
-            generator = non_trainable_gen.EmbeddingBasedGenerator(
+            generator = non_trainable_gen.EmbeddingInversionGenerator(
                 n_dims=n_dims,
                 data_old=targets_old,
                 low_dim_embeddings_old=low_dim_embeddings_old,
@@ -123,14 +123,14 @@ class GenerationExperiment:
                 **config["method"]["init_args"],
             )
         elif generator_type == "embedding_ffn":
-            generator = trainable_ffn.EmbeddingBasedFFNGenerator(
+            generator = trainable_ffn.EmbeddingInversionFFNGenerator(
                 n_dims=n_dims,
                 data_old=targets_old,
                 low_dim_embeddings_old=low_dim_embeddings_old,
                 **config["method"]["init_args"],
             )
         elif generator_type == "prompting":
-            generator = non_trainable_gen.PromptingBasedGenerator(
+            generator = non_trainable_gen.RetrievalAugmentedGenerator(
                 target= config["data"]["target_col"],
                 n_dims=n_dims,
                 texts=targets_old,

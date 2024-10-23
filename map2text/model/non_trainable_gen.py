@@ -61,8 +61,8 @@ class PlagiarismGenerator(IdeaGenerator):
         return self.texts[indices[0]], references_to_dict(self.texts, indices, dists)
 
 
-class EmbeddingBasedGenerator(IdeaGenerator):
-    """Embedding-based idea generator.
+class EmbeddingInversionGenerator(IdeaGenerator):
+    """Embedding-inversion-based idea generator.
 
     This generator uses a (weighted) interpolation of the high-dimensional embeddings
     of the training data to generate new ideas.
@@ -115,8 +115,8 @@ class EmbeddingBasedGenerator(IdeaGenerator):
         )[0], references_to_dict(self.texts, indices, dists)
 
 
-class PromptingBasedGenerator(IdeaGenerator):
-    """Prompting-based idea generator.
+class RetrievalAugmentedGenerator(IdeaGenerator):
+    """Retrieval-augmented idea generator.
 
     This generator uses a prompting-based model to generate new ideas based
     on semantically similar ideas in the training data.
