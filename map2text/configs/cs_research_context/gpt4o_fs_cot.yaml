@@ -1,19 +1,19 @@
 type: generation
 output:
-  output/cs_research_idea/gpt4o_zs.json
+  output/cs_research_context/gpt4o_fs_cot.json
 data:
   path: data/massw.tsv
-  target_col: key_idea
+  target_col: context
   time_col: year
   time_split: 2023
   num_tests: 200
 embeddings:
-  path: data/key_idea.npz
+  path: data/context.npz
 method:
   type: prompting
   init_args:
     model_name: gpt-4o
-    prompt_type: key_idea_zero-shot-prompting
+    prompt_type: context_few-shot-cot-prompting
     sampler_kwargs:
       k_min: 2
       k_max: 20

@@ -13,7 +13,7 @@ method:
   type: prompting
   init_args:
     model_name: gpt-4o
-    prompt_type: few-shot-rag-prompting
+    prompt_type: key_idea_few-shot-rag-prompting
     rag_kwargs:
       n_examples: 5
       criteria: knn
