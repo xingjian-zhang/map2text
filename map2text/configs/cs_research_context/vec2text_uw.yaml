@@ -1,14 +1,14 @@
 type: generation
 output:
-  output/persona/vec2text_uw_persona_test.json
+  output/cs_research_idea/vec2text_uw.json
 data:
-  path: data/persona.tsv
-  target_col: persona
-  time_col: split_id
-  time_split: 1
-  num_tests: 10
+  path: data/massw.tsv
+  target_col: context
+  time_col: year
+  time_split: 2023
+  num_tests: 200
 embeddings:
-  path: data/persona.npz
+  path: data/context.npz
 method:
   type: embedding
   init_args:

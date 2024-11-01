@@ -80,7 +80,7 @@ embeddings in `data/*.npz`.
 ### Generate new ideas (generation subtask)
 
 ```bash
-python map2text/quick_start.py map2text/configs/<method_name>_gen.yaml
+python map2text/quick_start.py map2text/configs/<method_name>.yaml
 ```
 
 ### Evaluate generation results
@@ -111,6 +111,9 @@ Semantic metrics (proposed metrics):
 - `atometric-c`: Atometric for CS research context
 - `atometric-p`: Atometric for persona
 - `atometric-r`: Atometric for red team attempts
+
+## Contributing
+
 
 ## Style check
 
