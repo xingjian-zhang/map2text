@@ -1,3 +1,4 @@
+# Embedding interpolation (unweighted)
 type: generation
 output:
   output/cs_research_idea/vec2text_uw.json
