@@ -1,6 +1,6 @@
 type: generation
 output:
-  out/plagiarism_200.json
+  output/persona/plagiarism.json
 data:
   path: data/persona.tsv
   target_col: persona
