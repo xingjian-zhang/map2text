@@ -2,13 +2,13 @@ type: generation
 output:
   out/plagiarism_200.json
 data:
-  path: data/massw_llm4explore.tsv
-  target_col: key_idea
-  time_col: year
-  time_split: 2023
+  path: data/persona.tsv
+  target_col: persona
+  time_col: split_id
+  time_split: 1
   num_tests: 200
 embeddings:
-  path: out/ada2_key_ideas.npz
+  path: data/persona.npz
 method:
   type: plagiarism
   init_args:

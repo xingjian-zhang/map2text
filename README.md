@@ -84,7 +84,7 @@ embeddings in `data/*.npz`.
 ### Generate new ideas (generation subtask)
 
 ```bash
-python map2text/quick_start.py map2text/configs/<method_name>.yaml
+python map2text/quick_start.py map2text/configs/<dataset>/<method_name>.yaml
 ```
 
 ### Evaluate generation results
