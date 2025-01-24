@@ -4,6 +4,7 @@ from pathlib import Path
 import json
 import numpy as np
 import os
+import os
 import pandas as pd
 import plotly.graph_objects as go
 import plotly.express as px
@@ -22,6 +23,7 @@ def rewrap_br(text, **kwargs):
     return text.replace("\n", "<br>")
 
 
+@st.cache_data
 @st.cache_data
 def load_data(dataset_name):
     project_root = Path(__file__).parent.parent
@@ -57,8 +59,11 @@ def load_data(dataset_name):
     df["display_text"] = df["display_text"].apply(rewrap_br, width=80)
     embeddings = np.load(embedding_path)
     return df, embeddings["low_dim_embeddings"], embeddings["high_dim_embeddings"]
+    return df, embeddings["low_dim_embeddings"], embeddings["high_dim_embeddings"]
 
 
+@st.cache_data
+def generate_plotly_figure(df, embeddings):
 @st.cache_data
 def generate_plotly_figure(df, embeddings):
     df["x"] = embeddings[:, 0]
