@@ -1,11 +1,16 @@
 import textwrap
 from pathlib import Path
 
+import json
 import numpy as np
+import os
 import os
 import pandas as pd
 import plotly.graph_objects as go
+import plotly.express as px
+
 import streamlit as st
+from streamlit_plotly_events import plotly_events
 import yaml
 
 
@@ -94,11 +99,12 @@ def generate_plotly_figure(df, embeddings):
         dtick=1,
         range=[min(embeddings[:, 1]), max(embeddings[:, 1])],
     )
-    fig.update_layout(width=1000, height=1000)
+    fig.update_layout(width=600, height=600)
     fig.update_layout(
         paper_bgcolor="rgba(0,0,0,0)",
         plot_bgcolor="rgba(0,0,0,0)",
     )
+    fig.update_layout(clickmode="event+select")
     return fig
 
 
@@ -109,7 +115,10 @@ def load_generator(generator_type, dataset_name, data, low_dim_embeddings, high_
         "plagiarism": "plagiarism.yaml",
         "embedding": "vec2text_uw.yaml",
         "embedding_ffn": "vec2text_ffn_inference.yaml",
-        "prompting": "gpt4o_fs.yaml",
+        "gpt4o_fs": "gpt4o_fs.yaml",
+        "gpt4o_fs_cot": "gpt4o_fs_cot.yaml",
+        "gpt4o_fs_rag": "gpt4o_fs_rag.yaml",
+        "gpt4o_zs": "gpt4o_zs.yaml",
     }
     config_file = (project_root / "configs" / dataset_name.replace("-", "_") /
                    generation_configs[generator_type])
@@ -150,6 +159,8 @@ def load_generator(generator_type, dataset_name, data, low_dim_embeddings, high_
             **config["method"]["init_args"],
         )
     elif generator_type == "prompting":
+        # Set the api-key here
+        config["method"]["init_args"]["api_kwargs"]["api_key"] = os.environ["OPENAI_API_KEY"]
         generator = non_trainable_gen.RetrievalAugmentedGenerator(
             target= config["data"]["target_col"],
             n_dims=n_dims,
@@ -166,55 +177,85 @@ def load_generator(generator_type, dataset_name, data, low_dim_embeddings, high_
 
 # Wide mode, dark mode
 st.set_page_config(layout="wide")
-st.title("Map2Text Demo")
 
 # Initialize marked coordinates
 marked_coords = None
 generated_text = None
 os.environ["OPENAI_API_KEY"] = ""
 
-col1, col2 = st.columns([1, 1])
+col1, col2 = st.columns([1, 2])
 
 with col1:
-    # Select dataset
-    dataset_name = st.selectbox(
-        "Select dataset",
-        ["red_team_attempts", "persona", "cs-research-idea", "cs-research-context"],
-    )
+    st.title("Map2Text Demo")
+    subcol1, subcol2 = st.columns([1, 1])
+    with subcol1:
+        # Select dataset
+        dataset_name = st.selectbox(
+            "Select dataset",
+            ["red_team_attempts", "persona", "cs-research-idea", "cs-research-context"],
+        )
 
-    generator_type = st.selectbox(
-        "Select generator",
-        ["plagiarism", "embedding", "embedding_ffn", "prompting"],
-    )
+    with subcol2:
+        generator_type = st.selectbox(
+            "Select generator",
+            ["gpt4o_fs", "gpt4o_fs_cot", "gpt4o_fs_rag", "gpt4o_zs", "plagiarism"],
+        )
 
-with col2:
-    # Text boxes for coordinates
-    x_coord = st.text_input("Enter X coordinate:")
-    y_coord = st.text_input("Enter Y coordinate:")
+    # Set api key if applicable
+    os.environ["OPENAI_API_KEY"] = st.text_input("(Optional) OpenAI API Key:")
 
-# Set api key if applicable
-os.environ["OPENAI_API_KEY"] = st.text_input("(Optional) OpenAI API Key:")
+    subcol1, subcol2 = st.columns([1, 1])
+    with subcol1:
+        x_coord = st.text_input("Enter X coordinate:")
 
-# Button to mark coordinate
-if st.button("Generate"):
-    if x_coord and y_coord:
-        try:
-            x = float(x_coord)
-            y = float(y_coord)
-            # st.write(f"Marking coordinate: ({x}, {y})")
-            marked_coords = (x, y)
-        except ValueError:
-            st.error("Please enter valid numeric values for the coordinates.")
-    else:
-        st.error("Both X and Y coordinates must be provided.")
+    with subcol2:
+        y_coord = st.text_input("Enter Y coordinate:")
 
-# Create the Streamlit Plotly chart with optional marked point
-df, low_dim_embeddings, high_dim_embeddings = load_data(dataset_name)
-if marked_coords is not None:
-    generator = load_generator(
-        generator_type, dataset_name, df, low_dim_embeddings, high_dim_embeddings,
-    )
-    generated_text = generator.decode(marked_coords)[0]
+    # Button to mark coordinate
+    if st.button("Generate"):
+        if generator_type != "plagiarism" and not os.environ["OPENAI_API_KEY"]:
+            st.error("API Key is missing for generation!")
+        if x_coord and y_coord:
+            try:
+                x = float(x_coord)
+                y = float(y_coord)
+                # st.write(f"Marking coordinate: ({x}, {y})")
+                marked_coords = (x, y)
+            except ValueError:
+                st.error("Please enter valid numeric values for the coordinates.")
+        else:
+            st.error("Both X and Y coordinates must be provided.")
+
+    df, low_dim_embeddings, high_dim_embeddings = load_data(dataset_name)
+    if st.button("Generate (Random)"):
+        if generator_type != "plagiarism" and not os.environ["OPENAI_API_KEY"]:
+            st.error("API Key is missing for generation!")
+
+        # Sample a point within a neighborhood of a random point
+        idx = np.random.randint(0, low_dim_embeddings.shape[0])
+        x_center, y_center = low_dim_embeddings[idx]
+
+        # Uniformly sample a random point within a radius of 1
+        radius = 1
+        theta = np.random.uniform(0, 2 * np.pi)  # Random angle
+        r = np.sqrt(np.random.uniform(0, radius))  # Random radius (sqrt for uniform distribution)
+
+        x_new = x_center + r * np.cos(theta)
+        y_new = y_center + r * np.sin(theta)
+        marked_coords = (x_new, y_new)
+
+    # Create the Streamlit Plotly chart with optional marked point
+    if marked_coords is not None:
+        with st.spinner("Processing..."):
+            generator = load_generator(
+                generator_type, dataset_name, df, low_dim_embeddings, high_dim_embeddings,
+            )
+            queries = np.array(marked_coords)[None, ...]
+            generated_text = generator.decode_all(queries)[0][0]
+            if generator_type != "plagiarism":
+                # Prompting generation
+                generated_text = json.loads(generated_text)
+                generated_text = generated_text["predictions"][0]["content"]
 
 # Generate plot
 fig = generate_plotly_figure(df, low_dim_embeddings)
@@ -226,7 +267,11 @@ if marked_coords:
             mode="markers",
             marker=dict(size=10, color="red"),
             hovertemplate="%{text}<extra></extra>",
-            text=[generated_text],
+            text=[rewrap_br(generated_text)],
         )
     )
-st.plotly_chart(fig, theme=None, use_container_width=True)
+
+with col2:
+    st.plotly_chart(fig,
+                    theme=None,
+                    use_container_width=False)
