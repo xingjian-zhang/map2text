@@ -24,7 +24,6 @@ def rewrap_br(text, **kwargs):
 
 
 @st.cache_data
-@st.cache_data
 def load_data(dataset_name):
     project_root = Path(__file__).parent.parent
     data_files = {
@@ -59,11 +58,8 @@ def load_data(dataset_name):
     df["display_text"] = df["display_text"].apply(rewrap_br, width=80)
     embeddings = np.load(embedding_path)
     return df, embeddings["low_dim_embeddings"], embeddings["high_dim_embeddings"]
-    return df, embeddings["low_dim_embeddings"], embeddings["high_dim_embeddings"]
 
 
-@st.cache_data
-def generate_plotly_figure(df, embeddings):
 @st.cache_data
 def generate_plotly_figure(df, embeddings):
     df["x"] = embeddings[:, 0]
@@ -109,42 +105,6 @@ def generate_plotly_figure(df, embeddings):
         plot_bgcolor="rgba(0,0,0,0)",
     )
     fig.update_layout(clickmode="event+select")
-    return fig
-
-
-def add_dummy_nodes(fig, padding = 1):
-    x_data = np.concatenate([trace['x'] for trace in fig.data if 'x' in trace])
-    y_data = np.concatenate([trace['y'] for trace in fig.data if 'y' in trace])
-
-    # Calculate min and max values
-    x_min, x_max = x_data.min(), x_data.max()
-    y_min, y_max = y_data.min(), y_data.max()
-
-    padding = 1  # Adjust as needed
-    x_min, x_max = x_min - padding, x_max + padding
-    y_min, y_max = y_min - padding, y_max + padding
-
-    # Define grid spacing
-    grid_spacing = 1
-
-    # Generate grid points
-    x_grid = np.arange(x_min, x_max + grid_spacing, grid_spacing)
-    y_grid = np.arange(y_min, y_max + grid_spacing, grid_spacing)
-    x_mesh, y_mesh = np.meshgrid(x_grid, y_grid)
-    x_grid_flat = x_mesh.flatten()
-    y_grid_flat = y_mesh.flatten()
-
-    fig.add_trace(
-        go.Scatter(
-            x=x_grid_flat,
-            y=y_grid_flat,
-            mode='markers',
-            marker=dict(size=1, opacity=0),
-            name='dummy',
-            hoverinfo='skip',
-        )
-    )
-
     return fig
 
 
