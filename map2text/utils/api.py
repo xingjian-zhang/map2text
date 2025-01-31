@@ -537,7 +537,13 @@ def process_chat_requests(
                     + "\n"
                 )
         # Send requests to the API
-        loop = asyncio.get_event_loop()
+        try:
+            loop = asyncio.get_event_loop()
+        except RuntimeError as ex:
+            if "There is no current event loop in thread" in str(ex):
+                loop = asyncio.new_event_loop()
+                asyncio.set_event_loop(loop)
+                loop = asyncio.get_event_loop()
         loop.run_until_complete(
             process_api_requests_from_file(
                 requests_filepath=requests_filepath,
