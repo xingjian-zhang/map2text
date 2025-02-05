@@ -182,7 +182,6 @@ marked_coords = None
 generated_text = None
 os.environ["OPENAI_API_KEY"] = ""
 
-# col1, col2, col3 = st.columns([1.1, 1.9, 0.5])
 col1, col2, col3 = st.columns([1, 2, 1])
 
 with col1:
