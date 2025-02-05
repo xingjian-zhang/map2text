@@ -10,7 +10,6 @@ import plotly.graph_objects as go
 import plotly.express as px
 
 import streamlit as st
-from streamlit_plotly_events import plotly_events
 import yaml
 
 
@@ -27,22 +26,22 @@ def rewrap_br(text, **kwargs):
 def load_data(dataset_name):
     project_root = Path(__file__).parent.parent
     data_files = {
-        "persona": {
+        "Persona": {
             "text": "persona.tsv",
             "embedding": "persona.npz",
             "target_col": "persona",
         },
-        "cs-research-idea": {
+        "CS Research Idea": {
             "text": "massw.tsv",
             "embedding": "key_ideas.npz",
             "target_col": "key_idea",
         },
-        "cs-research-context": {
+        "CS Research Context": {
             "text": "massw.tsv",
             "embedding": "context.npz",
             "target_col": "context",
         },
-        "red_team_attempts": {
+        "Red-Teaming Strategies": {
             "text": "red_team_attempts.tsv",
             "embedding": "red_team_attempts.npz",
             "target_col": "content",
@@ -99,7 +98,7 @@ def generate_plotly_figure(df, embeddings):
         dtick=1,
         range=[min(embeddings[:, 1]), max(embeddings[:, 1])],
     )
-    fig.update_layout(width=600, height=600)
+    fig.update_layout(width=600, height=800)
     fig.update_layout(
         paper_bgcolor="rgba(0,0,0,0)",
         plot_bgcolor="rgba(0,0,0,0)",
@@ -115,10 +114,10 @@ def load_generator(generator_type, dataset_name, data, low_dim_embeddings, high_
         "plagiarism": "plagiarism.yaml",
         "embedding": "vec2text_uw.yaml",
         "embedding_ffn": "vec2text_ffn_inference.yaml",
-        "gpt4o_fs": "gpt4o_fs.yaml",
-        "gpt4o_fs_cot": "gpt4o_fs_cot.yaml",
-        "gpt4o_fs_rag": "gpt4o_fs_rag.yaml",
-        "gpt4o_zs": "gpt4o_zs.yaml",
+        "Few-shot": "gpt4o_fs.yaml",
+        "Few-shot with CoT": "gpt4o_fs_cot.yaml",
+        "Few-shot with RAG": "gpt4o_fs_rag.yaml",
+        "Zero-shot": "gpt4o_zs.yaml",
     }
     config_file = (project_root / "configs" / dataset_name.replace("-", "_") /
                    generation_configs[generator_type])
@@ -183,27 +182,44 @@ marked_coords = None
 generated_text = None
 os.environ["OPENAI_API_KEY"] = ""
 
-col1, col2 = st.columns([1, 2])
+# col1, col2, col3 = st.columns([1.1, 1.9, 0.5])
+col1, col2, col3 = st.columns([1, 2, 1])
 
 with col1:
     st.title("Map2Text Demo")
+
+    st.subheader("STEP 1: Select dataset and generator")
     subcol1, subcol2 = st.columns([1, 1])
     with subcol1:
         # Select dataset
         dataset_name = st.selectbox(
             "Select dataset",
-            ["red_team_attempts", "persona", "cs-research-idea", "cs-research-context"],
+            ["Red-Teaming Strategies", "Persona", "CS Research Idea", "CS Research Context"],
         )
+        name_to_folder = {
+            "Red-Teaming Strategies": "red_team_attempts",
+            "Persona": "persona",
+            "CS Research Idea": "cs_research_idea",
+            "CS Research Context": "cs_research_context",
+        }
+        name_to_response = {
+            "Red-Teaming Strategies": "content",
+            "Persona": "persona",
+            "CS Research Idea": "key_idea",
+            "CS Research Context": "context",
+        }
 
     with subcol2:
         generator_type = st.selectbox(
             "Select generator",
-            ["gpt4o_fs", "gpt4o_fs_cot", "gpt4o_fs_rag", "gpt4o_zs", "plagiarism"],
+            ["Few-shot", "Few-shot with CoT", "Few-shot with RAG", "Zero-shot"],
         )
 
-    # Set api key if applicable
-    os.environ["OPENAI_API_KEY"] = st.text_input("(Optional) OpenAI API Key:")
+    st.subheader("STEP 2: Enter OpenAI API key here")
+    os.environ["OPENAI_API_KEY"] = st.text_input("(Required) OpenAI API Key:")
 
+    st.subheader("STEP 3: Generate")
+    st.markdown("#### Option 1: Specify the coordinates")
     subcol1, subcol2 = st.columns([1, 1])
     with subcol1:
         x_coord = st.text_input("Enter X coordinate:")
@@ -213,13 +229,10 @@ with col1:
 
     # Button to mark coordinate
     if st.button("Generate"):
-        if generator_type != "plagiarism" and not os.environ["OPENAI_API_KEY"]:
-            st.error("API Key is missing for generation!")
         if x_coord and y_coord:
             try:
                 x = float(x_coord)
                 y = float(y_coord)
-                # st.write(f"Marking coordinate: ({x}, {y})")
                 marked_coords = (x, y)
             except ValueError:
                 st.error("Please enter valid numeric values for the coordinates.")
@@ -227,10 +240,9 @@ with col1:
             st.error("Both X and Y coordinates must be provided.")
 
     df, low_dim_embeddings, high_dim_embeddings = load_data(dataset_name)
-    if st.button("Generate (Random)"):
-        if generator_type != "plagiarism" and not os.environ["OPENAI_API_KEY"]:
-            st.error("API Key is missing for generation!")
 
+    st.markdown("#### Option 2: Random generation")
+    if st.button("Generate (Random)"):
         # Sample a point within a neighborhood of a random point
         idx = np.random.randint(0, low_dim_embeddings.shape[0])
         x_center, y_center = low_dim_embeddings[idx]
@@ -248,14 +260,13 @@ with col1:
     if marked_coords is not None:
         with st.spinner("Processing..."):
             generator = load_generator(
-                generator_type, dataset_name, df, low_dim_embeddings, high_dim_embeddings,
+                generator_type, name_to_folder[dataset_name], df, low_dim_embeddings, high_dim_embeddings,
             )
             queries = np.array(marked_coords)[None, ...]
             generated_text = generator.decode_all(queries)[0][0]
-            if generator_type != "plagiarism":
-                # Prompting generation
-                generated_text = json.loads(generated_text)
-                generated_text = generated_text["predictions"][0]["content"]
+
+            generated_text = json.loads(generated_text)
+            generated_text = generated_text["predictions"][0][name_to_response[dataset_name]]
 
 # Generate plot
 fig = generate_plotly_figure(df, low_dim_embeddings)
@@ -274,4 +285,11 @@ if marked_coords:
 with col2:
     st.plotly_chart(fig,
                     theme=None,
-                    use_container_width=False)
+                    use_container_width=True)
+
+with col3:
+    st.header("Generation:")
+    if generated_text is not None:
+        st.markdown(f"""<p style="color:red; font-family: Courier New;">{generated_text}</p>""", unsafe_allow_html=True)
+    else:
+        st.markdown("Please follow the instructions to specify a point.")
