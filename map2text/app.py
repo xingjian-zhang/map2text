@@ -1,18 +1,14 @@
+import json
+import os
 import textwrap
 from pathlib import Path
 
-import json
 import numpy as np
-import os
-import os
 import pandas as pd
-import plotly.graph_objects as go
 import plotly.express as px
-
+import plotly.graph_objects as go
 import streamlit as st
 import yaml
-import gdown
-
 
 GRID_COLOR = "rgba(128,128,128,0.1)"
 POINT_COLOR = "rgba(128,128,128,0.9)"
@@ -27,72 +23,28 @@ def rewrap_br(text, **kwargs):
 def load_data(dataset_name):
     project_root = Path(__file__).parent.parent
 
+    # Restrict to datasets in the 'demo' folder
     data_files = {
         "Persona": {
-            "text": "persona.tsv",
-            "embedding": "persona.npz",
-            "target_col": "persona",
-        },
-        "CS Research Idea": {
-            "text": "massw.tsv",
-            "embedding": "key_ideas.npz",
-            "target_col": "key_idea",
-        },
-        "CS Research Context": {
-            "text": "massw.tsv",
-            "embedding": "context.npz",
-            "target_col": "context",
+            "text": "demo/persona.tsv",
+            "target_col": "display_text",
         },
         "Red-Teaming Strategies": {
-            "text": "red_team_attempts.tsv",
-            "embedding": "red_team_attempts.npz",
-            "target_col": "content",
+            "text": "demo/red_teaming.tsv",
+            "target_col": "display_text",
         },
     }
-
-    file_ids = {
-        "Persona": {
-            "text": "1MjId3yn16h5jedhPyFZE-fRSo0jeikrY",
-            "embedding": "1q9zFuluhSpT_ljUypCEx8XeC81zWqhTS",
-        },
-        "CS Research Idea": {
-            "text": "1XCIR7w5JP0T49vnfSgvq2tHXjKY_amLl",
-            "embedding": "1Ink96aAq44I-Xj4nDOfGC_h-8ZxuDB8q",
-        },
-        "CS Research Context": {
-            "text": "1XCIR7w5JP0T49vnfSgvq2tHXjKY_amLl",
-            "embedding": "1MuP3HjYqg2dv1gyyjHLTl0UWfCMHQN67",
-        },
-        "Red-Teaming Strategies": {
-            "text": "1fHTH37YqgBDE1F6SZX7usDkGZG1ZiTdj",
-            "embedding": "1zo-xj9xkXeO4FnIgvW1LbuUOTQSKkwLu",
-        },
-    }
-
-    for f_type in ["text", "embedding"]:
-        data_dir = project_root / "data"
-        os.makedirs(data_dir, exist_ok=True)
-        gdown.download(
-            f'https://drive.google.com/uc?export=download&id={file_ids[dataset_name][f_type]}',
-            output=os.path.join(data_dir, data_files[dataset_name][f_type]), quiet=False
-        )
 
     data_file = data_files[dataset_name]
-    text_path = project_root / "data" / data_file["text"]
-    embedding_path = project_root / "data" / data_file["embedding"]
+    text_path = project_root / data_file["text"]
 
-    df = pd.read_csv(text_path, sep="\t")
-    df = df.dropna(subset=[data_file["target_col"]])
-    df.rename(columns={data_file["target_col"]: "display_text"}, inplace=True)
-    df["display_text"] = df["display_text"].apply(rewrap_br, width=80)
-    embeddings = np.load(embedding_path)
-    return df, embeddings["low_dim_embeddings"], embeddings["high_dim_embeddings"]
+    # Load the TSV file with specified columns
+    df = pd.read_csv(text_path, sep="\t", usecols=["x", "y", "display_text"])
+    return df
 
 
 @st.cache_data
-def generate_plotly_figure(df, embeddings):
-    df["x"] = embeddings[:, 0]
-    df["y"] = embeddings[:, 1]
+def generate_plotly_figure(df):
     fig = go.Figure()
     fig.add_trace(
         go.Scatter(
@@ -115,7 +67,7 @@ def generate_plotly_figure(df, embeddings):
         gridcolor=GRID_COLOR,
         zeroline=False,
         dtick=1,
-        range=[min(embeddings[:, 0]), max(embeddings[:, 0])],
+        range=[min(df["x"]), max(df["x"])],
     )
     fig.update_yaxes(
         visible=True,
@@ -126,7 +78,7 @@ def generate_plotly_figure(df, embeddings):
         gridcolor=GRID_COLOR,
         zeroline=False,
         dtick=1,
-        range=[min(embeddings[:, 1]), max(embeddings[:, 1])],
+        range=[min(df["y"]), max(df["y"])],
     )
     fig.update_layout(width=600, height=800)
     fig.update_layout(
@@ -137,65 +89,46 @@ def generate_plotly_figure(df, embeddings):
     return fig
 
 
-def load_generator(generator_type, dataset_name, data, low_dim_embeddings, high_dim_embeddings):
-    from model import non_trainable_gen, trainable_ffn
+def load_generator(generator_type, dataset_name, data):
+    from model import non_trainable_gen
+
     project_root = Path(__file__).parent
     generation_configs = {
-        "plagiarism": "plagiarism.yaml",
-        "embedding": "vec2text_uw.yaml",
-        "embedding_ffn": "vec2text_ffn_inference.yaml",
         "Few-shot": "gpt4o_fs.yaml",
         "Few-shot with CoT": "gpt4o_fs_cot.yaml",
         "Few-shot with RAG": "gpt4o_fs_rag.yaml",
         "Zero-shot": "gpt4o_zs.yaml",
     }
-    config_file = (project_root / "configs" / dataset_name.replace("-", "_") /
-                   generation_configs[generator_type])
+    config_file = (
+        project_root
+        / "configs"
+        / dataset_name.replace("-", "_")
+        / generation_configs[generator_type]
+    )
     with open(config_file, "r") as file:
         config = yaml.load(file, Loader=yaml.FullLoader)
 
     # Load complementary data
-    times = data[config["data"]["time_col"]]
-    time_split = config["data"]["time_split"]
-    targets = data["display_text"]
-    targets_old = targets[times < time_split].tolist()
-    low_dim_embeddings_old = low_dim_embeddings[times < time_split]
-    n_dims = low_dim_embeddings.shape[1]
+    # Set the target based on the dataset name.
+    if dataset_name == "Red-Teaming Strategies":
+        target = "red teaming strategy"
+    elif dataset_name == "Persona":
+        target = "persona"
+    else:
+        raise ValueError(f"Unknown dataset name: {dataset_name}")
 
     # Initialize the generator.
     generator_type = config["method"]["type"]
-    if generator_type == "plagiarism":
-        generator = non_trainable_gen.PlagiarismGenerator(
-            n_dims=n_dims,
-            data_old=targets_old,
-            low_dim_embeddings_old=low_dim_embeddings_old,
-            **config["method"]["init_args"],
-        )
-    elif generator_type == "embedding":
-        high_dim_embeddings_old = high_dim_embeddings[times < time_split]
-        generator = non_trainable_gen.EmbeddingInversionGenerator(
-            n_dims=n_dims,
-            data_old=targets_old,
-            low_dim_embeddings_old=low_dim_embeddings_old,
-            high_dim_embeddings_old=high_dim_embeddings_old,
-            **config["method"]["init_args"],
-        )
-    elif generator_type == "embedding_ffn":
-        generator = trainable_ffn.EmbeddingInversionFFNGenerator(
-            n_dims=n_dims,
-            data_old=targets_old,
-            low_dim_embeddings_old=low_dim_embeddings_old,
-            **config["method"]["init_args"],
-        )
-    elif generator_type == "prompting":
-        # Set the api-key here
-        config["method"]["init_args"]["api_kwargs"]["api_key"] = os.environ["OPENAI_API_KEY"]
+    if generator_type == "prompting":
+        config["method"]["init_args"]["api_kwargs"]["api_key"] = os.environ[
+            "OPENAI_API_KEY"
+        ]
         generator = non_trainable_gen.RetrievalAugmentedGenerator(
-            target= config["data"]["target_col"],
-            n_dims=n_dims,
-            texts=targets_old,
-            low_dim_embeddings=low_dim_embeddings_old,
-            times=times[times < time_split].values,
+            target=target,
+            n_dims=2,
+            texts=data["display_text"],
+            low_dim_embeddings=data[["x", "y"]],
+            times=np.zeros(data.shape[0]),
             **config["method"]["init_args"],
         )
     else:
@@ -223,19 +156,18 @@ with col1:
         # Select dataset
         dataset_name = st.selectbox(
             "Select dataset",
-            ["Red-Teaming Strategies", "Persona", "CS Research Idea", "CS Research Context"],
+            [
+                "Red-Teaming Strategies",
+                "Persona",
+            ],
         )
         name_to_folder = {
             "Red-Teaming Strategies": "red_team_attempts",
             "Persona": "persona",
-            "CS Research Idea": "cs_research_idea",
-            "CS Research Context": "cs_research_context",
         }
         name_to_response = {
             "Red-Teaming Strategies": "content",
             "Persona": "persona",
-            "CS Research Idea": "key_idea",
-            "CS Research Context": "context",
         }
 
     with subcol2:
@@ -268,18 +200,20 @@ with col1:
         else:
             st.error("Both X and Y coordinates must be provided.")
 
-    df, low_dim_embeddings, high_dim_embeddings = load_data(dataset_name)
+    df = load_data(dataset_name)
 
     st.markdown("#### Option 2: Random generation")
     if st.button("Generate (Random)"):
         # Sample a point within a neighborhood of a random point
-        idx = np.random.randint(0, low_dim_embeddings.shape[0])
-        x_center, y_center = low_dim_embeddings[idx]
+        idx = np.random.randint(0, df.shape[0])
+        x_center, y_center = df.iloc[idx]["x"], df.iloc[idx]["y"]
 
         # Uniformly sample a random point within a radius of 1
         radius = 1
         theta = np.random.uniform(0, 2 * np.pi)  # Random angle
-        r = np.sqrt(np.random.uniform(0, radius))  # Random radius (sqrt for uniform distribution)
+        r = np.sqrt(
+            np.random.uniform(0, radius)
+        )  # Random radius (sqrt for uniform distribution)
 
         x_new = x_center + r * np.cos(theta)
         y_new = y_center + r * np.sin(theta)
@@ -289,16 +223,20 @@ with col1:
     if marked_coords is not None:
         with st.spinner("Processing..."):
             generator = load_generator(
-                generator_type, name_to_folder[dataset_name], df, low_dim_embeddings, high_dim_embeddings,
+                generator_type,
+                name_to_folder[dataset_name],
+                df,
             )
             queries = np.array(marked_coords)[None, ...]
             generated_text = generator.decode_all(queries)[0][0]
 
             generated_text = json.loads(generated_text)
-            generated_text = generated_text["predictions"][0][name_to_response[dataset_name]]
+            generated_text = generated_text["predictions"][0][
+                name_to_response[dataset_name]
+            ]
 
 # Generate plot
-fig = generate_plotly_figure(df, low_dim_embeddings)
+fig = generate_plotly_figure(df)
 if marked_coords:
     fig.add_trace(
         go.Scatter(
@@ -312,13 +250,14 @@ if marked_coords:
     )
 
 with col2:
-    st.plotly_chart(fig,
-                    theme=None,
-                    use_container_width=True)
+    st.plotly_chart(fig, theme=None, use_container_width=True)
 
 with col3:
     st.header("Generation:")
     if generated_text is not None:
-        st.markdown(f"""<p style="color:red; font-family: Courier New;">{generated_text}</p>""", unsafe_allow_html=True)
+        st.markdown(
+            f"""<p style="color:red; font-family: Courier New;">{generated_text}</p>""",
+            unsafe_allow_html=True,
+        )
     else:
         st.markdown("Please follow the instructions to specify a point.")
