@@ -5,7 +5,6 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
-import plotly.express as px
 import plotly.graph_objects as go
 import streamlit as st
 import yaml
@@ -21,8 +20,7 @@ def rewrap_br(text, **kwargs):
 
 @st.cache_data
 def load_data(dataset_name):
-    project_root = Path(__file__).parent.parent
-
+    project_root = Path(__file__).parent
     # Restrict to datasets in the 'demo' folder
     data_files = {
         "Persona": {
