@@ -70,7 +70,7 @@ def load_data(dataset_name):
     }
 
     for f_type in ["text", "embedding"]:
-        data_dir = "../data"
+        data_dir = project_root / "data"
         os.makedirs(data_dir, exist_ok=True)
         gdown.download(
             f'https://drive.google.com/uc?export=download&id={file_ids[dataset_name][f_type]}',
