@@ -52,7 +52,7 @@ def load_data(dataset_name):
 
     file_ids = {
         "Persona": {
-            "tsv": "1MjId3yn16h5jedhPyFZE-fRSo0jeikrY",
+            "text": "1MjId3yn16h5jedhPyFZE-fRSo0jeikrY",
             "embedding": "1q9zFuluhSpT_ljUypCEx8XeC81zWqhTS",
         },
         "CS Research Idea": {
