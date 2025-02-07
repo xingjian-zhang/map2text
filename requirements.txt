@@ -8,7 +8,6 @@ PyYAML
 sentence_transformers
 setuptools
 tiktoken
-torch
 tqdm
 vec2text
 plotly
