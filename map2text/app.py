@@ -11,6 +11,7 @@ import plotly.express as px
 
 import streamlit as st
 import yaml
+import gdown
 
 
 GRID_COLOR = "rgba(128,128,128,0.1)"
@@ -25,6 +26,7 @@ def rewrap_br(text, **kwargs):
 @st.cache_data
 def load_data(dataset_name):
     project_root = Path(__file__).parent.parent
+
     data_files = {
         "Persona": {
             "text": "persona.tsv",
@@ -47,6 +49,34 @@ def load_data(dataset_name):
             "target_col": "content",
         },
     }
+
+    file_ids = {
+        "Persona": {
+            "text": "1MjId3yn16h5jedhPyFZE-fRSo0jeikrY",
+            "embedding": "1q9zFuluhSpT_ljUypCEx8XeC81zWqhTS",
+        },
+        "CS Research Idea": {
+            "text": "1XCIR7w5JP0T49vnfSgvq2tHXjKY_amLl",
+            "embedding": "1Ink96aAq44I-Xj4nDOfGC_h-8ZxuDB8q",
+        },
+        "CS Research Context": {
+            "text": "1XCIR7w5JP0T49vnfSgvq2tHXjKY_amLl",
+            "embedding": "1MuP3HjYqg2dv1gyyjHLTl0UWfCMHQN67",
+        },
+        "Red-Teaming Strategies": {
+            "text": "1fHTH37YqgBDE1F6SZX7usDkGZG1ZiTdj",
+            "embedding": "1zo-xj9xkXeO4FnIgvW1LbuUOTQSKkwLu",
+        },
+    }
+
+    for f_type in ["text", "embedding"]:
+        data_dir = project_root / "data"
+        os.makedirs(data_dir, exist_ok=True)
+        gdown.download(
+            f'https://drive.google.com/uc?export=download&id={file_ids[dataset_name][f_type]}',
+            output=os.path.join(data_dir, data_files[dataset_name][f_type]), quiet=False
+        )
+
     data_file = data_files[dataset_name]
     text_path = project_root / "data" / data_file["text"]
     embedding_path = project_root / "data" / data_file["embedding"]

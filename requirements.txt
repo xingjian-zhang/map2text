@@ -11,3 +11,5 @@ tiktoken
 torch
 tqdm
 vec2text
+plotly
+gdown
