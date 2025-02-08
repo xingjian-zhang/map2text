@@ -143,9 +143,7 @@ def load_generator(generator_type, dataset_name, data):
     # Initialize the generator.
     generator_type = config["method"]["type"]
     if generator_type == "prompting":
-        config["method"]["init_args"]["api_kwargs"]["api_key"] = os.environ[
-            "OPENAI_API_KEY"
-        ]
+        config["method"]["init_args"]["api_kwargs"]["api_key"] = OPENAI_API_KEY
         generator = non_trainable_gen.RetrievalAugmentedGenerator(
             target=target,
             n_dims=2,
@@ -165,7 +163,7 @@ st.set_page_config(layout="wide")
 # Initialize marked coordinates
 marked_coords = None
 generated_text = None
-os.environ["OPENAI_API_KEY"] = ""
+OPENAI_API_KEY = st.secrets["general"]["api_key"]
 
 col1, col2 = st.columns([1, 2])
 
@@ -204,12 +202,7 @@ with col1:
             ],
         )
 
-    st.subheader("STEP 2: Enter OpenAI API key")
-    os.environ["OPENAI_API_KEY"] = st.text_input(
-        "(Required) We will not store your API key."
-    )
-
-    st.subheader("STEP 3: Generate")
+    st.subheader("STEP 2: Generate")
     st.markdown("#### Option 1: Specify the coordinates")
     subcol1, subcol2 = st.columns([1, 1])
     with subcol1:
@@ -220,9 +213,7 @@ with col1:
 
     # Button to mark coordinate
     if st.button("Generate"):
-        if os.environ["OPENAI_API_KEY"] == "":
-            st.error("Please enter an OpenAI API key.")
-        elif x_coord and y_coord:
+        if x_coord and y_coord:
             try:
                 x = float(x_coord)
                 y = float(y_coord)
@@ -234,21 +225,18 @@ with col1:
 
     st.markdown("#### Option 2: Random generation")
     if st.button("Generate at Random Position"):
-        if os.environ["OPENAI_API_KEY"] == "":
-            st.error("Please enter an OpenAI API key.")
-        else:
-            # Sample a point within a neighborhood of a random point
-            idx = np.random.randint(0, df.shape[0])
-            x_center, y_center = df.iloc[idx]["x"], df.iloc[idx]["y"]
+        # Sample a point within a neighborhood of a random point
+        idx = np.random.randint(0, df.shape[0])
+        x_center, y_center = df.iloc[idx]["x"], df.iloc[idx]["y"]
 
-            # Uniformly sample a random point within a radius
-            radius = 0.25
-            theta = np.random.uniform(0, 2 * np.pi)  # Random angle
-            r = np.sqrt(np.random.uniform(0, radius))  # sqrt for uniform distribution
+        # Uniformly sample a random point within a radius
+        radius = 0.25
+        theta = np.random.uniform(0, 2 * np.pi)  # Random angle
+        r = np.sqrt(np.random.uniform(0, radius))  # sqrt for uniform distribution
 
-            x_new = x_center + r * np.cos(theta)
-            y_new = y_center + r * np.sin(theta)
-            st.session_state.random_coords = (x_new, y_new)  # Persist random_coords
+        x_new = x_center + r * np.cos(theta)
+        y_new = y_center + r * np.sin(theta)
+        st.session_state.random_coords = (x_new, y_new)  # Persist random_coords
 
     # Ask for confirmation if random coordinates are generated
     if st.session_state.random_coords is not None:
