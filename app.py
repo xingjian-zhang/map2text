@@ -71,7 +71,7 @@ def generate_plotly_figure(df):
                 font_size=12,
                 font_family="Rockwell",
                 font_color="black",
-                namelength=0
+                namelength=0,
             ),
         )
     )
@@ -158,6 +158,23 @@ def load_generator(generator_type, dataset_name, data):
     return generator
 
 
+def generate_text_for_coords(coords, generator_type, dataset_name, df):
+    """Generate text for given coordinates using the specified generator."""
+    with st.spinner("Processing...(This may take about 10 seconds.)"):
+        generator = load_generator(
+            generator_type,
+            name_to_folder[dataset_name],
+            df,
+        )
+        queries = np.array(coords)[None, ...]
+        generated_text = generator.decode_all(queries)[0][0]
+
+        generated_text = json.loads(generated_text)
+        st.session_state.generated_text = generated_text["predictions"][0][
+            name_to_response[dataset_name]
+        ]
+
+
 st.set_page_config(layout="wide")
 
 # Initialize marked coordinates
@@ -217,7 +234,13 @@ with col1:
             try:
                 x = float(x_coord)
                 y = float(y_coord)
-                marked_coords = (x, y)
+                st.session_state.marked_coords = (x, y)
+                generate_text_for_coords(
+                    st.session_state.marked_coords,
+                    generator_type,
+                    dataset_name,
+                    df
+                )
             except ValueError:
                 st.error("Please enter valid numeric values for the coordinates.")
         else:
@@ -245,25 +268,16 @@ with col1:
             "See the red star on the map."
         )
         st.write(
-            "Click 'Confirm Random Position' to generate, or click 'Generate at Random Position' to generate a new position."
+            "Click 'Confirm Position' to generate, or click 'Generate at Random Position' to generate a new position."
         )
-        if st.button("Confirm Random Position"):
-            st.session_state.marked_coords = (
-                st.session_state.random_coords
-            )  # Persist coordinates
-            with st.spinner("Processing...(This may take about 10 seconds.)"):
-                generator = load_generator(
-                    generator_type,
-                    name_to_folder[dataset_name],
-                    df,
-                )
-                queries = np.array(st.session_state.marked_coords)[None, ...]
-                generated_text = generator.decode_all(queries)[0][0]
-
-                generated_text = json.loads(generated_text)
-                st.session_state.generated_text = generated_text["predictions"][0][
-                    name_to_response[dataset_name]
-                ]
+        if st.button("Confirm Position"):
+            st.session_state.marked_coords = st.session_state.random_coords
+            generate_text_for_coords(
+                st.session_state.marked_coords,
+                generator_type,
+                dataset_name,
+                df
+            )
 
 # Generate plot
 fig = generate_plotly_figure(df)
@@ -287,17 +301,14 @@ elif st.session_state.random_coords:
             y=[st.session_state.random_coords[1]],
             mode="markers",
             marker=dict(size=10, color="rgb(255, 75, 75)", opacity=0.9, symbol="star"),
-            hovertemplate="Preview point<br>Click 'Confirm Random Position' to generate<extra></extra>",
+            hovertemplate="Preview point<br>Click 'Confirm Position' to generate<extra></extra>",
         )
     )
 
 with col2:
     # Simple plot without event handling
     st.plotly_chart(
-        fig,
-        theme=None,
-        use_container_width=False,
-        use_container_height=True
+        fig, theme=None, use_container_width=False, use_container_height=True
     )
 
 with col1:
