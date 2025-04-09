@@ -3,9 +3,9 @@
 ## Table of Contents
 - [Additional Details](#additional-details)
   - [Table of Contents](#table-of-contents)
-  - [KNN vs MLP (Reviewer tD76)](#knn-vs-mlp-reviewer-td76)
-  - [Using o1 as a candidate method (Reviewer tD76)](#using-o1-as-a-candidate-method-reviewer-td76)
-  - [Standard error, t-test, and significance (Reviewer tD76, )](#standard-error-t-test-and-significance-reviewer-td76-)
+  - [KNN vs MLP](#knn-vs-mlp)
+  - [Using o1 as a candidate method](#using-o1-as-a-candidate-method)
+  - [Standard error, t-test, and significance](#standard-error-t-test-and-significance)
     - [Persona](#persona)
     - [Red Teaming Strategies](#red-teaming-strategies)
     - [Research Idea](#research-idea)
@@ -13,7 +13,7 @@
     - [Research Context (Network)](#research-context-network)
   - [Rank correlation between two different LLM evaluators](#rank-correlation-between-two-different-llm-evaluators)
 
-## KNN vs MLP (Reviewer tD76)
+## KNN vs MLP
 
 | Metric       | KNN    | MLP    |
 | ------------ | ------ | ------ |
@@ -23,7 +23,7 @@
 | METEOR       | 0.1725 | 0.1664 |
 | ROUGE-2      | 0.0371 | 0.0407 |
 
-## Using o1 as a candidate method (Reviewer tD76)
+## Using o1 as a candidate method
 
 | Dataset          | Persona | Red Teaming Strategies | Research Idea | Research Context (Text) | Research Context (Network) |
 | :--------------- | ------: | ---------------------: | ------------: | ----------------------: | -------------------------: |
@@ -37,7 +37,7 @@
 | METEOR           |  0.1816 |                 0.2565 |        0.1154 |                  0.1157 |                     0.0890 |
 | ROUGE-2          |  0.0251 |                 0.1194 |        0.0214 |                  0.0211 |                     0.0106 |
 
-## Standard error, t-test, and significance (Reviewer tD76, )
+## Standard error, t-test, and significance
 
 ### Persona
 | Metric           | Cot-RAG | Cot-RAG-SE | RAG(1) | RAG(1)-SE | p-value | Significance |
@@ -107,6 +107,7 @@
 | BLEURT Scores    |  0.3057 |     0.0044 | 0.2978 |    0.0044 |  0.2004 |              |
 | METEOR           |  0.1309 |     0.0042 | 0.1041 |    0.0038 |  0.0000 | ***          |
 | ROUGE-2          |  0.0251 |     0.0026 | 0.0215 |    0.0026 |  0.3164 |              |
+
 ## Rank correlation between two different LLM evaluators
 
 ![Rank Correlation](assets/rank.png)
