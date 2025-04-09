@@ -1,5 +1,18 @@
 # Additional Details
 
+## Table of Contents
+- [Additional Details](#additional-details)
+  - [Table of Contents](#table-of-contents)
+  - [KNN vs MLP (Reviewer tD76)](#knn-vs-mlp-reviewer-td76)
+  - [Using o1 as a candidate method (Reviewer tD76)](#using-o1-as-a-candidate-method-reviewer-td76)
+  - [Standard error, t-test, and significance (Reviewer tD76, )](#standard-error-t-test-and-significance-reviewer-td76-)
+    - [Persona](#persona)
+    - [Red Teaming Strategies](#red-teaming-strategies)
+    - [Research Idea](#research-idea)
+    - [Research Context (Text)](#research-context-text)
+    - [Research Context (Network)](#research-context-network)
+  - [Rank correlation between two different LLM evaluators](#rank-correlation-between-two-different-llm-evaluators)
+
 ## KNN vs MLP (Reviewer tD76)
 
 | Metric       | KNN    | MLP    |
